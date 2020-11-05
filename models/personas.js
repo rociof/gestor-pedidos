@@ -8,52 +8,52 @@ class Personas extends Model {
         // Model attributes are defined here
         Nombre: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: false,
         },
         Apellido: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: false,
           // allowNull defaults to true
         },
         DNI: {
           type: DataTypes.STRING,
           allowNull: false,
-          primaryKey
+          primaryKey,
         },
         Direccion: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: false,
         },
         Localidad: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: false,
         },
         CP: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: false,
         },
         Provincia: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: false,
         },
         Telefono: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: false,
         },
         Email: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: false,
         },
       },
       {
         // Other model options go here
         sequelize, // We need to pass the connection instance
-        modelName: "Personas" // We need to choose the model name
+        modelName: "Personas", // We need to choose the model name
       }
     );
   }
   // the defined model is the class itself
 }
-console.log(Personas === sequelize.models.Personas); // true
+//console.log(Personas === sequelize.models.Personas); // true
 
 module.exports = Personas;
