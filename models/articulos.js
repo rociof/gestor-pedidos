@@ -12,7 +12,7 @@ super.init(
       primaryKey:true
     },
     Familia: {
-      type: DataTypes.STRING(2),
+      type: DataTypes.ENUM('A', 'B','C'),
       allowNull: false
       // allowNull defaults to true
     },

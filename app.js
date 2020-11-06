@@ -31,6 +31,11 @@ const { Sequelize } = require("sequelize");
 const Personas = require("./models/Personas");
 const Articulos = require("./models/Articulos");
 const Clientes = require("./models/Clientes");
+const Proveedores = require("./models/Proveedores");
+const Empleados = require("./models/Empleados");
+const Detalle = require("./models/Detallepedido");
+const Detallepedido = require("./models/Detallepedido");
+
 const connection = new Sequelize(
   "mariadb://root:maria123@localhost:3306/dbPedidos"
 );
@@ -41,6 +46,10 @@ const connection = new Sequelize(
       Personas.init(connection);
       Articulos.init(connection);
       Clientes.init(connection);
+      Proveedores.init(connection);
+      Empleados.init(connection);
+      Detallepedido.init(connection);
+
       connection.sync();
     })
 
