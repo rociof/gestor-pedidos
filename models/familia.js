@@ -7,7 +7,7 @@ const sequelize = new Sequelize('sqlite::memory');
 
 class Personas extends Model {}
 
-Personas.init({
+super.init({
     // Model attributes are defined here
     Nombre: {
         type: DataTypes.STRING,
@@ -30,8 +30,8 @@ Personas.init({
         type: DataTypes.STRING,
         allowNull: false
     }
-   
-    
+
+
 
 }, {
     // Other model options go here

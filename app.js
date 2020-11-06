@@ -26,20 +26,22 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
-//  //Option 1: Passing a connection URI
-// const sequelize = new Sequelize('sqlite::memory:'); // Example for sqlite
-//const sequelize = new Sequelize//('mariadb://root:maria123@localhost:3306/biblioteca');
+
 const { Sequelize } = require("sequelize");
 const Personas = require("./models/Personas");
+const Articulos = require("./models/Articulos");
 const connection = new Sequelize(
   "mariadb://root:maria123@localhost:3306/dbPedidos"
 );
-connection
-  .authenticate()
-  .then(() => {
-    Personas.init(connection);
-    Personas.sync();
-  })
+
+   connection
+    .authenticate()
+    .then(() => {
+      Personas.init(connection);
+      Articulos.init(connection);
+      connection.sync();
+    })
+
   .catch((err) => {
     console.log(err);
 

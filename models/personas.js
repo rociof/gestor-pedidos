@@ -1,48 +1,47 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
-//const sequelize = new Sequelize('sqlite::memory');
 
 class Personas extends Model {
   static init(sequelize) {
-    Personas.init(
+    super.init(//hace referencia a la clase de la que hereda (model)
       {
         // Model attributes are defined here
         Nombre: {
-          type: DataTypes.STRING,
-          allowNull: false,
+          type: DataTypes.STRING(50),
+          allowNull: false
         },
         Apellido: {
-          type: DataTypes.STRING,
-          allowNull: false,
+          type: DataTypes.STRING(100),
+          allowNull: false
           // allowNull defaults to true
         },
         DNI: {
-          type: DataTypes.STRING,
+          type: DataTypes.STRING(9),
           allowNull: false,
-          primaryKey,
+          primaryKey: true
         },
         Direccion: {
-          type: DataTypes.STRING,
-          allowNull: false,
+          type: DataTypes.STRING(150),
+          allowNull: false
         },
         Localidad: {
-          type: DataTypes.STRING,
-          allowNull: false,
+          type: DataTypes.STRING(60),
+          allowNull: false
         },
         CP: {
-          type: DataTypes.STRING,
-          allowNull: false,
+          type: DataTypes.STRING(6),
+          allowNull: false
         },
         Provincia: {
-          type: DataTypes.STRING,
-          allowNull: false,
+          type: DataTypes.STRING(30),
+          allowNull: false
         },
         Telefono: {
-          type: DataTypes.STRING,
-          allowNull: false,
+          type: DataTypes.STRING(15),
+          allowNull: false
         },
         Email: {
-          type: DataTypes.STRING,
-          allowNull: false,
+          type: DataTypes.STRING(60),
+          allowNull: false
         },
       },
       {
