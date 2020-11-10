@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
-class Proveedores extends Model {
+class Proveedor extends Model {
   static init(sequelize) {
     super.init(//hace referencia a la clase de la que hereda (model)
       {
@@ -48,7 +48,8 @@ class Proveedores extends Model {
       {
         // Other model options go here
         sequelize, // We need to pass the connection instance
-        modelName: "Proveedores", // We need to choose the model name
+        modelName: "Proveedor", // We need to choose the model name,
+        tableName: "Proveedor"
       }
     );
   }
@@ -56,4 +57,4 @@ class Proveedores extends Model {
 }
 //console.log(Personas === sequelize.models.Personas); // true
 
-module.exports = Proveedores;
+module.exports = Proveedor;

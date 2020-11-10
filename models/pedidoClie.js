@@ -1,34 +1,38 @@
-const { Sequelize, DataTypes, Model } = require("sequelize");
+const { Sequelize, DataTypes, Model, DATE } = require("sequelize");
 
 
-class Pedido_proveedor extends Model {
+class PedidoClie extends Model {
 static init(sequelize) {
 super.init(
   {
     // Model attributes are defined here
-    Id_Pedido_Prov: {
+    Id_pedido_cli: {
       type: DataTypes.STRING(10),
       allowNull: false,
       primaryKey:true
-      // references: "Proveedores",
-      // referencesKey: "DNI"
       
     },
     Fecha: {
-      type: DataTypes.DATE,
+      type:DATE,
       allowNull: false
       // allowNull defaults to true
     },
-    //La clave foránea sería DNI
+    Direccion_entrega: {
+      type: DataTypes.STRING(200),
+      allowNull: false
+    },
+     //La clave foránea sería DNI
   },
   {
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: "Pedido_proveedor", // We need to choose the model name
+    modelName: "PedidoClie", // We need to choose the model name
+    tableName: "PedidoC"
   }
 );
 }
 // the defined model is the class itself
 }
 //console.log(Articulos === sequelize.models.Articulos); // true
-module.exports = Pedido_proveedor;
+
+module.exports = PedidoClie;

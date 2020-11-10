@@ -28,15 +28,15 @@ app.use("/users", usersRouter);
 
 
 const { Sequelize } = require("sequelize");
-const Personas = require("./models/Personas");
-const Articulos = require("./models/Articulos");
-const Clientes = require("./models/Clientes");
-const Proveedores = require("./models/Proveedores");
-const Empleados = require("./models/Empleados");
-const Pedido_cliente = require("./models/Pedido_cliente");
-const Pedido_proveedor = require("./models/Pedido_proveedor");
-const Detallepedido_clie = require("./models/Detallepedido_clie");
-const Detallepedido_prov = require("./models/Detallepedido_prov");
+const Persona = require("./models/persona");
+const Articulo = require("./models/articulo");
+const Cliente = require("./models/cliente");
+const Proveedor = require("./models/proveedor");
+const Empleado = require("./models/empleado");
+const PedidoClie = require("./models/PedidoClie");
+const PedidoProv = require("./models/PedidoProv");
+const DetPedClie = require("./models/detPedClie");
+const DetPedProv = require("./models/detPedProv");
 
 
 
@@ -47,16 +47,26 @@ const connection = new Sequelize(
    connection
     .authenticate()
     .then(() => {
-      Personas.init(connection);
-      Articulos.init(connection);
-      Clientes.init(connection);
-      Proveedores.init(connection);
-      Empleados.init(connection);
-      Pedido_cliente.init(connection);
-      Pedido_proveedor.init(connection);
-      Detallepedido_clie.init(connection);
-      Detallepedido_prov.init(connection);
-      connection.sync({force:true});
+      Persona.init(connection);
+      Articulo.init(connection);
+      Cliente.init(connection);
+      Proveedor.init(connection);
+      Empleado.init(connection);
+      PedidoClie.init(connection);
+      PedidoProv.init(connection);
+      DetPedClie.init(connection);
+      DetPedProv.init(connection);
+
+
+      //relaciones
+      Proveedor.hasMany(PedidoProv);
+      PedidoProv.belongsTo(Proveedor);
+      Cliente.hasMany(PedidoClie);
+      PedidoClie.belongsTo(Cliente);
+      
+
+      //creación de tablas si no existen
+      connection.sync();
     })
 
   .catch((err) => {

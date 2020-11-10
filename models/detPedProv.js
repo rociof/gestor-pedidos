@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
-class Detallepedido_prov extends Model {
+class DetPedProv extends Model {
   static init(sequelize) {
     super.init(//hace referencia a la clase de la que hereda (model)
       {
@@ -16,7 +16,8 @@ class Detallepedido_prov extends Model {
       {
         // Other model options go here
         sequelize, // We need to pass the connection instance
-        modelName: "Detallepedido_prov", // We need to choose the model name
+        modelName: "DetPedProv", // We need to choose the model name
+        tableName: "DetPedP"
       }
     );
   }
@@ -24,4 +25,4 @@ class Detallepedido_prov extends Model {
 }
 //console.log(Personas === sequelize.models.Personas); // true
 
-module.exports = Detallepedido_prov;
+module.exports = DetPedProv;

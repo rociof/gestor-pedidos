@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
-class Clientes extends Model {
+class Empleado extends Model {
   static init(sequelize) {
     super.init(//hace referencia a la clase de la que hereda (model)
       {
@@ -51,12 +51,17 @@ class Clientes extends Model {
             type: DataTypes.BOOLEAN,
             allowNull: false
           },
+        Tipo: {
+            type: DataTypes.ENUM('usuario_basico', 'gestor', 'administrador'),
+            allowNull: false
+          },
 
       },
       {
         // Other model options go here
         sequelize, // We need to pass the connection instance
-        modelName: "Clientes", // We need to choose the model name
+        modelName: "Empleado",// We need to choose the model name
+        tableName: "Empleado"
       }
     );
   }
@@ -64,4 +69,4 @@ class Clientes extends Model {
 }
 //console.log(Personas === sequelize.models.Personas); // true
 
-module.exports = Clientes;
+module.exports = Empleado;

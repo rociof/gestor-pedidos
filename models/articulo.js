@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
 
-class Articulos extends Model {
+class Articulo extends Model {
 static init(sequelize) {
 super.init(
   {
@@ -41,7 +41,8 @@ super.init(
   {
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: "Articulos", // We need to choose the model name
+    modelName: "Articulo",// We need to choose the model name
+    tableName:"Articulo"
   }
 );
 }
@@ -49,4 +50,4 @@ super.init(
 }
 //console.log(Articulos === sequelize.models.Articulos); // true
 
-module.exports = Articulos;
+module.exports = Articulo;
