@@ -42,7 +42,8 @@ super.init(
     // Other model options go here
     sequelize, // We need to pass the connection instance
     modelName: "Articulo",// We need to choose the model name
-    tableName:"Articulo"
+    tableName:"Articulo",
+    timestamps:false,
   }
 );
 }

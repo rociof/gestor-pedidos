@@ -1,11 +1,10 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
-
 class PedidoProv extends Model {
 static init(sequelize) {
 super.init(
   {
-    // Model attributes are defined here
+    
     Id_Pedido_prov: {
       type: DataTypes.STRING(10),
       allowNull: false,
@@ -17,13 +16,14 @@ super.init(
       allowNull: false
       // allowNull defaults to true
     },
-    //La clave foránea sería DNI
+    //La clave foránea sería DNI(tabla proveedor)
   },
   {
     // Other model options go here
     sequelize, // We need to pass the connection instance
     modelName: "PedidoProv", // We need to choose the model name
-    tableName:"PedidoP"
+    tableName:"PedidoP",
+    timestamps:false,
   }
 );
 }

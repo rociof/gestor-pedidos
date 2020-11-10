@@ -58,11 +58,29 @@ const connection = new Sequelize(
       DetPedProv.init(connection);
 
 
-      //relaciones
+      //RELACIONES
+
       Proveedor.hasMany(PedidoProv);
       PedidoProv.belongsTo(Proveedor);
+
       Cliente.hasMany(PedidoClie);
       PedidoClie.belongsTo(Cliente);
+
+      /**Genera una clave primaria compuesta para DetPedClie
+       *  con las claves primarias de PedidoClie y Articulo
+       */
+      Articulo.belongsToMany(PedidoClie, {through: DetPedClie, foreignKey:'Id_articulo'});
+      PedidoClie.belongsToMany(Articulo, {through: DetPedClie, foreignKey:'Id_pedido_cli'});
+      /**La clave foránea es un campo (no la PK)
+       * de la tabla DetPedclie
+       */
+      DetPedClie.belongsTo(PedidoClie, { foreignKey:'Precio_venta'});
+
+
+      Articulo.belongsToMany(PedidoProv, {through: DetPedProv, foreignKey:'Id_articulo'});
+      PedidoProv.belongsToMany(Articulo, {through: DetPedProv, foreignKey:'Id_pedido_prov'});
+      DetPedProv.belongsTo(PedidoProv, { foreignKey:'Precio_compra'});
+
       
 
       //creación de tablas si no existen

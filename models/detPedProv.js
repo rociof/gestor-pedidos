@@ -17,7 +17,8 @@ class DetPedProv extends Model {
         // Other model options go here
         sequelize, // We need to pass the connection instance
         modelName: "DetPedProv", // We need to choose the model name
-        tableName: "DetPedP"
+        tableName: "DetPedP",
+        timestamps:false,
       }
     );
   }

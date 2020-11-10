@@ -21,13 +21,14 @@ super.init(
       type: DataTypes.STRING(200),
       allowNull: false
     },
-     //La clave foránea sería DNI
+     //La clave foránea sería DNI(Tabla Cliente)
   },
   {
     // Other model options go here
     sequelize, // We need to pass the connection instance
     modelName: "PedidoClie", // We need to choose the model name
-    tableName: "PedidoC"
+    tableName: "PedidoC",
+    timestamps:false,
   }
 );
 }

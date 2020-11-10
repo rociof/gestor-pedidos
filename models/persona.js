@@ -48,11 +48,12 @@ class Persona extends Model {
         // Other model options go here
         sequelize, // We need to pass the connection instance
         modelName: "Persona", // We need to choose the model name
-        tableName:" Persona"
+        tableName:" Persona",
+        timestamps:false,
       }
     );
   }
-  // the defined model is the class itself
+  
 }
 //console.log(Personas === sequelize.models.Personas); // true
 
