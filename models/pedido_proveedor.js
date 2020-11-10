@@ -10,6 +10,8 @@ super.init(
       type: DataTypes.STRING(10),
       allowNull: false,
       primaryKey:true
+      // references: "Proveedores",
+      // referencesKey: "DNI"
       
     },
     Fecha: {

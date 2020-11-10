@@ -56,7 +56,7 @@ const connection = new Sequelize(
       Pedido_proveedor.init(connection);
       Detallepedido_clie.init(connection);
       Detallepedido_prov.init(connection);
-      connection.sync();
+      connection.sync({force:true});
     })
 
   .catch((err) => {
