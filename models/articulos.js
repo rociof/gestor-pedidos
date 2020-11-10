@@ -6,7 +6,7 @@ static init(sequelize) {
 super.init(
   {
     // Model attributes are defined here
-    Id_articulos: {
+    Id_articulo: {
       type: DataTypes.STRING(4),
       allowNull: false,
       primaryKey:true

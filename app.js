@@ -33,8 +33,12 @@ const Articulos = require("./models/Articulos");
 const Clientes = require("./models/Clientes");
 const Proveedores = require("./models/Proveedores");
 const Empleados = require("./models/Empleados");
-const Detalle = require("./models/Detallepedido");
-const Detallepedido = require("./models/Detallepedido");
+const Pedido_cliente = require("./models/Pedido_cliente");
+const Pedido_proveedor = require("./models/Pedido_proveedor");
+const Detallepedido_clie = require("./models/Detallepedido_clie");
+const Detallepedido_prov = require("./models/Detallepedido_prov");
+
+
 
 const connection = new Sequelize(
   "mariadb://root:maria123@localhost:3306/dbPedidos"
@@ -48,8 +52,10 @@ const connection = new Sequelize(
       Clientes.init(connection);
       Proveedores.init(connection);
       Empleados.init(connection);
-      Detallepedido.init(connection);
-
+      Pedido_cliente.init(connection);
+      Pedido_proveedor.init(connection);
+      Detallepedido_clie.init(connection);
+      Detallepedido_prov.init(connection);
       connection.sync();
     })
 

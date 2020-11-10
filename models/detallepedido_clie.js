@@ -1,21 +1,22 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
-class Detallepedido extends Model {
+class Detallepedido_clie extends Model {
   static init(sequelize) {
     super.init(//hace referencia a la clase de la que hereda (model)
       {
         // Model attributes are defined here
         Cantidad: {
           type: DataTypes.INTEGER,
-          allowNull: false, 
-          primaryKey: true
+          allowNull: false
         },
         
+        //La clave primaria se compone de Id_Pedido_cli + Id_articulo
+        //Precio_venta sería clave foránea
       },
       {
         // Other model options go here
         sequelize, // We need to pass the connection instance
-        modelName: "Detallepedido", // We need to choose the model name
+        modelName: "Detallepedido_clie", // We need to choose the model name
       }
     );
   }
@@ -23,4 +24,4 @@ class Detallepedido extends Model {
 }
 //console.log(Personas === sequelize.models.Personas); // true
 
-module.exports = Detallepedido;
+module.exports = Detallepedido_clie;
