@@ -23,8 +23,16 @@ app.use(
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+
+//RUTAS
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use('/cliente', require('./routes/cliente.routes'));
+app.use('/proveedor', require('./routes/proveedor.routes'));
+app.use('/empleado', require('./routes/empleado.routes'));
+
+
+
 
 
 const { Sequelize } = require("sequelize");
@@ -81,8 +89,7 @@ const connection = new Sequelize(
       PedidoProv.belongsToMany(Articulo, {through: DetPedProv, foreignKey:'Id_pedido_prov'});
       DetPedProv.belongsTo(PedidoProv, { foreignKey:'Precio_compra'});
 
-      
-
+    
       //creación de tablas si no existen
       connection.sync();
     })

@@ -5,6 +5,12 @@ class Cliente extends Model {
     super.init(//hace referencia a la clase de la que hereda (model)
       {
         // Model attributes are defined here
+        DNI: {
+          type: DataTypes.STRING(9),
+          allowNull: false,
+          primaryKey: true
+        },
+
         Nombre: {
           type: DataTypes.STRING(50),
           allowNull: false
@@ -12,12 +18,7 @@ class Cliente extends Model {
         Apellido: {
           type: DataTypes.STRING(100),
           allowNull: false
-          // allowNull defaults to true
-        },
-        DNI: {
-          type: DataTypes.STRING(9),
-          allowNull: false,
-          primaryKey: true
+        
         },
         Direccion: {
           type: DataTypes.STRING(150),
@@ -49,7 +50,8 @@ class Cliente extends Model {
           },
         Activo: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
+            allowNull: false,
+            default:true
           },
 
       },
