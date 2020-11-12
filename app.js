@@ -9,6 +9,9 @@ var hbs = require("hbs");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
+
+
+
 var app = express();
 
 // view engine setup
@@ -34,8 +37,9 @@ app.use('/cliente', require('./routes/cliente.routes'));
 app.use('/proveedor', require('./routes/proveedor.routes'));
 app.use('/empleado', require('./routes/empleado.routes'));
 
-
-
+var usersRouter = require('./routes/usuarios');
+app.use ("/login" , require('./routes/login'));
+app.use("/usuarios", require('./routes/usuarios'));
 
 
 const { Sequelize } = require("sequelize");
@@ -48,6 +52,9 @@ const PedidoClie = require("./models/PedidoClie");
 const PedidoProv = require("./models/PedidoProv");
 const DetPedClie = require("./models/detPedClie");
 const DetPedProv = require("./models/detPedProv");
+const Autor = require("./models/autor");
+
+
 
 
 
@@ -67,6 +74,7 @@ const connection = new Sequelize(
       PedidoProv.init(connection);
       DetPedClie.init(connection);
       DetPedProv.init(connection);
+      Autor.init(connection);
 
 
       //RELACIONES
@@ -92,9 +100,9 @@ const connection = new Sequelize(
       PedidoProv.belongsToMany(Articulo, {through: DetPedProv, foreignKey:'Id_pedido_prov'});
       DetPedProv.belongsTo(PedidoProv, { foreignKey:'Precio_compra'});
 
-    
+     
       //creación de tablas si no existen
-      connection.sync();
+      connection.sync({force:false});
     })
 
   .catch((err) => {

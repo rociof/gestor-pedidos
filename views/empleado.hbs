@@ -1,0 +1,30 @@
+<h1 class="text-center">Lista de Empleados</h1>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">DNI</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">EMAIL</th>
+      <th scope="col">Activo</th>
+      <th scope="col">tipo</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {{#each empleado}}
+    <tr class="bg-light">
+      <td>{{DNI}}</td>
+      <td>{{Nombre}}</td>
+      <td>{{Apellido}}</td>
+      <td>{{Email}}</td>
+      <td>{{Activo}}</td>
+      <td>{{Tipo}}</td>
+
+    </tr>
+    {{/each}}
+
+  </tbody>
+</table>

@@ -7,8 +7,8 @@ const Empleado = require("../models/empleado");
 // READ -- Leo todos los datos
 router.get("/", (req, res) => {
   Empleado.findAll().then((empleado) => {
-    res.json(empleado);
-    //res.render('empleados', { empleados });
+    //res.json(empleado);
+    res.render('empleado', { empleado });
     
     // res.json("empleados!!!");
   });
