@@ -13,40 +13,41 @@ class Cliente extends Model {
 
         Nombre: {
           type: DataTypes.STRING(50),
-          //allowNull: false
+          allowNull: false
         },
         Apellido: {
           type: DataTypes.STRING(100),
-          //allowNull: false
+          allowNull: false
         
         },
         Direccion: {
           type: DataTypes.STRING(150),
-          //allowNull: false
+          allowNull: false
         },
         Localidad: {
           type: DataTypes.STRING(60),
-          //allowNull: false
+          allowNull: false
         },
         CP: {
           type: DataTypes.STRING(6),
-          //allowNull: false
+          allowNull: false
         },
         Provincia: {
           type: DataTypes.STRING(30),
-          //allowNull: false
+          allowNull: false
         },
         Telefono: {
           type: DataTypes.STRING(15),
-          //allowNull: false
+          allowNull: false
         },
         Email: {
           type: DataTypes.STRING(60),
-          //allowNull: false
+          allowNull: false,
+          unique:true
         },
         Password: {
             type: DataTypes.STRING(42),
-             //allowNull: false
+             allowNull: false
           },
         Activo: {
             type: DataTypes.BOOLEAN,
