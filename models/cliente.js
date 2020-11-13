@@ -8,7 +8,20 @@ class Cliente extends Model {
         DNI: {
           type: DataTypes.STRING(9),
           allowNull: false,
-          primaryKey: true
+          primaryKey: true,
+          validate: {
+            notNull: {
+              msg: "el campo no puede ser nulo",
+            },
+            // isAlpha: {
+            //   args: false,
+            //   msg: "Debe contener solo letras",
+            // },
+            len: {
+              args: [9],
+              msg: "El DNI debe incluír 9 caracteres",
+            }
+          },
         },
 
         Nombre: {
@@ -43,7 +56,13 @@ class Cliente extends Model {
         Email: {
           type: DataTypes.STRING(60),
           allowNull: false,
-          unique:true
+          unique:true,
+          validate: {
+            isEmail: {
+              args: true,
+              msg: "El campo tiene que ser un correo valido",
+            },
+          },
         },
         Password: {
             type: DataTypes.STRING(42),
