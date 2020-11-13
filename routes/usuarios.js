@@ -2,6 +2,7 @@ var express = require('express');
 var Autor = require('../models/autor');
 
 
+
 var router = express.Router();
 
 /* GET users listing. */
@@ -19,9 +20,9 @@ router.post('/nuevo', async function (req, res) {
     let {nombre, email, password, repassword} = req.body;
 
     if (password == repassword) {
-      let usuario = new Autor({nombre, email, password});
+      let usuario = new Cliente({DNI, Password});
       await usuario.save();
-      res.redirect("/usuarios");
+      res.redirect("/cliente");
     } else {
       //TODO: mostrar error
     }

@@ -5,16 +5,23 @@ const Cliente = require("../models/cliente");
 // const User = require('../models/User');
 
 // READ -- Leo todos los datos
-router.get("/", (req, res) => {
-  Cliente.findAll().then((cliente) => {
-    //res.json(cliente);
-    res.render("cliente", {cliente});
-  });
+router.get('/', async function(req, res, next) {
+  let cliente = await Cliente.findAll();
+  res.render("cliente", {cliente, session:req.session});
 });
+
+
+
+// router.get("/", (req, res) => {
+//   Cliente.findAll().then((cliente) => {
+//     //res.json(cliente);
+//     res.render("cliente", {cliente});
+//   });
+// });
 router.get("/nuevo", (req, res) => {
   Cliente.findAll().then((cliente) => {
     // res.json(cliente);
-    res.render("frmRegistroCliente", {cliente});
+    res.render("registro-usuario", {cliente});
     
   });
 });

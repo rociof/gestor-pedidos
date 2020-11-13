@@ -2,6 +2,7 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
+var cookieSession = require('cookie-session');
 var logger = require("morgan");
 
 var hbs = require("hbs");
@@ -27,6 +28,11 @@ app.use(
   })
 );
 app.use(cookieParser());
+ app.use(cookieSession({   name: 'sesion', //nombre de la cookie 
+keys: ["secret1234", "secret1234"],  //claves de firma 
+maxAge: 5 * 60 * 1000//caducidad [milisegundos] 
+})) 
+
 app.use(express.static(path.join(__dirname, "public")));
 
 
