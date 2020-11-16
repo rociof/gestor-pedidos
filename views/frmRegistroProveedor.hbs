@@ -7,11 +7,10 @@
 </head>
 <body>
 
+<h1>Registro de nuevo proveedor</h1>
 
-<h1>Registro de nuevo cliente</h1>
-
-<form action="/cliente/nuevo" method="post">
-    <label for="DNI">DNI</label>
+<form action="/proveedor/nuevo" method="post">
+    <label for="DNI">DNI /NIF</label>
     <input type="text" name="DNI" value="">
     <br>
 
@@ -39,8 +38,6 @@
     <input type="text" name="Provincia" value="">
     <br>
 
-
-
     <label for="CP">CP</label>
     <input type="text" name="CP" value="">
     <br>
@@ -49,35 +46,11 @@
     <input type="text" name="Telefono" value="">
     <br>
 
-   
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="Activo" id="tipo1" value="1" checked>
-        <label class="form-check-label" for="Tipo1">
-            Activo
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="Activo" id="tipo2" value="0">
-        <label class="form-check-label" for="Tipo2">
-            No activo
-        </label>
-    </div>
-
-    <label for="Password">Contraseña</label>
-    <input type="password" name="Password" value="">
-    <br>
-
-    <label for="Repassword">Repita la contraseña</label>
-    <input type="password" name="Repassword" value="">
-    <br>
+    
 
 
     <input type="submit" value="Registrar">
 </form>
 
-{{!-- {{#if error}}
-    <p>{{error}}</p>
-    {{/if}} --}}
-
-    </body>
+</body>
 </html>
