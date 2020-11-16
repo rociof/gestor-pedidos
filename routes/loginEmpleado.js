@@ -31,7 +31,7 @@ router.post('/', async function (req, res) {
     }
 })
 
-router.get('/logout', function (req, res) {
+router.get('/logoutEmple', function (req, res) {
     req.session = undefined;
     res.redirect("/loginEmpleado");
 });
