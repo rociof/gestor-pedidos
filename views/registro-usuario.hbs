@@ -10,22 +10,26 @@
     
     <form action="/usuarios/nuevo" method="post">
         <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" value="">
+        <input type="text" name="Nombre" id= "nombre">
         <br>
 
         <label for="email">Email</label>
-        <input type="email" name="email" value="">
+        <input type="email" name="Email" id= "email">
         <br>
 
-        <label for="password">Contraseña</label>
-        <input type="password" name="password" value="">
+        <label for="dni">Dni</Label>
+        <input type="text" name="Dni" id= dni>
         <br>
 
-        <label for="repassword">Confirmar contraseña</label>
-        <input type="password" name="repassword" value="">
+        <label for="password">Contraseña</label id= password>
+        <input type="password" name="Password" id="password">
         <br>
 
-        <input type="submit" value="Registrar">
+        <label for="repassword">Confirmar contraseña</label id= repassword>
+        <input type="password" name="Repassword" id="repassword">
+        <br>
+
+        <input type="submit" value="Registrar" id= submit>
     </form>
     {{#if error}}
     <p>{{error}}</p>

@@ -1,5 +1,5 @@
 var express = require('express');
-var Autor = require('../models/autor');
+var Autor = require('../../models/autor');
 
 
 

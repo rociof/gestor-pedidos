@@ -28,12 +28,17 @@ app.use(
   })
 );
 app.use(cookieParser());
- app.use(cookieSession({   name: 'sesion', //nombre de la cookie 
+app.use(cookieSession({   name: 'sesion', //nombre de la cookie 
 keys: ["secret1234", "secret1234"],  //claves de firma 
 maxAge: 5 * 60 * 1000//caducidad [milisegundos] 
 })) 
 
 app.use(express.static(path.join(__dirname, "public")));
+
+
+// app.use('/login', loginRouter);
+// app.use('/', necesitaAutenticacion, indexRouter);
+// app.use('/usuarios', necesitaAdmin, indexRouter);
 
 
 //RUTAS
@@ -43,9 +48,9 @@ app.use('/cliente', require('./routes/cliente.routes'));
 app.use('/proveedor', require('./routes/proveedor.routes'));
 app.use('/empleado', require('./routes/empleado.routes'));
 
-var usersRouter = require('./routes/usuarios');
+// var usersRouter = require('./routes/usuarios');
 app.use ("/login" , require('./routes/login'));
-app.use("/usuarios", require('./routes/usuarios'));
+// app.use("/usuarios", require('./routes/usuarios'));
 
 
 const { Sequelize } = require("sequelize");
@@ -58,7 +63,8 @@ const PedidoClie = require("./models/PedidoClie");
 const PedidoProv = require("./models/PedidoProv");
 const DetPedClie = require("./models/detPedClie");
 const DetPedProv = require("./models/detPedProv");
-const Autor = require("./models/autor");
+const { necesitaAutenticacion } = require("./auth");
+// const Autor = require("./models/autor");
 
 
 
@@ -80,7 +86,7 @@ const connection = new Sequelize(
       PedidoProv.init(connection);
       DetPedClie.init(connection);
       DetPedProv.init(connection);
-      Autor.init(connection);
+      //Autor.init(connection);
 
 
       //RELACIONES

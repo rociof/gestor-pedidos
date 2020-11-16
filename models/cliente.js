@@ -11,51 +11,51 @@ class Cliente extends Model {
           primaryKey: true,
           validate: {
             notNull: {
-              msg: "el campo no puede ser nulo",
+              msg: "El campo no puede ser nulo",
             },
             // isAlpha: {
             //   args: false,
             //   msg: "Debe contener solo letras",
             // },
-            len: {
-              args: [9],
-              msg: "El DNI debe incluír 9 caracteres",
-            }
+            //len: {
+              //args: [9],
+              //msg: "El DNI debe incluír 9 caracteres",
+            //}
           },
         },
 
         Nombre: {
           type: DataTypes.STRING(50),
-          allowNull: false
+          // allowNull: false
         },
         Apellido: {
           type: DataTypes.STRING(100),
-          allowNull: false
+          // allowNull: false
         
         },
         Direccion: {
           type: DataTypes.STRING(150),
-          allowNull: false
+          // allowNull: false
         },
         Localidad: {
           type: DataTypes.STRING(60),
-          allowNull: false
+          // allowNull: false
         },
         CP: {
           type: DataTypes.STRING(6),
-          allowNull: false
+          // allowNull: false
         },
         Provincia: {
           type: DataTypes.STRING(30),
-          allowNull: false
+          // allowNull: false
         },
         Telefono: {
           type: DataTypes.STRING(15),
-          allowNull: false
+          // allowNull: false
         },
         Email: {
           type: DataTypes.STRING(60),
-          allowNull: false,
+          // allowNull: false,
           unique:true,
           validate: {
             isEmail: {
@@ -66,7 +66,7 @@ class Cliente extends Model {
         },
         Password: {
             type: DataTypes.STRING(42),
-             allowNull: false
+            //  allowNull: false
           },
         Activo: {
             type: DataTypes.BOOLEAN,

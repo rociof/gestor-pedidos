@@ -18,10 +18,11 @@ router.get('/', async function(req, res, next) {
 //     res.render("cliente", {cliente});
 //   });
 // });
+
 router.get("/nuevo", (req, res) => {
   Cliente.findAll().then((cliente) => {
     // res.json(cliente);
-    res.render("registro-usuario", {cliente});
+    res.render("frmRegistroCliente", {cliente});
     
   });
 });
@@ -49,7 +50,8 @@ router.post("/nuevo", (req, res) => {
       Activo: req.body.Activo,
     })
     .then((cliente) => {
-    res.json(cliente);
+    // res.json(cliente);
+    res.render("/");
       
     })
     .catch((err) => {
