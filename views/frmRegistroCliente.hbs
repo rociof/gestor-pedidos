@@ -1,33 +1,72 @@
+<h1>Registro de nuevo cliente</h1>
 
-    <h1>Registro de nuevo clientito</h1>
+<form action="/cliente/nuevo" method="post">
+    <label for="DNI">DNI</label>
+    <input type="text" name="DNI" value="">
+    <br>
 
-    <form action="/cliente/nuevo" method="post">
-        <label for="DNI">DNI</label>
-        <input type="text" name="DNI" value="">
-        <br>
+    <label for="Nombre">Nombre</label>
+    <input type="text" name="Nombre" value="">
+    <br>
 
-        <label for="Nombre">Nombre</label>
-        <input type="text" name="Nombre" value="">
-        <br>
+    <label for="Apellido">Apellido</label>
+    <input type="text" name="Apellido" value="">
+    <br>
 
-        <label for="Apellido">Apellido</label>
-        <input type="text" name="Apellido" value="">
-        <br>
+    <label for="Email">Email</label>
+    <input type="email" name="Email" value="">
+    <br>
 
-        <label for="Email">Email</label>
-        <input type="email" name="Email" value="">
-        <br>
+    <label for="Direccion">Dirección</label>
+    <input type="text" name="Direccion" value="">
+    <br>
 
-        <label for="Password">Contraseña</label>
-        <input type="password" name="Password" value="">
-        <br>
+    <label for="Localidad">Localidad</label>
+    <input type="text" name="Localidad" value="">
+    <br>
 
-        <label for="Repassword">Repita la contraseña</label>
-        <input type="password" name="Repassword" value="">
-        <br>
-
-
-        <input type="submit" value="Registrar">
-    </form>
+    <label for="Provincia">Provincia</label>
+    <input type="text" name="Provincia" value="">
+    <br>
 
 
+
+    <label for="CP">CP</label>
+    <input type="text" name="CP" value="">
+    <br>
+
+    <label for="Telefono">Telefono</label>
+    <input type="text" name="Telefono" value="">
+    <br>
+
+    <input type="radio" name="Activo" value="Activo">
+    <label for="Activo">Activo</label>
+    <input type="radio" name="Activo" value="No activo">
+    <label for="Activo">No activo</label>
+    <br> 
+
+
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="Tipo" id="tipo1" value="Activo" checked>
+        <label class="form-check-label" for="Tipo1">
+            Activo
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="Tipo" id="tipo2" value="No activo">
+        <label class="form-check-label" for="Tipo2">
+            No activo
+        </label>
+    </div>
+
+    <label for="Password">Contraseña</label>
+    <input type="password" name="Password" value="">
+    <br>
+
+    <label for="Repassword">Repita la contraseña</label>
+    <input type="password" name="Repassword" value="">
+    <br>
+
+
+    <input type="submit" value="Registrar">
+</form>

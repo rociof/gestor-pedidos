@@ -7,11 +7,11 @@ class Empleado extends Model {
         // Model attributes are defined here
         Nombre: {
           type: DataTypes.STRING(50),
-          allowNull: false
+          //allowNull: false
         },
         Apellido: {
           type: DataTypes.STRING(100),
-          allowNull: false
+          //allowNull: false
           // allowNull defaults to true
         },
         DNI: {
@@ -21,39 +21,40 @@ class Empleado extends Model {
         },
         Direccion: {
           type: DataTypes.STRING(150),
-          allowNull: false
+          // allowNull: false
         },
         Localidad: {
           type: DataTypes.STRING(60),
-          allowNull: false
+          // allowNull: false
         },
         CP: {
           type: DataTypes.STRING(6),
-          allowNull: false
+          // allowNull: false
         },
         Provincia: {
           type: DataTypes.STRING(30),
-          allowNull: false
+          // allowNull: false
         },
         Telefono: {
           type: DataTypes.STRING(15),
-          allowNull: false
+          // allowNull: false
         },
         Email: {
           type: DataTypes.STRING(60),
-          allowNull: false
+          // allowNull: false
         },
         Password: {
             type: DataTypes.STRING(42),
-            allowNull: false
+            // allowNull: false
           },
         Activo: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
+            // allowNull: false
           },
         Tipo: {
             type: DataTypes.ENUM('usuario_basico', 'gestor', 'administrador'),
-            allowNull: false
+            defaultValue: 'usuario_basico'
+            // allowNull: false
           },
 
       },

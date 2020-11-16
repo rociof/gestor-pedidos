@@ -5,14 +5,26 @@ const Empleado = require("../models/empleado");
 // const User = require('../models/User');
 
 // READ -- Leo todos los datos
-router.get("/", (req, res) => {
+
+router.get('/', async function(req, res, next) {
+  let empleado = await Empleado.findAll();
+  res.render("empleado", {empleado, session:req.session});
+});
+
+router.get("/nuevo", (req, res) => {
   Empleado.findAll().then((empleado) => {
-    //res.json(empleado);
-    res.render('empleado', { empleado });
+  res.render("frmRegistroEmpleado", {empleado});
     
-    // res.json("empleados!!!");
   });
 });
+// router.get("/", (req, res) => {
+//   Empleado.findAll().then((empleado) => {
+//     //res.json(empleado);
+//     res.render('empleado', { empleado });
+    
+//     // res.json("empleados!!!");
+//   });
+// });
 
 // leo los datos por Clave
 router.get("/:id", (req, res) => {
@@ -22,7 +34,7 @@ router.get("/:id", (req, res) => {
 });
 
 // Ingreso Datos
-router.post("/", (req, res) => {
+router.post("/nuevo", (req, res) => {
   Empleado.create({
     DNI: req.body.DNI,
     Nombre: req.body.Nombre,
@@ -38,11 +50,13 @@ router.post("/", (req, res) => {
     Tipo: req.body.Tipo,
   })
     .then((empleado) => {
-      res.json(empleado);
+      res.redirect("/");
     })
     .catch((err) => {
+      //console.error(err);
       res.json(err);
     });
+    
 });
 
 // UPDATE - Actualizo datos
