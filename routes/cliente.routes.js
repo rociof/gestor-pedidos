@@ -43,13 +43,13 @@ router.post("/nuevo", (req, res) => {
     })
     .then((cliente) => {
     // res.json(cliente);
-    res.render("/");
+    res.redirect("/");
       
     })
     .catch((err) => {
       res.json(err);
     });
-    res.redirect("/");
+  
 });
 
 // UPDATE - Actualizo datos
@@ -90,3 +90,4 @@ router.delete("/:id", (req, res) => {
 });
 
 module.exports = router;
+

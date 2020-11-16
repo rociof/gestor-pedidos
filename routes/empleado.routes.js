@@ -51,12 +51,15 @@ router.post("/nuevo", (req, res) => {
   })
     .then((empleado) => {
       res.redirect("/");
+    
     })
     .catch((err) => {
       //console.error(err);
-      res.json(err);
+      res.json(err); 
+          
+
     });
-    
+    //res.redirect("/");
 });
 
 // UPDATE - Actualizo datos

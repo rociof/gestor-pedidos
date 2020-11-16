@@ -48,13 +48,13 @@ class Empleado extends Model {
             // allowNull: false
           },
         Activo: {
-            type: DataTypes.BOOLEAN,
-            // allowNull: false
+            type: DataTypes.TINYINT(1),
+            allowNull: false
           },
         Tipo: {
-            type: DataTypes.ENUM('usuario_basico', 'gestor', 'administrador'),
-            defaultValue: 'usuario_basico'
-            // allowNull: false
+            type: DataTypes.ENUM('1', '2', '3'),
+            defaultValue: '1'
+          
           },
 
       },

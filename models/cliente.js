@@ -55,7 +55,6 @@ class Cliente extends Model {
         },
         Email: {
           type: DataTypes.STRING(60),
-          // allowNull: false,
           unique:true,
           validate: {
             isEmail: {
@@ -69,9 +68,9 @@ class Cliente extends Model {
             //  allowNull: false
           },
         Activo: {
-            type: DataTypes.BOOLEAN,
+            type: DataTypes.TINYINT(1),
             //allowNull: false,
-            default:true
+            //default:true
           },
 
       },
