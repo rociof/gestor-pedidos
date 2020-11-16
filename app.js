@@ -50,6 +50,8 @@ app.use('/empleado', require('./routes/empleado.routes'));
 
 // var usersRouter = require('./routes/usuarios');
 app.use ("/login" , require('./routes/login'));
+app.use ("/loginEmpleado" , require('./routes/loginEmpleado'));
+
 // app.use("/usuarios", require('./routes/usuarios'));
 
 
