@@ -6,7 +6,9 @@ const Cliente = require("../models/cliente");
 
 //READ -- Leo todos los datos
 router.get('/', async function(req, res, next) {
+ 
   let cliente = await Cliente.findAll();
+
   res.render("cliente", {cliente, session:req.session});
 });
 
@@ -27,7 +29,10 @@ router.get("/:id", (req, res) => {
 });
 
 // Ingreso Datos
+
+
 router.post("/nuevo", (req, res) => {
+  
   Cliente.create({
       DNI: req.body.DNI,
       Nombre: req.body.Nombre,
@@ -39,15 +44,18 @@ router.post("/nuevo", (req, res) => {
       Provincia: req.body.Provincia,
       Telefono: req.body.Telefono,
       Password: req.body.Password,
-      Activo: req.body.Activo,
+      Activo: req.body.Activo 
+  
     })
-    .then((cliente) => {
+  
+    .then  ((cliente) => {
     // res.json(cliente);
     res.redirect("/");
       
     })
     .catch((err) => {
       res.json(err);
+      //console.log(err);
     });
   
 });

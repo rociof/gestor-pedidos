@@ -40,6 +40,7 @@ router.post("/nuevo", (req, res) => {
       
     })
     .then((proveedor) => {
+      
     res.redirect("/");
       
     })

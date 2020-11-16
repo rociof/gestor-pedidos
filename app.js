@@ -64,7 +64,7 @@ const PedidoProv = require("./models/PedidoProv");
 const DetPedClie = require("./models/detPedClie");
 const DetPedProv = require("./models/detPedProv");
 const { necesitaAutenticacion } = require("./auth");
-// const Autor = require("./models/autor");
+
 
 
 

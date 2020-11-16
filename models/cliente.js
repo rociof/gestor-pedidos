@@ -55,7 +55,7 @@ class Cliente extends Model {
         },
         Email: {
           type: DataTypes.STRING(60),
-          unique:true,
+          unique: {args:true, msg:"Error de correo repetido"},
           validate: {
             isEmail: {
               args: true,
@@ -65,7 +65,7 @@ class Cliente extends Model {
         },
         Password: {
             type: DataTypes.STRING(42),
-            //  allowNull: false
+             allowNull: false
           },
         Activo: {
             type: DataTypes.TINYINT(1),
