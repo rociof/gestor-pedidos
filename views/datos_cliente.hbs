@@ -61,9 +61,12 @@
         <br>
 
         <input type="submit" value="Actualizar" id="submit" >
+
+        <!-- El atributo "name" permite utilizar dos botones con acciones distintas
+        en un mismo formulario -->
+        
     <input type="submit" name="operacion" value="Borrar" id="submit">
         
-        {{!-- //<a href="/cliente/" class= "btn btn-primary btn-lg active" role="button" aria-pressed="true">borrar</a> --}}
         
     </form>
     {{#if error}}

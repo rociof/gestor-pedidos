@@ -13,14 +13,11 @@ class Cliente extends Model {
             notNull: {
               msg: "El campo no puede ser nulo",
             },
-            // isAlpha: {
-            //   args: false,
-            //   msg: "Debe contener solo letras",
-            // },
-            //len: {
-              //args: [9],
-              //msg: "El DNI debe incluír 9 caracteres",
-            //}
+            
+            len: {
+              args: [9],
+              msg: "El DNI debe incluír 9 caracteres",
+            }
           },
         },
 

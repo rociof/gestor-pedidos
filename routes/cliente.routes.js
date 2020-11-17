@@ -53,7 +53,6 @@ router.get("/:id", (req, res) => {
     res.redirect("/");
     // res.render("datos_cliente", {cliente});
 
-    
       
     })
     .catch((err) => {
@@ -67,10 +66,10 @@ router.get("/:id", (req, res) => {
 
 // UPDATE - Actualizo datos
 router.post("/:id", (req, res) => {
-
+//Hace referencia al botón de borrado de la vista datos_cliente
   if (req.body.operacion=="Borrar") {
     Cliente.findByPk(req.params.id).then((cliente) => {
-   
+   //si el cliente existe
       if (cliente) { 
           cliente.destroy().then(() => {
             res.redirect("/cliente");
@@ -109,17 +108,6 @@ router.post("/:id", (req, res) => {
   }
 });
 
-// DELETE un cliente
-// router.delete("/:id", (req, res) => {
-//   Cliente.destroy({
-//     where: {
-//       DNI: req.params.id,
-//     },
-//   }).then((resultado) => {
-//     //res.json(resultado);
-//     res.redirect("/cliente");
-//   });
-// });
 
 
 router.delete("/:id", (req, res) => {
