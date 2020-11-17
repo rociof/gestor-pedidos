@@ -50,10 +50,10 @@ router.get("/:id", (req, res) => {
   
     .then  ((cliente) => {
     // res.json(cliente);
-    //res.redirect("/");
+    res.redirect("/");
     // res.render("datos_cliente", {cliente});
 
-    res.redirect("cliente/:DNI", {cliente});
+    
       
     })
     .catch((err) => {
@@ -66,7 +66,7 @@ router.get("/:id", (req, res) => {
 
 
 // UPDATE - Actualizo datos
-router.put("/:id", (req, res) => {
+router.post("/:id", (req, res) => {
   Cliente.update({
       Nombre: req.body.Nombre,
       Apellido: req.body.Apellido,
@@ -77,14 +77,16 @@ router.put("/:id", (req, res) => {
       Provincia: req.body.Provincia,
       Telefono: req.body.Telefono,
       Password: req.body.Password,
-      Activo: req.body.Activo,
+      Activo: req.body.Activo
     }, {
       where: {
         DNI: req.params.id,
       },
     })
     .then((resultado) => {
-      res.json(resultado);
+      //res.json(resultado);
+      //res.redirect("/cliente/"+ req.params.id);
+      res.redirect("/cliente");
     })
     .catch((err) => {
       res.json(err);

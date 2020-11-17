@@ -8,10 +8,10 @@
 </head>
 
 <body>
-    <h1>Datos cliente</h1>
+    <h1>Actualizar cliente</h1>
 
     
-    <form action="" method="post">
+    <form action="datos_cliente_actualizar" method="post">
         <label for="nombre">Nombre</label>
         <input type="text" name="Nombre" id="nombre" value="{{cliente.Nombre}}">
         <br>
@@ -57,7 +57,7 @@
         <br>
 
         <label for="repassword">Confirmar contraseña</label id="repassword">
-        <input type="password" name="Repassword" id="repassword" value="{{cliente.Password}}">
+        <input type="password" name="Repassword" id="repassword" value="{{cliente.Repassword}}">
         <br>
 
         <input type="submit" value="Actualizar" id="submit" >
