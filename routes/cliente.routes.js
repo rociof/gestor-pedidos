@@ -67,7 +67,22 @@ router.get("/:id", (req, res) => {
 
 // UPDATE - Actualizo datos
 router.post("/:id", (req, res) => {
-  Cliente.update({
+
+  if (req.body.operacion=="Borrar") {
+    Cliente.findByPk(req.params.id).then((cliente) => {
+   
+      if (cliente) { 
+          cliente.destroy().then(() => {
+            res.redirect("/cliente");
+          })   
+      } else {
+        res.redirect("/cliente")
+      }       
+        
+    });
+  
+  } else {
+    Cliente.update({
       Nombre: req.body.Nombre,
       Apellido: req.body.Apellido,
       Email: req.body.Email,
@@ -91,18 +106,38 @@ router.post("/:id", (req, res) => {
     .catch((err) => {
       res.json(err);
     });
+  }
 });
 
 // DELETE un cliente
+// router.delete("/:id", (req, res) => {
+//   Cliente.destroy({
+//     where: {
+//       DNI: req.params.id,
+//     },
+//   }).then((resultado) => {
+//     //res.json(resultado);
+//     res.redirect("/cliente");
+//   });
+// });
+
+
 router.delete("/:id", (req, res) => {
-  Cliente.destroy({
-    where: {
-      DNI: req.params.id,
-    },
-  }).then((resultado) => {
-    res.json(resultado);
+  Cliente.findByPk(req.params.id).then((cliente) => {
+   
+    if (cliente) { 
+        Cliente.destroy().then(() => {
+          res.redirect("/cliente");
+        })   
+    } else {
+      res.redirect("/cliente")
+    }
+
+
+
+     
+      
   });
 });
-
 module.exports = router;
 
