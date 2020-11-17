@@ -24,14 +24,14 @@ router.get("/nuevo", (req, res) => {
 // leo los datos por Clave
 router.get("/:id", (req, res) => {
   Cliente.findByPk(req.params.id).then((cliente) => {
-    res.json(cliente);
+    //res.json(cliente);
+    res.render("datos_cliente", {cliente});
   });
 });
 
 // Ingreso Datos
 
-
-router.post("/nuevo", (req, res) => {
+  router.post("/nuevo", (req, res) => {
   
   Cliente.create({
       DNI: req.body.DNI,
@@ -50,9 +50,10 @@ router.post("/nuevo", (req, res) => {
   
     .then  ((cliente) => {
     // res.json(cliente);
-    res.render("detalle_cliente", {cliente});
-
     //res.redirect("/");
+    // res.render("datos_cliente", {cliente});
+
+    res.redirect("cliente/:DNI", {cliente});
       
     })
     .catch((err) => {
@@ -61,6 +62,8 @@ router.post("/nuevo", (req, res) => {
     });
   
 });
+
+
 
 // UPDATE - Actualizo datos
 router.put("/:id", (req, res) => {
