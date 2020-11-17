@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* Acceso a la Home: cualquiera puede acceder sin necesidad de loguearse. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Hugo Tech Home' });
 });
+
 
 module.exports = router;

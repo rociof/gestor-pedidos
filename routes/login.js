@@ -1,5 +1,5 @@
 var express = require('express');
-// var Autor = require('../models/autor');
+
 var Cliente = require('../models/cliente');
 
 var router = express.Router();
@@ -22,7 +22,12 @@ router.post('/', async function (req, res) {
     });
     if (usuario) {
         req.session.usuario = usuario;
-        res.redirect("/cliente");
+        //res.redirect("/cliente");
+        //Nos muestra el listado de cliente filtrado por el DNI
+        res.redirect("/cliente/"+ DNI);
+
+        
+
 
     } else {
         res.render("login", {
@@ -33,7 +38,7 @@ router.post('/', async function (req, res) {
 
 router.get('/logout', function (req, res) {
     req.session = undefined;
-    res.redirect("/login");
+    res.redirect("/");
 });
 
 

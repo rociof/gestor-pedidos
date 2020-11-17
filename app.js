@@ -1,8 +1,12 @@
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
+
+//Módulos para manejar la sesión del usuario mediante cookies
+
 var cookieParser = require("cookie-parser");
 var cookieSession = require('cookie-session');
+
 var logger = require("morgan");
 
 var hbs = require("hbs");
@@ -10,8 +14,10 @@ var hbs = require("hbs");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
+var loginRouter = require('./routes/login');
 
-
+// funciones para la autenticación de usuarios
+const { necesitaAutenticacion, necesitaAdmin } = require('./auth');
 
 var app = express();
 
@@ -27,21 +33,35 @@ app.use(
     extended: false,
   })
 );
+// Los middlewares cookieParser y cookieSession se encargan,
+//  * respectivamente, de procesar las cookies y de gestionar la información de la
+//  * sesión en éstas.
+
+// Es necesario darle un nombre a la cookie, así como un par de claves para que
+//  * el middleware firme los datos y un periodo de validez máximo.
+//  * 
+//  * El periodo de validez se expresa en milisegundos. Si se omite, la duración de
+//  * la cookie será hasta el cierre de la sesión (cerrar navegador/salir del sistema).
+
 app.use(cookieParser());
 app.use(cookieSession({   name: 'sesion', //nombre de la cookie 
 keys: ["secret1234", "secret1234"],  //claves de firma 
 maxAge: 5 * 60 * 1000//caducidad [milisegundos] 
 })) 
 
+// Este otro middleware (static) se utiliza para servir contenidos estáticos. Todos
+//  * los archivos que estén dentro de la carpeta public estarán accesibles con una
+//  * ruta igual a la ruta relativa dentro de la carpeta public.
+
 app.use(express.static(path.join(__dirname, "public")));
 
 
+//Rutas(controlador)
+
 // app.use('/login', loginRouter);
-// app.use('/', necesitaAutenticacion, indexRouter);
-// app.use('/usuarios', necesitaAdmin, indexRouter);
+// app.use('/cliente', necesitaAutenticacion, indexRouter);
+// app.use('/loginEmpleado', necesitaAdmin, usersRouter);
 
-
-//RUTAS
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use('/cliente', require('./routes/cliente.routes'));
@@ -55,6 +75,10 @@ app.use ("/loginEmpleado" , require('./routes/loginEmpleado'));
 // app.use("/usuarios", require('./routes/usuarios'));
 
 
+
+
+
+
 const { Sequelize } = require("sequelize");
 const Persona = require("./models/persona");
 const Articulo = require("./models/articulo");
@@ -65,7 +89,6 @@ const PedidoClie = require("./models/PedidoClie");
 const PedidoProv = require("./models/PedidoProv");
 const DetPedClie = require("./models/detPedClie");
 const DetPedProv = require("./models/detPedProv");
-const { necesitaAutenticacion } = require("./auth");
 
 
 

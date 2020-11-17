@@ -50,7 +50,8 @@ router.get("/:id", (req, res) => {
   
     .then  ((cliente) => {
     // res.json(cliente);
-    res.redirect("/");
+     res.redirect("/");
+    
     // res.render("datos_cliente", {cliente});
 
       
@@ -72,10 +73,10 @@ router.post("/:id", (req, res) => {
    //si el cliente existe
       if (cliente) { 
           cliente.destroy().then(() => {
-            res.redirect("/cliente");
+            res.redirect("/");
           })   
       } else {
-        res.redirect("/cliente")
+        res.redirect("/login")
       }       
         
     });
