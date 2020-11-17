@@ -50,7 +50,9 @@ router.post("/nuevo", (req, res) => {
   
     .then  ((cliente) => {
     // res.json(cliente);
-    res.redirect("/");
+    res.render("detalle_cliente", {cliente});
+
+    //res.redirect("/");
       
     })
     .catch((err) => {

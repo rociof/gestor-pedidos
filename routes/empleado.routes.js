@@ -30,6 +30,7 @@ router.get("/nuevo", (req, res) => {
 router.get("/:id", (req, res) => {
   Empleado.findByPk(req.params.id).then((empleado) => {
     res.json(empleado);
+   // res.render(empleado);
   });
 });
 
