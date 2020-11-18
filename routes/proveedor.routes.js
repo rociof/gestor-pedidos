@@ -13,7 +13,7 @@ router.get('/', async function(req, res, next) {
 
 router.get("/nuevo", (req, res) => {
   Proveedor.findAll().then((proveedor) => {
-    res.render("frmRegistroProveedor", {proveedor});
+    res.render("frmRegistroProveedor", {proveedor, session:req.session});
     
   });
 });

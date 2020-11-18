@@ -22,14 +22,14 @@ router.post('/', async function (req, res) {
     });
     if (usuario) {
         req.session.usuario = usuario;
-        //res.redirect("/cliente");
+        res.redirect("/");
         //Nos muestra el listado de cliente filtrado por el DNI
-        res.redirect("/cliente/"+ DNI);
-        
-        
+       // res.redirect("/cliente/" + DNI);
 
 
-        
+
+
+
 
 
     } else {

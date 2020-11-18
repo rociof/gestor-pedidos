@@ -35,7 +35,8 @@ super.init(
       type: DataTypes.DOUBLE
     },
     Imagen_articulo: {
-      type: DataTypes.STRING(150)
+      type: DataTypes.STRING(150),
+      allowNull: true
     },
   },
   {

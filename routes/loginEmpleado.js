@@ -22,7 +22,7 @@ router.post('/', async function (req, res) {
     });
     if (emple) {
         req.session.emple = emple;
-        res.redirect("/empleado");
+        res.redirect("/");
 
     } else {
         res.render("loginEmpleado", {

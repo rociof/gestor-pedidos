@@ -1,0 +1,38 @@
+<h1 class="text-center">Artículos</h1>
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id. Artículo</th>
+            <th scope="col">Familia</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Activo</th>
+            <th scope="col">Precio venta</th>
+            <th scope="col">Precio compra</th>
+            <th scope="col">Acciones</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+
+        {{#each articulo}}
+        <tr class="bg-light">
+            <td>{{Id_articulo}}</td>
+            <td>{{Familia}}</td>
+            <td>{{Descripción}}</td>
+            <td>{{Stock}}</td>
+            <td>{{Activo}}</td>
+            <td>{{Precio_venta}}</td>
+            <td>{{Precio_compra}}</td>
+            <td><a class="btn btn-primary btn-sm" href="/articulo/{{Id_articulo}}" name="operacion" value="Editar "
+                    role="button">Editar</a>
+                <a class="btn btn-danger btn-sm" href="/articulo/{{Id_articulo}}" name="operacion" value="Borrar"
+                    role="button">Borrar</a></td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>

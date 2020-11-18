@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
   <a class="navbar-brand" href="#">
     <img src="https://i.ibb.co/3v1qJ2P/logo-hugo.png" width="100" height="70" alt="">
-  
+
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +13,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
-      
+
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -41,7 +41,7 @@
         </div>
       </li>
 
-        <li class="nav-item dropdown">
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Proveedores
@@ -54,33 +54,52 @@
         </div>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Artículos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/articulo/nuevo">Nuevo articulo</a>
+          <a class="dropdown-item" href="/articulo">Artículos</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">...</a>
+        </div>
       </li>
+
+
     </ul>
     <form class="form-inline my-2 my-lg-0">
       {{usuario}}
-       {{emple}}
+      {{emple}}
+
       <div class="entry">
         {{#if session}}
+
         <h6>Bienvenido</h6>
         <h4>{{session.usuario.Nombre}}</h4>
+        
         <h4>{{session.emple.Nombre}}</h4>
+
+
+
         <a href="/login" class="btn btn-primary" role="button" aria-pressed="true">Logout</a>
-      
+
         {{else}}
-         <a href="/loginEmpleado" class="btn btn-secondary" role="button" aria-pressed="true">Acceso Empleado</a>
+        <a href="/loginEmpleado" class="btn btn-secondary" role="button" aria-pressed="true">Acceso Empleado</a>
         <a href="/login" class="btn btn-primary" role="button" aria-pressed="true">Login cliente</a>
         {{/if}}
       </div>
-       
-    </form>
+
+  </div>
+
+  </form>
 
 
-    
-      
-      
 
-  
+
+
+
+
   </div>
 </nav>

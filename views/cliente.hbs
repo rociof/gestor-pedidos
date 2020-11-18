@@ -8,7 +8,8 @@
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
       <th scope="col">EMAIL</th>
-      <th scope="col"> </th>
+      <th scope="col">Acciones</th>/th>
+    
       
     </tr>
   </thead>
@@ -17,8 +18,7 @@
     {{#each cliente}}
     <tr class="bg-light">
       <td>{{DNI}}</td>
-      {{!-- <td><a href="/cliente/{{DNI}}">{{Nombre}}</a> </td> --}}
-      <td>{{Nombre}}</td>
+      <td><a href="/cliente/{{DNI}}">{{Nombre}}</a> </td>
       <td>{{Apellido}}</td>
       <td>{{Email}}</td>
       <td><a class="btn btn-primary btn-sm" href="/cliente/{{DNI}}" name = "operacion" value ="Editar " role="button">Editar</a>

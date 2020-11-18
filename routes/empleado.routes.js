@@ -2,7 +2,7 @@ const express = require("express");
 const Empleado = require("../models/empleado");
 const router = express.Router();
 
-const Cliente = require("../models/empleado");
+// const Cliente = require("../models/empleado");
 // const User = require('../models/User');
 
 //READ -- Leo todos los datos
@@ -15,9 +15,10 @@ router.get('/', async function(req, res, next) {
 
 
 router.get("/nuevo", (req, res) => {
-  Empleado.findAll().then((empleadp) => {
+  Empleado.findAll().then((empleado) => {
     // res.json(empleado);
-    res.render("frmRegistroEmpleado");
+    res.render("frmRegistroEmpleado", {empleado, session:req.session});
+
     
   });
 });
@@ -26,7 +27,7 @@ router.get("/nuevo", (req, res) => {
 router.get("/:id", (req, res) => {
   Empleado.findByPk(req.params.id).then((empleado) => {
     //res.json(empleado);
-    res.render("datos_empleado", {empleado});
+    res.render("datos_empleado", {empleado, session:req.session});
   });
 });
 
@@ -75,7 +76,7 @@ router.post("/:id", (req, res) => {
    //si el empleado existe
       if (empleado) { 
           empleado.destroy().then(() => {
-            res.redirect("/");
+            res.redirect("/empleado");
           })   
       } else {
         res.redirect("/login")

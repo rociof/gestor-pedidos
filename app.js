@@ -67,12 +67,10 @@ app.use("/users", usersRouter);
 app.use('/cliente', require('./routes/cliente.routes'));
 app.use('/proveedor', require('./routes/proveedor.routes'));
 app.use('/empleado', require('./routes/empleado.routes'));
-
-// var usersRouter = require('./routes/usuarios');
+app.use('/articulo', require('./routes/articulo.routes'));
 app.use ("/login" , require('./routes/login'));
 app.use ("/loginEmpleado" , require('./routes/loginEmpleado'));
 
-// app.use("/usuarios", require('./routes/usuarios'));
 
 
 
@@ -80,6 +78,8 @@ app.use ("/loginEmpleado" , require('./routes/loginEmpleado'));
 
 
 const { Sequelize } = require("sequelize");
+
+//Modelos
 const Persona = require("./models/persona");
 const Articulo = require("./models/articulo");
 const Cliente = require("./models/cliente");
@@ -89,11 +89,6 @@ const PedidoClie = require("./models/PedidoClie");
 const PedidoProv = require("./models/PedidoProv");
 const DetPedClie = require("./models/detPedClie");
 const DetPedProv = require("./models/detPedProv");
-
-
-
-
-
 
 const connection = new Sequelize(
   "mariadb://root:maria123@localhost:3306/dbPedidos"

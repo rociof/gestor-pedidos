@@ -10,6 +10,8 @@
       <th scope="col">EMAIL</th>
       <th scope="col">Activo</th>
       <th scope="col">tipo</th>
+      <th scope="col">Acción</th>
+
     </tr>
   </thead>
   <tbody>
@@ -19,9 +21,11 @@
       <td>{{DNI}}</td>
       <td><a href="/empleado/{{DNI}}">{{Nombre}}</a> </td>
       <td>{{Apellido}}</td>
+       <td>{{Email}}</td>
       <td>{{Activo}}</td>
       <td>{{Tipo}}</td>
-
+      <td><a class="btn btn-primary btn-sm" href="/empleado/{{DNI}}" name = "operacion" value ="Editar " role="button">Editar</a>
+      <a class="btn btn-danger btn-sm" href="/empleado/{{DNI}}" name ="operacion" value ="Borrar" role="button">Borrar</a></td>
     </tr>
     {{/each}}
 
