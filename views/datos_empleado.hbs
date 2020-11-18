@@ -50,14 +50,16 @@
         <input type="text" name="Telefono" value="{{empleado.Telefono}}">
         <br>
 
-        <input class="form-check-input" type="radio" name="Activo" value="{{empleado.Activo}}">
-        
+        <input class="form-check-input" type="radio" name="Activo" id="tipo1" value="{{empleado.Activo}}">
+        <label class="form-check-label" for="tipo1">
             Activo
+        </label>
+        <br>
         
         <br>
 
         <input class="form-check-input" type="radio" name="Activo" id="tipo2" value="{{empleado.Activo}}">
-        {{!-- <label class="form-check-label" for="Tipo2"> --}}
+        <label class="form-check-label" for="tipo2">
             No activo
         </label>
         <br>
