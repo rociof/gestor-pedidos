@@ -64,23 +64,21 @@
         </label>
         </div>
 
-        <option>Rol</option>
+
+        <div class="form-group">
         <select name="Tipo" class="form-control" id="Tipo">
-            <option value="{{empleado.Tipo}}">{{empleado.Tipo}}</option>
-
-            
+             {{#select status}}
+            <option value="" disabled selected>Rol empleado</option>
+            <option value="Usuario_basico"></option>
+            <option value="Gestor"></option>
+            <option value="Administrador"></option>
+             {{/select}}
         </select>
+        </div>
+
+        
+
         <br>
-
-
-
-
-
-
-
-
-
-
 
 
         <label for="password">Contraseña</label id="password">
@@ -90,7 +88,6 @@
         <label for="repassword">Confirmar contraseña</label id="repassword">
         <input type="password" name="Repassword" id="repassword" value="{{empleado.Password}}">
         <br>
-
 
 
         <input type="submit" value="Actualizar" id="submit">

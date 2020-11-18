@@ -52,8 +52,8 @@ class Empleado extends Model {
             allowNull: false
           },
         Tipo: {
-            type: DataTypes.ENUM('1', '2', '3'),
-            defaultValue: '1'
+            type: DataTypes.ENUM('Usuario_basico', 'Gestor', 'Administrador'),
+            defaultValue: 'Usuario_basico'
           
           },
 
