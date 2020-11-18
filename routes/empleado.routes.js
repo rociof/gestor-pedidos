@@ -17,7 +17,7 @@ router.get('/', async function(req, res, next) {
 router.get("/nuevo", (req, res) => {
   Empleado.findAll().then((empleadp) => {
     // res.json(empleado);
-    res.render("frmRegistroEmpleado", {empleado});
+    res.render("frmRegistroEmpleado");
     
   });
 });

@@ -16,7 +16,7 @@ router.get('/', async function(req, res, next) {
 router.get("/nuevo", (req, res) => {
   Cliente.findAll().then((cliente) => {
     // res.json(cliente);
-    res.render("frmRegistroCliente", {cliente});
+    res.render("frmRegistroCliente", {cliente, session:req.session});
     
   });
 });
@@ -25,7 +25,7 @@ router.get("/nuevo", (req, res) => {
 router.get("/:id", (req, res) => {
   Cliente.findByPk(req.params.id).then((cliente) => {
     //res.json(cliente);
-    res.render("datos_cliente", {cliente});
+    res.render("datos_cliente", {cliente, session:req.session});
   });
 });
 

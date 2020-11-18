@@ -8,18 +8,23 @@
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
       <th scope="col">EMAIL</th>
+      <th scope="col"> </th>
+      
     </tr>
   </thead>
   <tbody>
 
-        {{#each cliente}}
-        <tr class="bg-light">
-            <td>{{DNI}}</td>
-            <td><a href="/cliente/{{DNI}}">{{Nombre}}</a> </td>
-             <td>{{Apellido}}</td>
-            <td>{{Email}}</td>
-        </tr>
-        {{/each}}
+    {{#each cliente}}
+    <tr class="bg-light">
+      <td>{{DNI}}</td>
+      {{!-- <td><a href="/cliente/{{DNI}}">{{Nombre}}</a> </td> --}}
+      <td>{{Nombre}}</td>
+      <td>{{Apellido}}</td>
+      <td>{{Email}}</td>
+      <td><a class="btn btn-primary btn-sm" href="/cliente/{{DNI}}" name = "operacion" value ="Editar " role="button">Editar</a>
+      <a class="btn btn-danger btn-sm" href="/cliente/{{DNI}}" name ="operacion" value ="Borrar" role="button">Borrar</a></td>
+    </tr>
+    {{/each}}
 
   </tbody>
 </table>

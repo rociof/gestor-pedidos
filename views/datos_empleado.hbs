@@ -49,24 +49,25 @@
         <label for="Telefono">Telefono</label>
         <input type="text" name="Telefono" value="{{empleado.Telefono}}">
         <br>
-
-        <input class="form-check-input" type="radio" name="Activo" id="tipo1" value="{{empleado.Activo}}">
+        <div class="form-check">
+        <input class="form-check-input" type="radio" name="Activo" id="tipo1" value="1" {{#if empleado.Activo}}checked {{/if}}>
         <label class="form-check-label" for="tipo1">
             Activo
         </label>
-        <br>
         
-        <br>
-
-        <input class="form-check-input" type="radio" name="Activo" id="tipo2" value="{{empleado.Activo}}">
+        </div>
+        
+        <div class="form-check">
+        <input class="form-check-input" type="radio" name="Activo" id="tipo2" value="0" {{#unless empleado.Activo}}checked {{/unless}}>
         <label class="form-check-label" for="tipo2">
             No activo
         </label>
-        <br>
+        </div>
 
         <option>Rol</option>
         <select name="Tipo" class="form-control" id="Tipo">
-            <option value="{{empleado.Activo}}">{{empleado.Activo}}</option>
+            <option value="{{empleado.Tipo}}">{{empleado.Tipo}}</option>
+
             
         </select>
         <br>

@@ -25,6 +25,9 @@ router.post('/', async function (req, res) {
         //res.redirect("/cliente");
         //Nos muestra el listado de cliente filtrado por el DNI
         res.redirect("/cliente/"+ DNI);
+        
+        
+
 
         
 
