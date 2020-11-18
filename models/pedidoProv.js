@@ -5,7 +5,7 @@ static init(sequelize) {
 super.init(
   {
     
-    Id_Pedido_prov: {
+    IdPedidoProv: {
       type: DataTypes.STRING(10),
       allowNull: false,
       primaryKey:true

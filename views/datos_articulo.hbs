@@ -14,8 +14,8 @@
 
     <form action="" method="post">
 
-        <label for="Id_articulo">Id_artículo</label>
-        <input type="text" name="Id_articulo" value="{{articulo.Id_articulo}}">
+        <label for="IdArticulo">IdArtículo</label>
+        <input type="text" name="IdArticulo" id="IdArticulo" value="{{articulo.IdArticulo}}">
         <br>
 
 
@@ -29,28 +29,28 @@
         </div>
 
 
-       
+
 
         <label for="Descripcion">Descripción</label>
         <input type="text" name="Descripcion" value="{{articulo.Descripcion}}">
         <br>
 
         <label for="Stock">Stock</label>
-        <input type="number" step="any" name="Stock" value="{{articulo.Stock}}">
+        <input type="number" name="Stock" value="{{articulo.Stock}}">
         <br>
 
-        <label for="Precio_venta">Precio_venta</label>
-        <input type="number" step="any" name="Precio_venta" value="{{articulo.Precio_venta}}">
+        <label for="PrecioVenta">Precio_venta</label>
+        <input type="number" step="any" name="PrecioVenta" value="{{articulo.PrecioVenta}}">
         <br>
 
-        <label for="Precio_compra">Precio_compra</label>
-        <input type="number" step="any" name="Precio_compra" value="{{articulo.Precio_compra}}">
+        <label for="PrecioCompra">Precio_compra</label>
+        <input type="number" step="any" name="PrecioCompra" value="{{articulo.PrecioCompra}}">
         <br>
 
 
 
-        <label for="Imagen_articulo">Imagen articulo</label>
-        <input type="text" name="Imagen_articulo" value="{{articulo.Imagen_articulo}}">
+        <label for="ImagenArticulo">Imagen articulo</label>
+        <input type="text" name="ImagenArticulo" value="{{articulo.ImagenArticulo}}">
         <br>
 
 
@@ -71,16 +71,15 @@
             </label>
         </div>
 
-        <input type="submit" value="Registrar">
-    </form>
 
-     <input type="submit" value="Actualizar" id="submit">
+
+        <input type="submit" value="Actualizar" id="submit">
 
         <!-- El atributo "name" permite utilizar dos botones con acciones distintas
         en un mismo formulario -->
 
         <input type="submit" name="operacion" value="Borrar" id="submit">
-
+    </form>
 
     {{#if error}}
     <p>{{error}}</p>

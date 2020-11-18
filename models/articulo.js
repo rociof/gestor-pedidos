@@ -6,9 +6,8 @@ static init(sequelize) {
 super.init(
   {
     // Model attributes are defined here
-    Id_articulo: {
+    IdArticulo: {
       type: DataTypes.STRING(4),
-      allowNull: false,
       primaryKey:true
     },
     Familia: {
@@ -25,16 +24,16 @@ super.init(
       allowNull: false
     },
     Activo: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.TINYINT(1),
       allowNull: false
     },
-    Precio_venta: {
+    PrecioVenta: {
       type: DataTypes.DOUBLE
     },
-    Precio_compra: {
+    PrecioCompra: {
       type: DataTypes.DOUBLE
     },
-    Imagen_articulo: {
+    ImagenArticulo: {
       type: DataTypes.STRING(150),
       allowNull: true
     },

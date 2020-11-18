@@ -20,17 +20,18 @@
 
         {{#each articulo}}
         <tr class="bg-light">
-            <td>{{Id_articulo}}</td>
+            <td><a href="/articulo/{{IdArticulo}}">{{IdArticulo}}</a> </td>
             <td>{{Familia}}</td>
-            <td>{{Descripción}}</td>
+            <td>{{Descripcion}}</td>
             <td>{{Stock}}</td>
             <td>{{Activo}}</td>
-            <td>{{Precio_venta}}</td>
-            <td>{{Precio_compra}}</td>
-            <td><a class="btn btn-primary btn-sm" href="/articulo/{{Id_articulo}}" name="operacion" value="Editar "
+            <td>{{PrecioVenta}}</td>
+            <td>{{PrecioCompra}}</td>
+            <td><a class="btn btn-primary btn-sm" href="/articulo/{{IdArticulo}}" name="operacion" value="Editar"
                     role="button">Editar</a>
-                <a class="btn btn-danger btn-sm" href="/articulo/{{Id_articulo}}" name="operacion" value="Borrar"
-                    role="button">Borrar</a></td>
+                <a class="btn btn-danger btn-sm" href="/articulo/{{IdArticulo}}" name="operacion" value="Borrar"
+                    role="button">Borrar</a>
+            </td>
         </tr>
         {{/each}}
 
