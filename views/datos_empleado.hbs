@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuario</title>
+</head>
+
+<body>
+    <h1>Datos empleado</h1>
+
+
+    <form action="" method="post">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="Nombre" id="nombre" value="{{empleado.Nombre}}">
+        <br>
+
+        <label for="Apellido">Apellido</label>
+        <input type="text" name="Apellido" value="{{empleado.Apellido}}">
+        <br>
+
+        <label for="Email">Email</label>
+        <input type="email" name="Email" id="Email" value="{{empleado.Email}}">
+        <br>
+
+        <label for="dni">Dni</Label>
+        <input type="text" name="DNI" id="dni" value="{{empleado.DNI}}">
+        <br>
+
+        <label for="Direccion">Dirección</label>
+        <input type="text" name="Direccion" value="{{empleado.Direccion}}">
+        <br>
+
+        <label for="Localidad">Localidad</label>
+        <input type="text" name="Localidad" value="{{empleado.Localidad}}">
+        <br>
+
+        <label for="Provincia">Provincia</label>
+        <input type="text" name="Provincia" value="{{empleado.Provincia}}">
+        <br>
+
+
+
+        <label for="CP">CP</label>
+        <input type="text" name="CP" value="{{empleado.CP}}">
+        <br>
+
+        <label for="Telefono">Telefono</label>
+        <input type="text" name="Telefono" value="{{empleado.Telefono}}">
+        <br>
+
+        <input class="form-check-input" type="radio" name="Activo" value="{{empleado.Activo}}">
+        
+            Activo
+        
+        <br>
+
+        <input class="form-check-input" type="radio" name="Activo" id="tipo2" value="{{empleado.Activo}}">
+        {{!-- <label class="form-check-label" for="Tipo2"> --}}
+            No activo
+        </label>
+        <br>
+
+        <option>Rol</option>
+        <select name="Tipo" class="form-control" id="Tipo">
+            <option value="{{empleado.Activo}}">{{empleado.Activo}}</option>
+            
+        </select>
+        <br>
+
+
+
+
+
+
+
+
+
+
+
+
+        <label for="password">Contraseña</label id="password">
+        <input type="password" name="Password" id="password" value="{{empleado.Password}}">
+        <br>
+
+        <label for="repassword">Confirmar contraseña</label id="repassword">
+        <input type="password" name="Repassword" id="repassword" value="{{empleado.Password}}">
+        <br>
+
+
+
+        <input type="submit" value="Actualizar" id="submit">
+
+        <!-- El atributo "name" permite utilizar dos botones con acciones distintas
+        en un mismo formulario -->
+
+        <input type="submit" name="operacion" value="Borrar" id="submit">
+
+
+    </form>
+    {{#if error}}
+    <p>{{error}}</p>
+    {{/if}}
+
+</body>
+
+</html>
