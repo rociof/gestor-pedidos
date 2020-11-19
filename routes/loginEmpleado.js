@@ -22,6 +22,7 @@ router.post('/', async function (req, res) {
     });
     if (emple) {
         req.session.emple = emple;
+        req.session.usuario = undefined;
         res.redirect("/");
 
     } else {
@@ -33,7 +34,8 @@ router.post('/', async function (req, res) {
 
 router.get('/logoutEmple', function (req, res) {
     req.session = undefined;
-    res.redirect("/loginEmpleado");
+    req.session.reset();
+    res.redirect("/");
 });
 
 

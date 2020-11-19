@@ -55,12 +55,13 @@ maxAge: 5 * 60 * 1000//caducidad [milisegundos]
 
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use('/login', loginRouter);
+// app.use('/cliente', necesitaAutenticacion, indexRouter);
+// app.use('/loginEmpleado', necesitaAdmin, usersRouter);
 
 //Rutas(controlador)
 
-// app.use('/login', loginRouter);
-// app.use('/cliente', necesitaAutenticacion, indexRouter);
-// app.use('/loginEmpleado', necesitaAdmin, usersRouter);
+
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
@@ -136,6 +137,8 @@ const connection = new Sequelize(
       //creación de tablas si no existen
       connection.sync({force:false});
     })
+
+   
 
   .catch((err) => {
     console.log(err);

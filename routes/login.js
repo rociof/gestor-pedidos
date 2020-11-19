@@ -22,6 +22,7 @@ router.post('/', async function (req, res) {
     });
     if (usuario) {
         req.session.usuario = usuario;
+        req.session.emple = undefined;
         res.redirect("/");
         //Nos muestra el listado de cliente filtrado por el DNI
        // res.redirect("/cliente/" + DNI);
@@ -41,6 +42,7 @@ router.post('/', async function (req, res) {
 
 router.get('/logout', function (req, res) {
     req.session = undefined;
+    req.session.reset();
     res.redirect("/");
 });
 
