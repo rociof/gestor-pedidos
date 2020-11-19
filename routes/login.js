@@ -22,6 +22,7 @@ router.post('/', async function (req, res) {
     });
     if (usuario) {
         req.session.usuario = usuario;
+        //se fuerza el cierre de la sesión de empleado
         req.session.emple = undefined;
         res.redirect("/");
         //Nos muestra el listado de cliente filtrado por el DNI
@@ -42,7 +43,7 @@ router.post('/', async function (req, res) {
 
 router.get('/logout', function (req, res) {
     req.session = undefined;
-    req.session.reset();
+    req.session.destroy();
     res.redirect("/");
 });
 

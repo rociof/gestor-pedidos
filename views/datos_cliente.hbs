@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>Datos cliente</h1>
+    <h1>Detalle cuenta cliente</h1>
 
     
     <form action="" method="post">
@@ -60,13 +60,13 @@
         <input type="password" name="Repassword" id="repassword" value="{{cliente.Password}}">
         <br>
 
+        
         <input type="submit" value="Actualizar" id="submit" >
 
         <!-- El atributo "name" permite utilizar dos botones con acciones distintas
         en un mismo formulario -->
         
-    <input type="submit" name="operacion" value="Borrar" id="submit">
-        
+        <input type="submit" name="operacion" value="Borrar" id="submit">
         
     </form>
     {{#if error}}

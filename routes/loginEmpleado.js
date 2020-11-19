@@ -22,6 +22,7 @@ router.post('/', async function (req, res) {
     });
     if (emple) {
         req.session.emple = emple;
+        //se fuerza el cierre de la sesión de usuario
         req.session.usuario = undefined;
         res.redirect("/");
 
@@ -34,7 +35,7 @@ router.post('/', async function (req, res) {
 
 router.get('/logoutEmple', function (req, res) {
     req.session = undefined;
-    req.session.reset();
+    req.session.destroy();
     res.redirect("/");
 });
 
