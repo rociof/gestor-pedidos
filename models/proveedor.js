@@ -1,8 +1,15 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
-
+/**
+ * Define la estructura y tipo de datos de la clase Proveedor
+ */
 class Proveedor extends Model {
+  /**
+   * hace referencia a la clase de la que hereda (model)
+   * @param {*} sequelize 
+   */
+
   static init(sequelize) {
-    super.init(//hace referencia a la clase de la que hereda (model)
+    super.init(
       {
         // Model attributes are defined here
         Nombre: {

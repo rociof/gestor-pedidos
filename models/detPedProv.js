@@ -1,5 +1,7 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
-
+/**
+ * Define la estructura y tipo de datos de la clase DetPedProv
+ */
 class DetPedProv extends Model {
   static init(sequelize) {
     super.init(//hace referencia a la clase de la que hereda (model)

@@ -1,5 +1,7 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
-
+/**
+ * Define la estructura y tipo de datos de la clase PedidoProv
+ */
 class PedidoProv extends Model {
 static init(sequelize) {
 super.init(

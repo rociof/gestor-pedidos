@@ -1,11 +1,13 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 
-
+/**
+ * Define la estructura y tipo de datos de la clase Articulo
+ */
 class Articulo extends Model {
 static init(sequelize) {
 super.init(
   {
-    // Model attributes are defined here
+    
     IdArticulo: {
       type: DataTypes.STRING(4),
       primaryKey:true

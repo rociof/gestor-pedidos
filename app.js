@@ -14,10 +14,11 @@ var hbs = require("hbs");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
+
 var loginRouter = require('./routes/login');
 
 // funciones para la autenticación de usuarios
-const { necesitaAutenticacion, necesitaAdmin } = require('./auth');
+const { necesitaAutenticacion} = require('./auth');
 
 var app = express();
 
@@ -56,7 +57,7 @@ maxAge: 5 * 60 * 1000//caducidad [milisegundos]
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use('/login', loginRouter);
-// app.use('/cliente', necesitaAutenticacion, indexRouter);
+//app.use('/cliente', necesitaAutenticacion, indexRouter);
 // app.use('/loginEmpleado', necesitaAdmin, usersRouter);
 
 //Rutas(controlador)

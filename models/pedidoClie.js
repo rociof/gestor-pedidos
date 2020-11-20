@@ -1,5 +1,7 @@
 const { Sequelize, DataTypes, Model, DATE } = require("sequelize");
-
+/**
+ * Define la estructura y tipo de datos de la clase PedidoClie
+ */
 
 class PedidoClie extends Model {
 static init(sequelize) {

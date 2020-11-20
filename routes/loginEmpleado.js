@@ -24,7 +24,8 @@ router.post('/', async function (req, res) {
         req.session.emple = emple;
         //se fuerza el cierre de la sesión de usuario
         req.session.usuario = undefined;
-        res.redirect("/");
+        res.redirect("/empleado/" + DNI);
+
 
     } else {
         res.render("loginEmpleado", {
