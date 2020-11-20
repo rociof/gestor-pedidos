@@ -82,7 +82,7 @@ app.use ("/loginEmpleado" , require('./routes/loginEmpleado'));
 const { Sequelize } = require("sequelize");
 
 //Modelos
-const Persona = require("./models/persona");
+
 const Articulo = require("./models/articulo");
 const Cliente = require("./models/cliente");
 const Proveedor = require("./models/proveedor");
@@ -99,7 +99,7 @@ const connection = new Sequelize(
    connection
     .authenticate()
     .then(() => {
-      Persona.init(connection);
+      
       Articulo.init(connection);
       Cliente.init(connection);
       Proveedor.init(connection);
