@@ -25,8 +25,6 @@ router.post('/', async function (req, res) {
         //se fuerza el cierre de la sesión de usuario
         req.session.usuario = undefined;
         res.redirect("/empleado/" + DNI);
-
-
     } else {
         res.render("loginEmpleado", {
             error: "DNI o contraseña incorrectos"

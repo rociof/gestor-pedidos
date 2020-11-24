@@ -127,12 +127,12 @@ const connection = new Sequelize(
       /**La clave foránea es un campo (no la PK)
        * de la tabla DetPedclie
        */
-      DetPedClie.belongsTo(PedidoClie, { foreignKey:'PrecioVenta'});
+      DetPedClie.belongsTo(PedidoClie, { foreignKey:'IdPedidoCli'});
 
 
       Articulo.belongsToMany(PedidoProv, {through: DetPedProv, foreignKey:'IdArticulo'});
       PedidoProv.belongsToMany(Articulo, {through: DetPedProv, foreignKey:'IdPedidoProv'});
-      DetPedProv.belongsTo(PedidoProv, { foreignKey:'PrecioCompra'});
+      DetPedProv.belongsTo(PedidoProv, { foreignKey:'IdPedidoProv'});
 
      
       //creación de tablas si no existen
