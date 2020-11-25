@@ -67,7 +67,9 @@ class Cliente extends Model {
              allowNull: false
           },
         Activo: {
-            type: DataTypes.TINYINT(1),
+            // type: DataTypes.TINYINT(1)
+            type: DataTypes.BOOLEAN
+
             //allowNull: false,
             //default:true
           },

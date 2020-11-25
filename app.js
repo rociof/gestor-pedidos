@@ -66,7 +66,7 @@ app.use('/login', loginRouter);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use('/cliente', require('./routes/cliente.routes'));
+app.use('/cliente', require("./routes/cliente.routes"));
 app.use('/proveedor', require('./routes/proveedor.routes'));
 app.use('/empleado', require('./routes/empleado.routes'));
 app.use('/articulo', require('./routes/articulo.routes'));
@@ -136,7 +136,7 @@ const connection = new Sequelize(
 
      
       //creación de tablas si no existen
-      connection.sync({force:false});
+      connection.sync({force:true});
     })
 
    
