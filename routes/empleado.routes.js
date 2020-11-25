@@ -94,7 +94,7 @@ router.post("/:id", (req, res) => {
       }
     )
       .then((resultado) => {        
-        res.redirect("/empleados/listadoEmpleado");
+        res.redirect("/empleado/listado");
       })
       .catch((err) => {
         res.json({

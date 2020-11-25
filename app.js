@@ -34,6 +34,7 @@ app.use(
     extended: false,
   })
 );
+
 // Los middlewares cookieParser y cookieSession se encargan,
 //  * respectivamente, de procesar las cookies y de gestionar la información de la
 //  * sesión en éstas.
@@ -48,8 +49,7 @@ app.use(cookieParser());
 app.use(cookieSession({   name: 'sesion', //nombre de la cookie 
 keys: ["secret1234", "secret1234"],  //claves de firma 
 maxAge: 5 * 60 * 1000//caducidad [milisegundos] 
-})) 
-
+}));
 // Este otro middleware (static) se utiliza para servir contenidos estáticos. Todos
 //  * los archivos que estén dentro de la carpeta public estarán accesibles con una
 //  * ruta igual a la ruta relativa dentro de la carpeta public.
@@ -113,8 +113,8 @@ const connection = new Sequelize(
 
       //RELACIONES
 
-      Proveedor.hasMany(PedidoProv);
-      PedidoProv.belongsTo(Proveedor);
+      // Proveedor.hasMany(PedidoProv);
+      // PedidoProv.belongsTo(Proveedor);
 
       Cliente.hasMany(PedidoClie);
       PedidoClie.belongsTo(Cliente);
@@ -130,13 +130,13 @@ const connection = new Sequelize(
       DetPedClie.belongsTo(PedidoClie, { foreignKey:'IdPedidoCli'});
 
 
-      Articulo.belongsToMany(PedidoProv, {through: DetPedProv, foreignKey:'IdArticulo'});
-      PedidoProv.belongsToMany(Articulo, {through: DetPedProv, foreignKey:'IdPedidoProv'});
-      DetPedProv.belongsTo(PedidoProv, { foreignKey:'IdPedidoProv'});
+      // Articulo.belongsToMany(PedidoProv, {through: DetPedProv, foreignKey:'IdArticulo'});
+      // PedidoProv.belongsToMany(Articulo, {through: DetPedProv, foreignKey:'IdPedidoProv'});
+      // DetPedProv.belongsTo(PedidoProv, { foreignKey:'IdPedidoProv'});
 
      
       //creación de tablas si no existen
-      connection.sync({force:true});
+      connection.sync({force:false});
     })
 
    

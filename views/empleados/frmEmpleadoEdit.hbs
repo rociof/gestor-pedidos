@@ -18,14 +18,14 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" class="form-control" name="Nombre" value="{{ empleado.nombre }}"
+                    <input type="text" class="form-control" name="Nombre" value="{{ empleado.Nombre }}"
                         placeholder="......">
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" class="form-control" name="Apellido" value="{{ empleado.apellido }}"
+                    <input type="text" class="form-control" name="Apellido" value="{{ empleado.Apellido }}"
                         placeholder="......">
                 </div>
             </div>
@@ -35,7 +35,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" name="Email" value="{{ empleado.email }}"
+                    <input type="email" class="form-control" name="Email" value="{{ empleado.Email }}"
                         placeholder="......">
                 </div>
             </div>
@@ -46,7 +46,7 @@
             <div class="col-4">
                 <div class="form-group">
                     <label for="direccion">Dirección:</label>
-                    <input type="text" class="form-control" name="Direccion" value="{{ empleado.direccion }}"
+                    <input type="text" class="form-control" name="Direccion" value="{{ empleado.Direccion }}"
                         placeholder="......">
                 </div>
             </div>
@@ -54,7 +54,7 @@
             <div class="col-4">
                 <div class="form-group">
                     <label for="localidad">Localidad:</label>
-                    <input type="text" class="form-control" name="Localidad" value="{{ empleado.localidad }}"
+                    <input type="text" class="form-control" name="Localidad" value="{{ empleado.Localidad }}"
                         placeholder="......">
                 </div>
             </div>
@@ -62,7 +62,7 @@
             <div class="col-4">
                 <div class="form-group">
                     <label for="provincia">Provincia:</label>
-                    <input type="text" class="form-control" name="Provincia" value="{{ empleado.provincia }}"
+                    <input type="text" class="form-control" name="Provincia" value="{{ empleado.Provincia }}"
                         placeholder="......">
                 </div>
             </div>
@@ -72,13 +72,13 @@
             <div class="col-3">
                 <div class="form-group">
                     <label for="cp">Código Postal:</label>
-                    <input type="text" class="form-control" name="CP" value="{{ empleado.cp }}" placeholder="......">
+                    <input type="text" class="form-control" name="CP" value="{{ empleado.CP }}" placeholder="......">
                 </div>
             </div>
             <div class="col-3">
                 <div class="form-group">
                     <label for="telefono">Teléfono:</label>
-                    <input type="text" class="form-control" name="Telefono" value="{{ empleado.telefono }}"
+                    <input type="text" class="form-control" name="Telefono" value="{{ empleado.Telefono }}"
                         placeholder="......">
                 </div>
             </div>
@@ -86,7 +86,7 @@
             <div class="col-3">
 
 
-                {{#if  empleado.activo }}
+                {{#if  empleado.Activo }}
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="Activo" id="inlineRadio1" checked="checked"
                         value="1">
@@ -115,7 +115,7 @@
                 <div class="form-group border border-success p-2">
                     <label class="text-center" for="exampleFormControlSelect1">Tipo de Usuario</label>
                     <select class="form-control" name="Tipo" id="exampleFormControlSelect1">
-                         <option value="{{empleado.Tipo}}" selected="selected">{{empleado.Tipo}}</option>
+                        <option value="{{empleado.Tipo}}" selected="selected">{{empleado.Tipo}}</option>
                         <option value="Usuario_basico">Usuario_basico</option>
                         <option value="Gestor"> Gestor</option>
                         <option value="Administrador"> Administrador</option>
@@ -133,7 +133,7 @@
             <div class="col-3">
                 <div class="form-group">
                     <label for="password">Contraseña:</label>
-                    <input type="password" class="form-control" name="password" value="{{usuarios.password}}"
+                    <input type="password" class="form-control" name="Password" value="{{empleado.Password}}"
                         placeholder="......">
                 </div>
             </div>
@@ -141,7 +141,7 @@
             <div class="col-3">
                 <div class="form-group">
                     <label for="repassword">Repita la contraseña:</label>
-                    <input type="password" class="form-control" name="repassword" value="{{usuarios.password}}"
+                    <input type="password" class="form-control" name="Repassword" value="{{empleado.Password}}"
                         placeholder="......">
                 </div>
             </div>
@@ -157,14 +157,16 @@
         </div>
 
     </div>
+    {{#if error}}
+    <div class="alert alert-danger" role="alert">
+        {{error}}
+    </div>
+
+    {{/if}}
+
 </form>
 
 
 </div>
 
-<h4>{{session.empleado.nombre}}</h4>
-<h3>uuu</h3>
-
-{{#if error}}
-<p>{{error}}</p>
-{{/if}}
+<h4>{{session.emple.Nombre}}</h4>
