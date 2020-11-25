@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   // req.session.usuario = req.session.usuario ? req.session.usuario +1 :1;
   // res.send(`Rocio: ${req.session.usuario}`);
-  
+  //
   res.render('index', { title: 'Hugo Tech Home', session:req.session });
 
 });
