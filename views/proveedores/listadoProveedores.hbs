@@ -4,10 +4,10 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">DNI</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Apellido</th>
+      <th scope="col">NIF/CIF</th>
+      <th scope="col">Razón Social</th>
       <th scope="col">EMAIL</th>
+      <th scope="col">Teléfono</th>
       <th scope="col"><a class="btn btn-primary btn-sm" href="/proveedor/nuevo" role="button">Nuevo</a></th>
     </tr>
   </thead>
@@ -17,9 +17,10 @@
 
         <tr>
             <td>{{DNI}}</td>
-            <td>{{Nombre}}</td>
-             <td>{{Apellido}}</td>
+            <td>{{Nombre}} {{Apellido}}</td>
             <td>{{Email}}</td>
+            <td>{{Telefono}}</td>
+
            
             <td><a class="btn btn-primary btn-sm" href="/proveedor/{{DNI}}" role="button">Editar</a>            
             <a class="btn btn-danger btn-sm" name="operacion" value="Borrar" href="/proveedor/borrar/{{DNI}}" role="button">Borrar</a></td>

@@ -13,6 +13,7 @@ router.get('index',  (req, res ) =>
       // console.log(clientes);
       // res.sendStatus(200);
       res.render('index', {cliente})
+      // res.render("index", {cliente, session:req.session});
     })
     .catch(err => console.log("Error" + err)));
 

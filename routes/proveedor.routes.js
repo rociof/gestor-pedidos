@@ -10,8 +10,7 @@ router.get('index',  (req, res ) =>
   
   Proveedor.findAll()
     .then(proveedor => {
-      // console.log(clientes);
-      // res.sendStatus(200);
+      
       res.render('index', {proveedor})
     })
     .catch(err => console.log("Error" + err)));
@@ -25,9 +24,9 @@ router.get("/nuevo", (req, res) =>  res.render("proveedores/frmProveedores"));
 
 router.post('/nuevo', async function (req, res) {
   // Obtención de los datos del formulario
-  let {DNI,Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia} = req.body;
+  let {DNI, Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia, Telefono} = req.body;
 
-    let proveedor = new Proveedor({DNI,Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia});
+    let proveedor = new Proveedor({DNI,Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia, Telefono});
     try {
       await proveedor.save();
       res.redirect("/");
@@ -42,7 +41,7 @@ router.post('/nuevo', async function (req, res) {
 // READ -- Listado de todos
 router.get("/listado", (req, res) => {
   let proveedor = Proveedor.findAll().then((proveedor) => {
-    // console.log(clientes);
+    
     res.render("proveedores/listadoProveedores", { proveedor });
   });
 });
@@ -143,7 +142,7 @@ router.post("/:id", (req, res) => {
 
 router.get("/borrar/:id", (req, res) => {
   Proveedor.findByPk(req.params.id).then((proveedor) => {
-    // res.json(clientes);
+    
     Proveedor.destroy({
       where: {
         DNI: req.params.id,

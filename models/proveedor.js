@@ -22,7 +22,7 @@ class Proveedor extends Model {
       Apellido: {
         type: DataTypes.STRING(100),
         allowNull: false
-        // allowNull defaults to true
+        
       },
       DNI: {
         type: DataTypes.STRING(9),
@@ -47,11 +47,11 @@ class Proveedor extends Model {
       },
       Telefono: {
         type: DataTypes.STRING(15),
-        // allowNull: false
+         allowNull: false
       },
       Email: {
         type: DataTypes.STRING(60),
-        // allowNull: false
+        unique:true
       },
 
     }, {

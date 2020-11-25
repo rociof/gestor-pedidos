@@ -11,27 +11,27 @@
             <th scope="col">Activo</th>
             <th scope="col">Precio venta</th>
             <th scope="col">Precio compra</th>
-            <th scope="col">Acciones</th>
-
+             <th scope="col"><a class="btn btn-primary btn-sm" href="/articulo/nuevo/" role="button">Nuevo</a></th>
 
         </tr>
     </thead>
     <tbody>
 
         {{#each articulo}}
-        <tr class="bg-light">
-            <td><a href="/articulo/{{IdArticulo}}">{{IdArticulo}}</a> </td>
+        <tr>
+            <td>{{IdArticulo}}</td>
             <td>{{Familia}}</td>
             <td>{{Descripcion}}</td>
             <td>{{Stock}}</td>
-            <td>{{Activo}}</td>
+             {{#if Activo}}
+              <td>Activo</td>
+            {{else}}
+              <td>Desactivado</td>
+            {{/if}}
             <td>{{PrecioVenta}}</td>
             <td>{{PrecioCompra}}</td>
-            <td><a class="btn btn-primary btn-sm" href="/articulo/{{IdArticulo}}" name="operacion" value="Editar"
-                    role="button">Editar</a>
-                <a class="btn btn-danger btn-sm" href="/articulo/{{IdArticulo}}" name="operacion" value="Borrar"
-                    role="button">Borrar</a>
-            </td>
+            <td><a class="btn btn-primary btn-sm" href="/articulo/{{IdArticulo}}" role="button">Editar</a>            
+            <a class="btn btn-danger btn-sm" name="operacion" value="Borrar" href="/articulo/borrar/{{IdArticulo}}" role="button">Borrar</a></td>
         </tr>
         {{/each}}
 

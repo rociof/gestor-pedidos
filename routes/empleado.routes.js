@@ -9,9 +9,8 @@ const Empleado = require("../models/empleado");
 router.get('index',  (req, res ) => 
   
   Empleado.findAll()
-    .then(cliente => {
-      // console.log(clientes);
-      // res.sendStatus(200);
+    .then(empleado => {
+      
       res.render('index', {empleado})
     })
     .catch(err => console.log("Error" + err)));
@@ -21,7 +20,7 @@ router.get('index',  (req, res ) =>
 
 router.get("/nuevo", (req, res) =>  res.render("empleados/frmEmpleado"));
 
-/************** */
+
 
 router.post('/nuevo', async function (req, res) {
   // Obtención de los datos del formulario
@@ -46,7 +45,7 @@ router.post('/nuevo', async function (req, res) {
 // READ -- Listado de todos
 router.get("/listado", (req, res) => {
   let empleado = Empleado.findAll().then((empleado) => {
-    // console.log(clientes);
+    // console.log(articulos);
     res.render("empleados/listadoEmpleado", { empleado });
   });
 });
@@ -57,9 +56,9 @@ router.get("/:id", (req, res) => {
     .then((empleado) => {      
       console.log(empleado);
       console.log("ACTIVO: ",empleado.Activo);
-      //  res.render('frmClientes', {clientes})
+      //  res.render('frmEmpleado', {empleado, session:req.session})
 
-      res.render('empleados/frmEmpleadoEdit', {empleado})
+      res.render('empleados/frmEmpleadoEdit', {empleado});
     })    
     .catch((err) => {
       res.json(err);
@@ -99,7 +98,7 @@ router.post("/:id", (req, res) => {
       .catch((err) => {
         res.json({
           // status: 303,
-          err,
+          err
         });
       });
     // }else{
