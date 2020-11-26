@@ -32,7 +32,7 @@ router.post('/', async function (req, res) {
     }
 })
 
-router.get('logoutEmple', function (req, res) {
+router.get('/logoutEmple', function (req, res) {
     req.session = undefined;
     // req.session.destroy();
     res.redirect("/");
