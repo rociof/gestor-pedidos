@@ -18,10 +18,11 @@ var indexRouter = require("./routes/index");
 // var usersRouter = require("./routes/users");
 var loginRouter = require('./routes/login');
 var loginRouterEmpleado = require('./routes/loginEmpleado');
+//  var clienteRouter = require('./routes/cliente.routes');
+// var empleadoRouter = require('./routes/empleado.routes');
 
-
-// funciones para la autenticación de usuarios
-const { necesitaAutenticacion} = require('./auth');
+//  autenticación de usuarios
+const { necesitaAutenticacion, necesitaAdmin, necesitaGestor} = require('./auth');
 
 var app = express();
 // var session = require('express-session')
@@ -59,15 +60,26 @@ app.use(cookieSession({
 //  * los archivos que estén dentro de la carpeta public estarán accesibles con una
 //  * ruta igual a la ruta relativa dentro de la carpeta public.
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(path.dirname(''), 'public')));
 
 //Rutas(controlador)
+app.use("/", indexRouter);
 app.use('/login', loginRouter);
 app.use('/cliente', indexRouter);
 app.use('/loginEmpleado', loginRouterEmpleado);
 
+/  app.use('/login', necesitaAutenticacion, loginRouter);
+//  app.use('/loginEmpleado', necesitaAutenticacion, loginRouterEmpleado);
+
+//  app.use(['/proveedor/listado', '/empleado/nuevo'], necesitaAdmin, empleadoRouter);
+//  app.use(['/articulo/nuevo','/cliente/listado', '/empleado/listado'], necesitaGestor, empleadoRouter);
+
 app.use("/", indexRouter);
 // app.use("/users", usersRouter);
+
+
+
+
 app.use('/cliente', require("./routes/cliente.routes"));
 app.use('/proveedor', require('./routes/proveedor.routes'));
 app.use('/empleado', require('./routes/empleado.routes'));
