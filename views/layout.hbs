@@ -10,15 +10,20 @@
 
 <body>
 
-  {{#if session.usuario}}
+
+{{> cabecera}} 
+
+  {{#if session.usuario}} 
       {{> cabeceracliente}}
   {{else }}
     {{#if session.emple}}
       {{> cabeceraempleado}}
       {{else}}
-      {{> cabecera}}
+        {{!-- {{> cabecera}}  --}}
       {{/if}} 
   {{/if}} 
+  
+  </nav>
    
   {{{body}}}
   {{> pie}}

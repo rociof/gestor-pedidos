@@ -16,16 +16,16 @@ router.get('/',  (req, res ) => {
 
 // add Empleado
 
-router.get("/nuevo", necesitaAdmin, (req, res) =>  res.render("empleados/frmEmpleado"));
+// router.get("/nuevo", necesitaAdmin, (req, res) =>  res.render("empleados/frmEmpleado"));
+router.get("/nuevo",  (req, res) =>  res.render("empleados/frmEmpleado"));
 
-
-
-router.post('/nuevo', necesitaAdmin, async function (req, res) {
+// router.post('/nuevo', necesitaAdmin, async function (req, res) {
+router.post('/nuevo', async function(req, res) {
   // Obtención de los datos del formulario
-  let {DNI,Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia, Password, Repassword, Activo, Tipo} = req.body;
+  let {DNI,Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia, Password, Repassword, Telefono, Activo, Tipo} = req.body;
 
   if (Password == Repassword) {
-    let empleado = new Empleado({DNI,Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia, Activo,Tipo,Password});
+    let empleado = new Empleado({DNI,Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia, Telefono, Activo,Tipo,Password});
     try {
       await empleado.save();
       res.redirect("/");
@@ -52,8 +52,8 @@ router.get("/listado", (req, res) => {
 router.get("/:id", (req, res) => {
   Empleado.findByPk(req.params.id)
     .then((empleado) => {      
-      console.log(empleado);
-      console.log("ACTIVO: ",empleado.Activo);
+      // console.log(empleado);
+      // console.log("ACTIVO: ",empleado.Activo);
       //  res.render('frmEmpleado', {empleado, session:req.session})
 
       res.render('empleados/frmEmpleadoEdit', {empleado});
@@ -103,49 +103,6 @@ router.post("/:id", (req, res) => {
     //   var error = 'La contraseñas no coinciden';
     // }  
 });
-
-// router.post("/editar/:id", (req, res) => {
-//   if (req.body.operacion == "Actualizar") {
-//     Clientes.update(
-//       {
-//         nombre: req.body.nombre,
-//         apellido: req.body.apellido,
-//         email: req.body.email,
-//         direccion: req.body.direccion,
-//         localidad: req.body.localidad,
-//         cp: req.body.cp,
-//         provincia: req.body.provincia,
-//         telefono: req.body.telefono,
-//         password: req.body.password,
-//         repassword: req.body.password,
-//         activo: req.body.activo,
-//       },
-//       {
-//         where: {
-//           DNI: req.params.id,
-//         },
-//       }
-//     )
-//       .then((resultado) => {
-//         // res.json(resultado);
-//         res.redirect("/")
-//       })
-//       .catch((err) => {
-//         res.json({
-//           status: 303,
-//           err,
-//         });
-//       });
-//   } else {
-//     Clientes.destroy({
-//       where: {
-//         DNI: req.params.id,
-//       },
-//     }).then((resultado) => {
-//       res.json(resultado);
-//     });
-//   }
-// });
 
 
 // DELETE un cliente

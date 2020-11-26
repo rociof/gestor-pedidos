@@ -1,3 +1,4 @@
+
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -14,7 +15,7 @@ require("./hbs/helpers");
 
 // variables de rutas
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+// var usersRouter = require("./routes/users");
 var loginRouter = require('./routes/login');
 var loginRouterEmpleado = require('./routes/loginEmpleado');
 
@@ -49,9 +50,10 @@ app.use(
 //  * la cookie será hasta el cierre de la sesión (cerrar navegador/salir del sistema).
 
 app.use(cookieParser());
-app.use(cookieSession({   name: 'sesion', //nombre de la cookie 
-keys: ["secret1234", "secret1234"],  //claves de firma 
-maxAge: 5 * 60 * 1000//caducidad [milisegundos] 
+app.use(cookieSession({  
+   name: 'sesion',   //nombre de la cookie 
+  keys: ["secret1234", "secret1234"],         //claves de firma 
+  maxAge: 5 * 60 * 1000                       //caducidad [milisegundos] 
 }));
 // Este otro middleware (static) se utiliza para servir contenidos estáticos. Todos
 //  * los archivos que estén dentro de la carpeta public estarán accesibles con una
@@ -65,17 +67,11 @@ app.use('/cliente', indexRouter);
 app.use('/loginEmpleado', loginRouterEmpleado);
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+// app.use("/users", usersRouter);
 app.use('/cliente', require("./routes/cliente.routes"));
 app.use('/proveedor', require('./routes/proveedor.routes'));
 app.use('/empleado', require('./routes/empleado.routes'));
 app.use('/articulo', require('./routes/articulo.routes'));
-
-
-
-
-
-
 
 const { Sequelize } = require("sequelize");
 
@@ -85,13 +81,14 @@ const Articulo = require("./models/articulo");
 const Cliente = require("./models/cliente");
 const Proveedor = require("./models/proveedor");
 const Empleado = require("./models/empleado");
-const PedidoClie = require("./models/PedidoClie");
-const PedidoProv = require("./models/PedidoProv");
+const PedidoClie = require("./models/pedidoClie");
+const PedidoProv = require("./models/pedidoProv");
 const DetPedClie = require("./models/detPedClie");
 const DetPedProv = require("./models/detPedProv");
 
 const connection = new Sequelize(
-  "mariadb://root:maria123@localhost:3306/dbPedidos"
+  // "mariadb://root:maria123@localhost:3306/dbPedidos"
+  "mariadb://hugo:hugo@localhost:3306/dbPedidos"
 );
 
    connection
@@ -107,7 +104,6 @@ const connection = new Sequelize(
       DetPedClie.init(connection);
       DetPedProv.init(connection);
       //Autor.init(connection);
-
 
       //RELACIONES
 
@@ -158,4 +154,6 @@ const connection = new Sequelize(
       res.render("error");
     });
   });
+
+
  module.exports = app;

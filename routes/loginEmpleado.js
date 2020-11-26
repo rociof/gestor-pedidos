@@ -20,10 +20,10 @@ router.post('/', async function (req, res) {
             Password
         }
     });
-    if (emple) {
+    if (emple) {       
         req.session.emple = emple;
         //se fuerza el cierre de la sesión de usuario
-        req.session.usuario = undefined;
+        // req.session.usuario = undefined;
         res.redirect("/");
     } else {
         res.render("loginEmpleado", {
@@ -32,11 +32,14 @@ router.post('/', async function (req, res) {
     }
 })
 
-router.get('/logoutEmple', function (req, res) {
-    req.session = undefined;
-    // req.session.destroy();
+router.get('/logout', function (req, res) {
+
+    // elimino la cookie
+    req.session = undefined;    
     res.redirect("/");
+    
 });
+
 
 
 module.exports = router;

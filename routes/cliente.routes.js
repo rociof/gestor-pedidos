@@ -6,16 +6,19 @@ const router = express.Router();
 const Cliente = require("../models/cliente");
 
 // get CLiente Lista
-router.get('index',  (req, res ) => 
+router.get('/',  (req, res ) => {
+
+    res.render('index');
+});
   
-  Cliente.findAll()
-    .then(cliente => {
+  // Cliente.findAll()
+  //   .then(cliente => {
      
-      // res.sendStatus(200);
-      //res.render('index', {cliente})
-      res.render("index", {cliente});
-    })
-    .catch(err => console.log("Error" + err)));
+  //     // res.sendStatus(200);
+  //     //res.render('index', {cliente})
+  //     res.render("index", {cliente});
+  //   })
+  //   .catch(err => console.log("Error" + err)));
 
 
 // add CLiente
@@ -26,13 +29,13 @@ router.get("/nuevo", (req, res) =>  res.render("clientes/frmClientes"));
 
 router.post('/nuevo', async function (req, res) {
   // Obtención de los datos del formulario
-  let {DNI,Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia, Password, Repassword, Activo} = req.body;
+  let {DNI,Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia, Telefono, Password, Repassword, Activo} = req.body;
 
   if (Password == Repassword) {
-    let cliente = new Cliente({DNI,Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia, Activo,Password});
+    let cliente = new Cliente({DNI,Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia, Telefono, Activo,Password});
     try {
       await cliente.save();
-      res.redirect("/");
+      // res.redirect("/");
       
       res.render("index", {cliente, session:req.session});
 
@@ -110,50 +113,6 @@ router.post("/:id", (req, res) => {
     //   var error = 'La contraseñas no coinciden';
     // }  
 });
-
-// router.post("/editar/:id", (req, res) => {
-//   if (req.body.operacion == "Actualizar") {
-//     Clientes.update(
-//       {
-//         nombre: req.body.nombre,
-//         apellido: req.body.apellido,
-//         email: req.body.email,
-//         direccion: req.body.direccion,
-//         localidad: req.body.localidad,
-//         cp: req.body.cp,
-//         provincia: req.body.provincia,
-//         telefono: req.body.telefono,
-//         password: req.body.password,
-//         repassword: req.body.password,
-//         activo: req.body.activo,
-//       },
-//       {
-//         where: {
-//           DNI: req.params.id,
-//         },
-//       }
-//     )
-//       .then((resultado) => {
-//         // res.json(resultado);
-//         res.redirect("/")
-//       })
-//       .catch((err) => {
-//         res.json({
-//           status: 303,
-//           err,
-//         });
-//       });
-//   } else {
-//     Clientes.destroy({
-//       where: {
-//         DNI: req.params.id,
-//       },
-//     }).then((resultado) => {
-//       res.json(resultado);
-//     });
-//   }
-// });
-
 
 // DELETE un cliente
 router.get("/borrar/:id", (req, res) => {

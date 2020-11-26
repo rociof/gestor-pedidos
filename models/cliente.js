@@ -14,12 +14,11 @@ class Cliente extends Model {
           validate: {
             notNull: {
               msg: "El campo no puede ser nulo",
-            },
-            
-            len: {
-              args: [9],
-              msg: "El DNI debe incluír 9 caracteres",
-            }
+            }            
+            // len: {
+            //   args: [9],
+            //   msg: "El DNI debe incluír 9 caracteres",
+            // }
           },
         },
 

@@ -24,22 +24,21 @@ router.post('/', async function (req, res) {
     if (usuario) {
         req.session.usuario = usuario;
         //se fuerza el cierre de la sesión de empleado
-        req.session.emple = undefined;
+        // req.session.emple = undefined;
         res.redirect("/");
     } else {
+        // req.session.usuario = undefined;
         res.render("login", {
             error: "DNI o contraseña incorrectos"
         });
     }
 })
 
-router.get('/logout', function (req, res) {
-    req.session.usuario = undefined;
-    // req.session.usuario = null;
-    res.clearCookie("usuario");
-    req.session.destroy();
-    // res.redirect("/");
-    res.render('/index');
+router.get('/logout', function (req, res) {    
+    // elimino la cookie
+    req.session = undefined;    
+    res.redirect("/");   
+
 });
 
 
