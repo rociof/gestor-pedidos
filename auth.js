@@ -14,7 +14,7 @@
  
 
 function necesitaAutenticacion(req, res, next) {
-    if(req.session.cliente) next();
+    if(req.session.cliente || req.session.empleado ) next();
     else res.redirect("/");
 
 }
