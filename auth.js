@@ -29,7 +29,8 @@ function necesitaAutenticacion(req, res, next) {
 //Se pueden crear funciones para que los usuarios accedan específicamente a lo que nos interese
 //Lo normal es tener una función por rol
 function necesitaAdmin(req, res, next) {
-    if (req.session.empleado && req.session.empleado.tipo) next()
+  console.log(req.session.emple);
+    if (req.session.emple && req.session.emple.Tipo == "Administrador") next()
     else res.redirect("/empleado");
 }
 //Hay que exportar las funciones (y en el app.js)

@@ -9,19 +9,16 @@
 </head>
 
 <body>
-  {{> cabecera}}
+
   {{#if session.usuario}}
-      {{> cabecera}}
-  {{/if}} 
-
-  {{#if session.emple}}
+      {{> cabeceracliente}}
+  {{else }}
+    {{#if session.emple}}
       {{> cabeceraempleado}}
+      {{else}}
+      {{> cabecera}}
+      {{/if}} 
   {{/if}} 
-
-  
-     
-  
-  
    
   {{{body}}}
   {{> pie}}

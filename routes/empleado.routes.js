@@ -4,25 +4,23 @@ const router = express.Router();
 
 // modelo
 const Empleado = require("../models/empleado");
+const { necesitaAutenticacion, necesitaAdmin } = require("../auth");
 
 // get Empleado Lista
-router.get('index',  (req, res ) => 
-  
-  Empleado.findAll()
-    .then(empleado => {
+router.get('/',  (req, res ) => {  
       
-      res.render('index', {empleado})
-    })
-    .catch(err => console.log("Error" + err)));
+      res.render('index')
+})
+   
 
 
 // add Empleado
 
-router.get("/nuevo", (req, res) =>  res.render("empleados/frmEmpleado"));
+router.get("/nuevo", necesitaAdmin, (req, res) =>  res.render("empleados/frmEmpleado"));
 
 
 
-router.post('/nuevo', async function (req, res) {
+router.post('/nuevo', necesitaAdmin, async function (req, res) {
   // Obtención de los datos del formulario
   let {DNI,Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia, Password, Repassword, Activo, Tipo} = req.body;
 

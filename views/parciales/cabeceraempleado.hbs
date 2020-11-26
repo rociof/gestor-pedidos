@@ -21,7 +21,7 @@
           Clientes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/lstEmpleado">Listado clientes</a>
+          <a class="dropdown-item" href="/cliente/listado">Listado clientes</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">...</a>
         </div>
@@ -33,7 +33,7 @@
           Empleados
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/empleado">Listado empleados</a>
+          <a class="dropdown-item" href="/empleado/listado">Listado empleados</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">...</a>
         </div>
@@ -46,7 +46,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/proveedor/nuevo">Nuevo proveedor</a>
-          <a class="dropdown-item" href="/proveedor">Listado Proveedores</a>
+          <a class="dropdown-item" href="/proveedor/listado">Listado Proveedores</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">...</a>
         </div>
@@ -59,7 +59,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/articulo/nuevo">Nuevo articulo</a>
-          <a class="dropdown-item" href="/articulo">Artículos</a>
+          <a class="dropdown-item" href="/articulo/listado">Artículos</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">...</a>
         </div>
@@ -68,24 +68,20 @@
 
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      {{usuario}}
+      
       {{emple}}
 
       <div class="entry">
         {{#if session}}
-
         <h6>Bienvenido</h6>
-        <h4>{{session.usuario.Nombre}}</h4>
         
         <h4>{{session.emple.Nombre}}</h4>
 
-
-
         <a href="/login" class="btn btn-primary" role="button" aria-pressed="true">Logout</a>
-
         {{else}}
         <a href="/loginEmpleado" class="btn btn-secondary" role="button" aria-pressed="true">Acceso Empleado</a>
         <a href="/login" class="btn btn-primary" role="button" aria-pressed="true">Login cliente</a>
+        
         {{/if}}
       </div>
 

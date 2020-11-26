@@ -14,7 +14,7 @@ router.post('/', async function (req, res) {
         Password
     } = req.body;
     let emple = await Empleado.findOne({
-        attributes: ['DNI', 'Password', 'Nombre', 'Email'],
+        attributes: ['DNI', 'Password', 'Nombre', 'Email', 'Tipo'],
         where: {
             DNI,
             Password
@@ -24,7 +24,7 @@ router.post('/', async function (req, res) {
         req.session.emple = emple;
         //se fuerza el cierre de la sesión de usuario
         req.session.usuario = undefined;
-        res.redirect("/empleado/" + DNI);
+        res.redirect("/");
     } else {
         res.render("loginEmpleado", {
             error: "DNI o contraseña incorrectos"
@@ -32,9 +32,9 @@ router.post('/', async function (req, res) {
     }
 })
 
-router.get('/logoutEmple', function (req, res) {
+router.get('logoutEmple', function (req, res) {
     req.session = undefined;
-    req.session.destroy();
+    // req.session.destroy();
     res.redirect("/");
 });
 

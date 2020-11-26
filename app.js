@@ -10,17 +10,20 @@ var cookieSession = require('cookie-session');
 var logger = require("morgan");
 
 var hbs = require("hbs");
+require("./hbs/helpers");
 
+// variables de rutas
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-
-
 var loginRouter = require('./routes/login');
+var loginRouterEmpleado = require('./routes/loginEmpleado');
+
 
 // funciones para la autenticación de usuarios
 const { necesitaAutenticacion} = require('./auth');
 
 var app = express();
+// var session = require('express-session')
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -56,13 +59,10 @@ maxAge: 5 * 60 * 1000//caducidad [milisegundos]
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use('/login', loginRouter);
-//app.use('/cliente', necesitaAutenticacion, indexRouter);
-// app.use('/loginEmpleado', necesitaAdmin, usersRouter);
-
 //Rutas(controlador)
-
-
+app.use('/login', loginRouter);
+app.use('/cliente', indexRouter);
+app.use('/loginEmpleado', loginRouterEmpleado);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
@@ -70,8 +70,6 @@ app.use('/cliente', require("./routes/cliente.routes"));
 app.use('/proveedor', require('./routes/proveedor.routes'));
 app.use('/empleado', require('./routes/empleado.routes'));
 app.use('/articulo', require('./routes/articulo.routes'));
-app.use ("/login" , require('./routes/login'));
-app.use ("/loginEmpleado" , require('./routes/loginEmpleado'));
 
 
 

@@ -34,13 +34,12 @@ router.post('/', async function (req, res) {
 })
 
 router.get('/logout', function (req, res) {
-    // req.session.usuario = undefined;
-    req.session.usuario = null;
-
-    
+    req.session.usuario = undefined;
+    // req.session.usuario = null;
     res.clearCookie("usuario");
     req.session.destroy();
-    res.redirect("/");
+    // res.redirect("/");
+    res.render('/index');
 });
 
 

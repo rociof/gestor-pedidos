@@ -10,10 +10,10 @@ router.get('index',  (req, res ) =>
   
   Cliente.findAll()
     .then(cliente => {
-      // console.log(clientes);
+     
       // res.sendStatus(200);
-      res.render('index', {cliente})
-      // res.render("index", {cliente, session:req.session});
+      //res.render('index', {cliente})
+      res.render("index", {cliente});
     })
     .catch(err => console.log("Error" + err)));
 
@@ -33,6 +33,9 @@ router.post('/nuevo', async function (req, res) {
     try {
       await cliente.save();
       res.redirect("/");
+      
+      res.render("index", {cliente, session:req.session});
+
     } catch(err) {
       res.render("clientes/frmClientes", {error: err.message})        
     }
@@ -60,7 +63,7 @@ router.get("/:id", (req, res) => {
       console.log("ACTIVO: ",cliente.Activo);
       //  res.render('frmClientes', {clientes})
 
-      res.render('clientes/frmClientesEdit', {cliente})
+      res.render('clientes/frmClientesEdit', {cliente, session:req.session})
     })    
     .catch((err) => {
       res.json(err);
@@ -95,6 +98,7 @@ router.post("/:id", (req, res) => {
     )
       .then((resultado) => {        
         res.redirect("/cliente/listado");
+        res.render("index", {cliente, session:req.session});
       })
       .catch((err) => {
         res.json({

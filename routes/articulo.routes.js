@@ -28,6 +28,7 @@ router.post('/nuevo', async function (req, res) {
     let articulo = new Articulo({IdArticulo, Familia, Descripcion, Stock, Activo, PrecioCompra, PrecioVenta, ImagenArticulo});
      
       try {
+        console.log(articulo);
         await articulo.save();
         res.redirect("/");
       } catch(err) {
@@ -51,7 +52,7 @@ router.post('/nuevo', async function (req, res) {
     Articulo.findByPk(req.params.id)
       .then((articulo) => {      
         console.log(articulo);
-        console.log("ACTIVO: ",articulo.Activo);
+        
         //  res.render('frmArticulo', {articulo, session:req.session})
   
         res.render('articulos/frmArticuloEdit', {articulo});
