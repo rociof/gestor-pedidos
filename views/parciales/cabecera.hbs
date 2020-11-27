@@ -71,23 +71,29 @@
 
     </ul>
 
-    {{#if session}}
+    {{#unless session.emple}}
     <form class="form-inline my-2 my-lg-0">
 
       <div class="entry">
 
-      
         <a href="/loginEmpleado" class="btn btn-secondary" role="button" aria-pressed="true">Acceso Empleado</a>
-        
-
-       
-        <a href="/login" class="btn btn-primary" role="button" aria-pressed="true">Login Cliente</a>
-         
 
       </div>
     </form>
 
-    {{/if}}
+    {{/unless}} 
+
+    {{#unless session.usuario}}
+    <form class="form-inline my-2 my-lg-0">
+
+      <div class="entry">
+
+        <a href="/login" class="btn btn-primary" role="button" aria-pressed="true">Login Cliente</a>
+
+      </div>
+    </form> 
+
+    {{/unless}}
 
   </div>
 

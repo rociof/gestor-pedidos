@@ -20,7 +20,7 @@ function necesitaAutenticacion(req, res, next) {
 
 }
 /**
-  * Función que cmprueba si el usuario ha iniciado sesión y si tiene 
+  * Función que comprueba si el usuario ha iniciado sesión y si tiene 
   * privilegios de administración. En caso contrario redirige al loginEmpleado
   * @param {*} req Petición 
   * @param {*} res Respuesta
@@ -30,9 +30,8 @@ function necesitaAutenticacion(req, res, next) {
 
 
 function necesitaAdmin(req, res, next) {
-  console.log(req.session.emple);
     if (req.session.emple && req.session.emple.Tipo == "Administrador") next()
-    else res.redirect("/loginEmpleado");
+    else res.redirect("/");
 }
 
 /**Función que comprueba si el usuario ha iniciado sesión y es Gestor

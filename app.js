@@ -9,7 +9,9 @@ var path = require("path");
 
 var cookieParser = require("cookie-parser");
 var cookieSession = require('cookie-session');
-
+/**
+ * Middleware para login
+ */
 var logger = require("morgan");
 
 var hbs = require("hbs");
@@ -17,11 +19,11 @@ require("./hbs/helpers");
 
 // variables de rutas
 var indexRouter = require("./routes/index");
-// var usersRouter = require("./routes/users");
+var usersRouter = require("./routes/users");
 var loginRouter = require('./routes/login');
 var loginRouterEmpleado = require('./routes/loginEmpleado');
-//  var clienteRouter = require('./routes/cliente.routes');
-// var empleadoRouter = require('./routes/empleado.routes');
+//var clienteRouter = require('./routes/cliente.routes');
+var empleadoRouter = require('./routes/empleado.routes');
 
 //  autenticación de usuarios
 const { necesitaAutenticacion, necesitaAdmin, necesitaGestor} = require('./auth');
@@ -42,44 +44,51 @@ app.use(
   })
 );
 
+
 /**
  * Los middlewares cookieParser y cookieSession se encargan,
-//  * respectivamente, de procesar las cookies y de gestionar la información de la
-//  * sesión en éstas.
+respectivamente, de procesar las cookies y de gestionar la información de la
+sesión en éstas.
 
-// Es necesario darle un nombre a la cookie, así como un par de claves para que
-//  * el middleware firme los datos y un periodo de validez máximo.
-//  * 
-//  * El periodo de validez se expresa en milisegundos. Si se omite, la duración de
-//  * la cookie será hasta el cierre de la sesión (cerrar navegador/salir del sistema).
+Es necesario darle un nombre a la cookie, así como un par de claves para que
+el middleware firme los datos y un periodo de validez máximo.
+ 
+El periodo de validez se expresa en milisegundos. Si se omite, la duración de
+la cookie será hasta el cierre de la sesión (cerrar navegador/salir del sistema).
 
  */
+ 
 app.use(cookieParser());
 app.use(cookieSession({  
    name: 'sesion',   //nombre de la cookie 
   keys: ["secret1234", "secret1234"],         //claves de firma 
   maxAge: 5 * 60 * 1000                       //caducidad [milisegundos] 
 }));
-// Este otro middleware (static) se utiliza para servir contenidos estáticos. Todos
-//  * los archivos que estén dentro de la carpeta public estarán accesibles con una
-//  * ruta igual a la ruta relativa dentro de la carpeta public.
+/**
+ * Este otro middleware (static) se utiliza para servir contenidos estáticos. Todos
+los archivos que estén dentro de la carpeta public estarán accesibles con una
+ruta igual a la ruta relativa dentro de la carpeta public.
+ */
 
 app.use(express.static(path.join(path.dirname(''), 'public')));
 
-//Rutas(controlador)
+/**
+ * Rutas(controlador)
+
+ */
 app.use("/", indexRouter);
 app.use('/login', loginRouter);
 app.use('/cliente', indexRouter);
 app.use('/loginEmpleado', loginRouterEmpleado);
 
-// /  app.use('/login', necesitaAutenticacion, loginRouter);
-//  app.use('/loginEmpleado', necesitaAutenticacion, loginRouterEmpleado);
+// app.use('/login', necesitaAutenticacion, loginRouter);
+// app.use('/loginEmpleado', necesitaAutenticacion, loginRouterEmpleado);
 
-//  app.use(['/proveedor/listado', '/empleado/nuevo'], necesitaAdmin, empleadoRouter);
-//  app.use(['/articulo/nuevo','/cliente/listado', '/empleado/listado'], necesitaGestor, empleadoRouter);
+// app.use('/empleado/nuevo', necesitaAdmin, empleadoRouter);
+// app.use(['/articulo/nuevo','/cliente/listado','proveedor/listado', '/empleado/listado'], necesitaGestor, empleadoRouter);
 
 app.use("/", indexRouter);
-// app.use("/users", usersRouter);
+app.use("/users", usersRouter);
 
 
 

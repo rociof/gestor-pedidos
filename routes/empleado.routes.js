@@ -4,36 +4,70 @@ const router = express.Router();
 
 // modelo
 const Empleado = require("../models/empleado");
-const { necesitaAutenticacion, necesitaAdmin } = require("../auth");
+const {
+  necesitaAutenticacion,
+  necesitaAdmin
+} = require("../auth");
 
 // get Empleado Lista
-router.get('/',  (req, res ) => {  
-      
-      res.render('index')
+router.get('/', (req, res) => {
+
+  res.render('index')
 })
-   
+
 
 
 // add Empleado
 
 // router.get("/nuevo", necesitaAdmin, (req, res) =>  res.render("empleados/frmEmpleado"));
-router.get("/nuevo",  (req, res) =>  res.render("empleados/frmEmpleado"));
+router.get("/nuevo", necesitaAdmin, (req, res) => res.render("empleados/frmEmpleado"));
 
 // router.post('/nuevo', necesitaAdmin, async function (req, res) {
-router.post('/nuevo', async function(req, res) {
+router.post('/nuevo', necesitaAdmin, async function (req, res) {
   // Obtención de los datos del formulario
-  let {DNI,Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia, Password, Repassword, Telefono, Activo, Tipo} = req.body;
+  let {
+    DNI,
+    Nombre,
+    Apellido,
+    Email,
+    Direccion,
+    Localidad,
+    CP,
+    Provincia,
+    Password,
+    Repassword,
+    Telefono,
+    Activo,
+    Tipo
+  } = req.body;
 
   if (Password == Repassword) {
-    let empleado = new Empleado({DNI,Nombre, Apellido, Email, Direccion, Localidad, CP, Provincia, Telefono, Activo,Tipo,Password});
+    let empleado = new Empleado({
+      DNI,
+      Nombre,
+      Apellido,
+      Email,
+      Direccion,
+      Localidad,
+      CP,
+      Provincia,
+      Telefono,
+      Activo,
+      Tipo,
+      Password
+    });
     try {
       await empleado.save();
       res.redirect("/");
-    } catch(err) {
-      res.render("empleados/frmEmpleado", {error: err.message})        
+    } catch (err) {
+      res.render("empleados/frmEmpleado", {
+        error: err.message
+      })
     }
   } else {
-    res.render("empleados/frmEmpleado", {error: "Password no coincide"})
+    res.render("empleados/frmEmpleado", {
+      error: "Password no coincide"
+    })
     //TODO: mostrar error
   }
 })
@@ -41,23 +75,27 @@ router.post('/nuevo', async function(req, res) {
 
 
 // READ -- Listado de todos
-router.get("/listado", (req, res) => {
-  let empleado = Empleado.findAll().then((empleado) => {
+router.get("/listado", necesitaAutenticacion, (req, res) => {
+  Empleado.findAll().then((empleado) => {
     // console.log(articulos);
-    res.render("empleados/listadoEmpleado", { empleado });
+    res.render("empleados/listadoEmpleado", {
+      empleado
+    });
   });
 });
 
 // leo los datos por Clave 
 router.get("/:id", (req, res) => {
   Empleado.findByPk(req.params.id)
-    .then((empleado) => {      
+    .then((empleado) => {
       // console.log(empleado);
       // console.log("ACTIVO: ",empleado.Activo);
       //  res.render('frmEmpleado', {empleado, session:req.session})
 
-      res.render('empleados/frmEmpleadoEdit', {empleado});
-    })    
+      res.render('empleados/frmEmpleadoEdit', {
+        empleado
+      });
+    })
     .catch((err) => {
       res.json(err);
     });
@@ -65,12 +103,11 @@ router.get("/:id", (req, res) => {
 
 
 // UPDATE - Actualizo datos
-router.post("/:id", (req, res) => { 
+router.post("/:id", (req, res) => {
   let Password = req.body.Password;
   let Repassword = req.body.Repassword;
-  // if (password == repassword) {
-    Empleado.update(
-      {
+  if (Password == Repassword) {
+    Empleado.update({
         Nombre: req.body.Nombre,
         Apellido: req.body.Apellido,
         Email: req.body.Email,
@@ -83,14 +120,12 @@ router.post("/:id", (req, res) => {
         Repassword: req.body.Password,
         Activo: req.body.Activo,
         Tipo: req.body.Tipo
-      },
-      {
+      }, {
         where: {
           DNI: req.params.id,
         },
-      }
-    )
-      .then((resultado) => {        
+      })
+      .then((resultado) => {
         res.redirect("/empleado/listado");
       })
       .catch((err) => {
@@ -101,7 +136,7 @@ router.post("/:id", (req, res) => {
       });
     // }else{
     //   var error = 'La contraseñas no coinciden';
-    // }  
+  }
 });
 
 
@@ -110,18 +145,18 @@ router.get("/borrar/:id", (req, res) => {
   Empleado.findByPk(req.params.id).then((empleado) => {
     // res.json(clientes);
     Empleado.destroy({
-      where: {
-        DNI: req.params.id,
-      },
-    }).then((resultado) => {
-      res.redirect("/empleado/listado");
-    })
-    .catch((err) => {
-      res.json({
-        status: 303,
-        err,
+        where: {
+          DNI: req.params.id,
+        },
+      }).then((resultado) => {
+        res.redirect("/empleado/listado");
+      })
+      .catch((err) => {
+        res.json({
+          status: 303,
+          err,
+        });
       });
-    });  ;
   });
 });
 
