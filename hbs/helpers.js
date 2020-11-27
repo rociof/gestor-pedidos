@@ -7,7 +7,7 @@ let nombrepie = "Rocio / Manuel / Hugo";
 
 
 hbs.registerHelper('nombreEmpresa', () => {
-    return 'Hugo & Asociados Tech SA';
+    return 'Hugo Tech & Asociados SA';
 });
 
 
