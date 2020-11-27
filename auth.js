@@ -1,6 +1,7 @@
 
-// https://ull-esit-pl-1617.github.io/estudiar-cookies-y-sessions-en-expressjs-victor-pamela-jesus/cookies/chapter6.html
-
+/**Middleware de autenticación y autorización: express-session 
+ * Exportamos las funciones y las llamaremos a las funciones creadas desde app.js
+*/
 /**
  * Esta función comprueba si el usuario
  * ha iniciado sesión previamente.
@@ -14,29 +15,36 @@
  
 
 function necesitaAutenticacion(req, res, next) {
-    if(req.session.cliente || req.session.empleado ) next();
+    if(req.session.usuario || req.session.emple ) next();
     else res.redirect("/");
 
 }
 /**
-  * Esta función comprueba si el usuario ha iniciado sesión y si tiene 
-  * privilegios de administración
+  * Función que cmprueba si el usuario ha iniciado sesión y si tiene 
+  * privilegios de administración. En caso contrario redirige al loginEmpleado
   * @param {*} req Petición 
   * @param {*} res Respuesta
   * @param {*} next Siguiente paso en Express
   */
 
-//Se pueden crear funciones para que los usuarios accedan específicamente a lo que nos interese
-//Lo normal es tener una función por rol
+
+
 function necesitaAdmin(req, res, next) {
-  console.log(req.session.empleado);
-    if (req.session.empleado && req.session.empleado.Tipo == "Administrador") next()
+  console.log(req.session.emple);
+    if (req.session.emple && req.session.emple.Tipo == "Administrador") next()
     else res.redirect("/loginEmpleado");
 }
+
+/**Función que comprueba si el usuario ha iniciado sesión y es Gestor
+ * 
+ * @param {*} req Petición
+ * @param {*} res Respuesta
+ * @param {*} next Siguiente paso
+ */
 function necesitaGestor(req, res, next) {
-  console.log(req.session.empleado);
-    if (req.session.empleado && req.session.empleado.Tipo == "Gestor") next()
+  console.log(req.session.emple);
+    if (req.session.emple && req.session.emple.Tipo == "Gestor") next()
     else res.redirect("/loginEmpleado");
 }
-//Hay que exportar las funciones (y en el app.js)
+
 module.exports = {necesitaAutenticacion, necesitaAdmin, necesitaGestor};

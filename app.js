@@ -3,7 +3,9 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 
-//Módulos para manejar la sesión del usuario mediante cookies
+/**
+ * Módulos para manejar la sesión del usuario mediante cookies
+ */
 
 var cookieParser = require("cookie-parser");
 var cookieSession = require('cookie-session');
@@ -40,7 +42,8 @@ app.use(
   })
 );
 
-// Los middlewares cookieParser y cookieSession se encargan,
+/**
+ * Los middlewares cookieParser y cookieSession se encargan,
 //  * respectivamente, de procesar las cookies y de gestionar la información de la
 //  * sesión en éstas.
 
@@ -50,6 +53,7 @@ app.use(
 //  * El periodo de validez se expresa en milisegundos. Si se omite, la duración de
 //  * la cookie será hasta el cierre de la sesión (cerrar navegador/salir del sistema).
 
+ */
 app.use(cookieParser());
 app.use(cookieSession({  
    name: 'sesion',   //nombre de la cookie 
@@ -68,7 +72,7 @@ app.use('/login', loginRouter);
 app.use('/cliente', indexRouter);
 app.use('/loginEmpleado', loginRouterEmpleado);
 
-/  app.use('/login', necesitaAutenticacion, loginRouter);
+// /  app.use('/login', necesitaAutenticacion, loginRouter);
 //  app.use('/loginEmpleado', necesitaAutenticacion, loginRouterEmpleado);
 
 //  app.use(['/proveedor/listado', '/empleado/nuevo'], necesitaAdmin, empleadoRouter);
@@ -99,8 +103,8 @@ const DetPedClie = require("./models/detPedClie");
 const DetPedProv = require("./models/detPedProv");
 
 const connection = new Sequelize(
-  // "mariadb://root:maria123@localhost:3306/dbPedidos"
-  "mariadb://hugo:hugo@localhost:3306/dbPedidos"
+  "mariadb://root:maria123@localhost:3306/dbPedidos"
+//   "mariadb://hugo:hugo@localhost:3306/dbPedidos"
 );
 
    connection
