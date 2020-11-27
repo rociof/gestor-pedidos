@@ -19,7 +19,7 @@ router.get('index',  (req, res ) =>
 
 // add Artículo
 
-router.get("/nuevo", (req, res) =>  res.render("articulos/frmArticulo"));
+router.get("/nuevo", (req, res) =>  res.render("articulos/frmArticulo",{session: req.session}));
 
 router.post('/nuevo', async function (req, res) {
     // Obtención de los datos del formulario
@@ -32,7 +32,7 @@ router.post('/nuevo', async function (req, res) {
         await articulo.save();
         res.redirect("/");
       } catch(err) {
-        res.render("articulos/frmArticulo", {error: err.message})        
+        res.render("articulos/frmArticulo", {error: err.message, session: req.session})        
       }
     
   })
@@ -43,7 +43,7 @@ router.post('/nuevo', async function (req, res) {
   router.get("/listado", (req, res) => {
     let articulo = Articulo.findAll().then((articulo) => {
       // console.log(articulos);
-      res.render("articulos/listadoArticulos", { articulo });
+      res.render("articulos/listadoArticulos", { articulo, session: req.session });
     });
   });
   
@@ -55,7 +55,7 @@ router.post('/nuevo', async function (req, res) {
         
         //  res.render('frmArticulo', {articulo, session:req.session})
   
-        res.render('articulos/frmArticuloEdit', {articulo});
+        res.render('articulos/frmArticuloEdit', {articulo, session: req.session});
       })    
       .catch((err) => {
         res.json(err);

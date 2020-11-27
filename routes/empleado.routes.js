@@ -4,25 +4,23 @@ const router = express.Router();
 
 // modelo
 const Empleado = require("../models/empleado");
-const {
-  necesitaAutenticacion,
-  necesitaAdmin
-} = require("../auth");
+const { necesitaAutenticacion, necesitaAdmin } = require("../auth");
 
 // get Empleado Lista
-router.get('/', (req, res) => {
-
-  res.render('index')
-})
+router.get("/", (req, res) => {
+  res.render("index");
+});
 
 /**
  * Para dar de alta a un empleado utilizaremos un middleware de autenticación
  * que unicamente permitirá al empleado con rol de administrador hacerlo.
  * Llamamos a la función "necesitaAdmin" (de auth.js)
  */
-router.get("/nuevo", necesitaAdmin, (req, res) => res.render("empleados/frmEmpleado"));
+router.get("/nuevo", necesitaAdmin, (req, res) =>
+  res.render("empleados/frmEmpleado",{session: req.session})
+);
 
-router.post('/nuevo', necesitaAdmin, async function (req, res) {
+router.post("/nuevo", necesitaAdmin, async function (req, res) {
   // Obtención de los datos del formulario
   let {
     DNI,
@@ -37,7 +35,7 @@ router.post('/nuevo', necesitaAdmin, async function (req, res) {
     Repassword,
     Telefono,
     Activo,
-    Tipo
+    Tipo,
   } = req.body;
 
   if (Password == Repassword) {
@@ -53,37 +51,35 @@ router.post('/nuevo', necesitaAdmin, async function (req, res) {
       Telefono,
       Activo,
       Tipo,
-      Password
+      Password,
     });
     try {
       await empleado.save();
       res.redirect("/");
     } catch (err) {
       res.render("empleados/frmEmpleado", {
-        error: err.message
-      })
+        error: err.message, session: req.session
+      });
     }
   } else {
     res.render("empleados/frmEmpleado", {
-      error: "Password no coincide"
-    })
+      error: "Password no coincide", session: req.session
+    });
     //TODO: mostrar error
   }
-})
-
-
+});
 
 // READ -- Listado de todos
 router.get("/listado", necesitaAutenticacion, (req, res) => {
   Empleado.findAll().then((empleado) => {
     // console.log(articulos);
     res.render("empleados/listadoEmpleado", {
-      empleado
+      empleado, session: req.session
     });
   });
 });
 
-// leo los datos por Clave 
+// leo los datos por Clave
 router.get("/:id", (req, res) => {
   Empleado.findByPk(req.params.id)
     .then((empleado) => {
@@ -91,8 +87,8 @@ router.get("/:id", (req, res) => {
       // console.log("ACTIVO: ",empleado.Activo);
       //  res.render('frmEmpleado', {empleado, session:req.session})
 
-      res.render('empleados/frmEmpleadoEdit', {
-        empleado
+      res.render("empleados/frmEmpleadoEdit", {
+        empleado, session: req.session
       });
     })
     .catch((err) => {
@@ -100,13 +96,13 @@ router.get("/:id", (req, res) => {
     });
 });
 
-
 // UPDATE - Actualizo datos
 router.post("/:id", (req, res) => {
   let Password = req.body.Password;
   let Repassword = req.body.Repassword;
   if (Password == Repassword) {
-    Empleado.update({
+    Empleado.update(
+      {
         Nombre: req.body.Nombre,
         Apellido: req.body.Apellido,
         Email: req.body.Email,
@@ -118,19 +114,21 @@ router.post("/:id", (req, res) => {
         Password: req.body.Password,
         Repassword: req.body.Password,
         Activo: req.body.Activo,
-        Tipo: req.body.Tipo
-      }, {
+        Tipo: req.body.Tipo,
+      },
+      {
         where: {
           DNI: req.params.id,
         },
-      })
+      }
+    )
       .then((resultado) => {
         res.redirect("/empleado/listado");
       })
       .catch((err) => {
         res.json({
           // status: 303,
-          err
+          err,
         });
       });
     // }else{
@@ -138,16 +136,16 @@ router.post("/:id", (req, res) => {
   }
 });
 
-
 // DELETE un cliente
 router.get("/borrar/:id", (req, res) => {
   Empleado.findByPk(req.params.id).then((empleado) => {
     // res.json(clientes);
     Empleado.destroy({
-        where: {
-          DNI: req.params.id,
-        },
-      }).then((resultado) => {
+      where: {
+        DNI: req.params.id,
+      },
+    })
+      .then((resultado) => {
         res.redirect("/empleado/listado");
       })
       .catch((err) => {

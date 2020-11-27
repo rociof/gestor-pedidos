@@ -10,20 +10,11 @@ router.get('/',  (req, res ) => {
 
     res.render('index');
 });
-  
-  // Cliente.findAll()
-  //   .then(cliente => {
-     
-  //     // res.sendStatus(200);
-  //     //res.render('index', {cliente})
-  //     res.render("index", {cliente});
-  //   })
-  //   .catch(err => console.log("Error" + err)));
 
 
 // add CLiente
 
-router.get("/nuevo", (req, res) =>  res.render("clientes/frmClientes"));
+router.get("/nuevo", (req, res) =>  res.render("clientes/frmClientes",{session: req.session}));
 
 /************** */
 
@@ -40,10 +31,10 @@ router.post('/nuevo', async function (req, res) {
       res.render("index", {cliente, session:req.session});
 
     } catch(err) {
-      res.render("clientes/frmClientes", {error: err.message})        
+      res.render("clientes/frmClientes", {error: err.message,session: req.session})        
     }
   } else {
-    res.render("clientes/frmClientes", {error: "Password no coincide"})
+    res.render("clientes/frmClientes", {error: "Password no coincide", session: req.session});
     //TODO: mostrar error
   }
 })
@@ -54,7 +45,7 @@ router.post('/nuevo', async function (req, res) {
 router.get("/listado", (req, res) => {
   let cliente = Cliente.findAll().then((cliente) => {
     // console.log(clientes);
-    res.render("clientes/listadoClientes", { cliente });
+    res.render("clientes/listadoClientes", { cliente, session: req.session });
   });
 });
 

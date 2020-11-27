@@ -11,14 +11,14 @@ router.get('index',  (req, res ) =>
   Proveedor.findAll()
     .then(proveedor => {
       
-      res.render('index', {proveedor})
+      res.render('index', {proveedor, session: req.session})
     })
     .catch(err => console.log("Error" + err)));
 
 
 // add Empleado
 
-router.get("/nuevo", (req, res) =>  res.render("proveedores/frmProveedores"));
+router.get("/nuevo", (req, res) =>  res.render("proveedores/frmProveedores",{session: req.session}));
 
 /************** */
 
@@ -42,7 +42,7 @@ router.post('/nuevo', async function (req, res) {
 router.get("/listado", (req, res) => {
   let proveedor = Proveedor.findAll().then((proveedor) => {
     
-    res.render("proveedores/listadoProveedores", { proveedor });
+    res.render("proveedores/listadoProveedores", { proveedor, session: req.session });
   });
 });
 
@@ -51,7 +51,7 @@ router.get("/:id", (req, res) => {
   Proveedor.findByPk(req.params.id)
     .then((proveedor) => {      
       console.log(proveedor);
-      res.render('proveedores/frmProveedoresEdit', {proveedor})
+      res.render('proveedores/frmProveedoresEdit', {proveedor, session: req.session })
     })    
     .catch((err) => {
       res.json(err);
