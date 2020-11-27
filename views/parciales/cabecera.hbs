@@ -73,27 +73,32 @@
 
     {{#unless session.emple}}
     <form class="form-inline my-2 my-lg-0">
-
+      
+      {{#unless session.usuario}}
       <div class="entry">
 
         <a href="/loginEmpleado" class="btn btn-secondary" role="button" aria-pressed="true">Acceso Empleado</a>
 
       </div>
-    </form>
+      {{/unless}}
+    </form>   
+
 
     {{/unless}} 
 
     {{#unless session.usuario}}
     <form class="form-inline my-2 my-lg-0">
 
+      {{#unless session.emple}}
       <div class="entry">
 
-        <a href="/login" class="btn btn-primary" role="button" aria-pressed="true">Login Cliente</a>
+        <a href="/login" class="btn btn-warning" role="button" aria-pressed="true">Login Cliente</a>
 
       </div>
+      {{/unless}}
     </form> 
-
-    {{/unless}}
+    
+    {{/unless}} 
 
   </div>
 
