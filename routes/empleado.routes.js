@@ -15,14 +15,13 @@ router.get('/', (req, res) => {
   res.render('index')
 })
 
-
-
-// add Empleado
-
-// router.get("/nuevo", necesitaAdmin, (req, res) =>  res.render("empleados/frmEmpleado"));
+/**
+ * Para dar de alta a un empleado utilizaremos un middleware de autenticación
+ * que unicamente permitirá al empleado con rol de administrador hacerlo.
+ * Llamamos a la función "necesitaAdmin" (de auth.js)
+ */
 router.get("/nuevo", necesitaAdmin, (req, res) => res.render("empleados/frmEmpleado"));
 
-// router.post('/nuevo', necesitaAdmin, async function (req, res) {
 router.post('/nuevo', necesitaAdmin, async function (req, res) {
   // Obtención de los datos del formulario
   let {
