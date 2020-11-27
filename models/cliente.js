@@ -85,6 +85,5 @@ class Cliente extends Model {
   }
   // the defined model is the class itself
 }
-//console.log(Personas === sequelize.models.Personas); // true
 
 module.exports = Cliente;
