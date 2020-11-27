@@ -51,6 +51,5 @@ super.init(
 }
 // the defined model is the class itself
 }
-//console.log(Articulos === sequelize.models.Articulos); // true
 
 module.exports = Articulo;

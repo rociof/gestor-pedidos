@@ -1,14 +1,13 @@
-
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 
-/**
+/****
  * Módulos para manejar la sesión del usuario mediante cookies
  */
 
 var cookieParser = require("cookie-parser");
-var cookieSession = require('cookie-session');
+var cookieSession = require("cookie-session");
 /**
  * Middleware para login
  */
@@ -19,14 +18,17 @@ require("./hbs/helpers");
 
 // variables de rutas
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var loginRouter = require('./routes/login');
-var loginRouterEmpleado = require('./routes/loginEmpleado');
+var loginRouter = require("./routes/login");
+var loginRouterEmpleado = require("./routes/loginEmpleado");
 //var clienteRouter = require('./routes/cliente.routes');
-var empleadoRouter = require('./routes/empleado.routes');
+var empleadoRouter = require("./routes/empleado.routes");
 
 //  autenticación de usuarios
-const { necesitaAutenticacion, necesitaAdmin, necesitaGestor} = require('./auth');
+const {
+  necesitaAutenticacion,
+  necesitaAdmin,
+  necesitaGestor,
+} = require("./auth");
 
 var app = express();
 // var session = require('express-session')
@@ -34,7 +36,7 @@ var app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
-hbs.registerPartials(__dirname + '/views/parciales', function (err) {});
+hbs.registerPartials(__dirname + "/views/parciales", function (err) {});
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -43,7 +45,6 @@ app.use(
     extended: false,
   })
 );
-
 
 /**
  * Los middlewares cookieParser y cookieSession se encargan,
@@ -57,46 +58,36 @@ El periodo de validez se expresa en milisegundos. Si se omite, la duración de
 la cookie será hasta el cierre de la sesión (cerrar navegador/salir del sistema).
 
  */
- 
+
 app.use(cookieParser());
-app.use(cookieSession({  
-   name: 'sesion',   //nombre de la cookie 
-  keys: ["secret1234", "secret1234"],         //claves de firma 
-  maxAge: 5 * 60 * 1000                       //caducidad [milisegundos] 
-}));
+app.use(
+  cookieSession({
+    name: "sesion", //nombre de la cookie
+    keys: ["secret1234", "secret1234"], //claves de firma
+    maxAge: 5 * 60 * 1000, //caducidad [milisegundos]
+  })
+);
 /**
  * Este otro middleware (static) se utiliza para servir contenidos estáticos. Todos
 los archivos que estén dentro de la carpeta public estarán accesibles con una
 ruta igual a la ruta relativa dentro de la carpeta public.
  */
 
-app.use(express.static(path.join(path.dirname(''), 'public')));
+app.use(express.static(path.join(path.dirname(""), "public")));
 
 /**
  * Rutas(controlador)
 
  */
 app.use("/", indexRouter);
-app.use('/login', loginRouter);
-app.use('/cliente', indexRouter);
-app.use('/loginEmpleado', loginRouterEmpleado);
+app.use("/login", loginRouter);
+app.use("/cliente", indexRouter);
+app.use("/loginEmpleado", loginRouterEmpleado);
 
-// app.use('/login', necesitaAutenticacion, loginRouter);
-// app.use('/loginEmpleado', necesitaAutenticacion, loginRouterEmpleado);
-
-// app.use('/empleado/nuevo', necesitaAdmin, empleadoRouter);
-// app.use(['/articulo/nuevo','/cliente/listado','proveedor/listado', '/empleado/listado'], necesitaGestor, empleadoRouter);
-
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-
-
-
-
-app.use('/cliente', require("./routes/cliente.routes"));
-app.use('/proveedor', require('./routes/proveedor.routes'));
-app.use('/empleado', require('./routes/empleado.routes'));
-app.use('/articulo', require('./routes/articulo.routes'));
+app.use("/cliente", require("./routes/cliente.routes"));
+app.use("/proveedor", require("./routes/proveedor.routes"));
+app.use("/empleado", require("./routes/empleado.routes"));
+app.use("/articulo", require("./routes/articulo.routes"));
 
 const { Sequelize } = require("sequelize");
 
@@ -112,53 +103,61 @@ const DetPedClie = require("./models/detPedClie");
 const DetPedProv = require("./models/detPedProv");
 
 const connection = new Sequelize(
-  "mariadb://root:maria123@localhost:3306/dbPedidos"
-//   "mariadb://hugo:hugo@localhost:3306/dbPedidos"
+  "dbPedidos",    // base de datos
+  "root",         // Usuario
+  "maria123",     // passw
+  {
+    host: "localhost",  // host
+    dialect: "mariadb" // Motor BD
+  }
+  // "mariadb://root:maria123@localhost:3306/dbPedidos"
+  //   "mariadb://hugo:hugo@localhost:3306/dbPedidos"
 );
 
-   connection
-    .authenticate()
-    .then(() => {
-      
-      Articulo.init(connection);
-      Cliente.init(connection);
-      Proveedor.init(connection);
-      Empleado.init(connection);
-      PedidoClie.init(connection);
-      PedidoProv.init(connection);
-      DetPedClie.init(connection);
-      DetPedProv.init(connection);
-      //Autor.init(connection);
+connection
+  .authenticate()
+  .then(() => {
+    Articulo.init(connection);
+    Cliente.init(connection);
+    Proveedor.init(connection);
+    Empleado.init(connection);
+    PedidoClie.init(connection);
+    PedidoProv.init(connection);
+    DetPedClie.init(connection);
+    DetPedProv.init(connection);
+    //Autor.init(connection);
 
-      //RELACIONES
+    //RELACIONES
 
-      // Proveedor.hasMany(PedidoProv);
-      // PedidoProv.belongsTo(Proveedor);
+    // Proveedor.hasMany(PedidoProv);
+    // PedidoProv.belongsTo(Proveedor);
 
-      Cliente.hasMany(PedidoClie);
-      PedidoClie.belongsTo(Cliente);
+    Cliente.hasMany(PedidoClie);
+    PedidoClie.belongsTo(Cliente);
 
-      /**Genera una clave primaria compuesta para DetPedClie
-       *  con las claves primarias de PedidoClie y Articulo
-       */
-      Articulo.belongsToMany(PedidoClie, {through: DetPedClie, foreignKey:'IdArticulo'});
-      PedidoClie.belongsToMany(Articulo, {through: DetPedClie, foreignKey:'IdPedidoCli'});
-      /**La clave foránea es un campo (no la PK)
-       * de la tabla DetPedclie
-       */
-      DetPedClie.belongsTo(PedidoClie, { foreignKey:'IdPedidoCli'});
+    /**Genera una clave primaria compuesta para DetPedClie
+     *  con las claves primarias de PedidoClie y Articulo
+     */
+    Articulo.belongsToMany(PedidoClie, {
+      through: DetPedClie,
+      foreignKey: "IdArticulo",
+    });
+    PedidoClie.belongsToMany(Articulo, {
+      through: DetPedClie,
+      foreignKey: "IdPedidoCli",
+    });
+    /**La clave foránea es un campo (no la PK)
+     * de la tabla DetPedclie
+     */
+    DetPedClie.belongsTo(PedidoClie, { foreignKey: "IdPedidoCli" });
 
+    // Articulo.belongsToMany(PedidoProv, {through: DetPedProv, foreignKey:'IdArticulo'});
+    // PedidoProv.belongsToMany(Articulo, {through: DetPedProv, foreignKey:'IdPedidoProv'});
+    // DetPedProv.belongsTo(PedidoProv, { foreignKey:'IdPedidoProv'});
 
-      // Articulo.belongsToMany(PedidoProv, {through: DetPedProv, foreignKey:'IdArticulo'});
-      // PedidoProv.belongsToMany(Articulo, {through: DetPedProv, foreignKey:'IdPedidoProv'});
-      // DetPedProv.belongsTo(PedidoProv, { foreignKey:'IdPedidoProv'});
-
-     
-      //creación de tablas si no existen
-      connection.sync({force:false});
-    })
-
-   
+    //creación de tablas si no existen
+    connection.sync({ force: false });
+  })
 
   .catch((err) => {
     console.log(err);
@@ -180,5 +179,4 @@ const connection = new Sequelize(
     });
   });
 
-
- module.exports = app;
+module.exports = app;

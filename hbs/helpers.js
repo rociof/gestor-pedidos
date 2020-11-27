@@ -5,6 +5,12 @@ const hbs = require('hbs');
 let nombrepie = "Rocio / Manuel / Hugo";
 
 
+
+hbs.registerHelper('nombreEmpresa', () => {
+    return 'Hugo & Asociados Tech SA';
+});
+
+
 hbs.registerHelper('getAnio', () => {
     return new Date().getFullYear();
 });

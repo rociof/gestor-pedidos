@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   // res.send(`Rocio: ${req.session.usuario}`);
   //
   // res.render('index', { title: 'Hugo Tech Home'});
-  res.render('index', { title: 'Hugo Tech Home', session:req.session });
+  res.render('index', { session:req.session });
 
 });
 
