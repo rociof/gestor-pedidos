@@ -3,7 +3,7 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 
-/**
+/****
  * Módulos para manejar la sesión del usuario mediante cookies
  */
 
