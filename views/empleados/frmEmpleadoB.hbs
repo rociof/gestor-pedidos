@@ -2,13 +2,13 @@
 
     <div class="container m-4 p-2 border border-primary">
 
-        <h1 class="text-center">Registro de Cliente</h1>
+        <h1 class="text-center">Registro de Empleado</h1>
 
         <div class="row">
             <div class="col-3">
                 <div class="form-group">
                     <label for="DNI">DNI:</label>
-                    <input type="Text" class="form-control" name="DNI" placeholder="DNI...." value="{{ cliente.DNI }}" readonly >
+                    <input type="Text" class="form-control" name="DNI" placeholder="DNI...." value="">
                 </div>
             </div>
         </div>
@@ -18,15 +18,13 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" class="form-control" name="Nombre" value="{{ cliente.Nombre }}"
-                        placeholder="......">
+                    <input type="text" class="form-control" name="Nombre" value="" placeholder="......">
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" class="form-control" name="Apellido" value="{{ cliente.Apellido }}"
-                        placeholder="......">
+                    <input type="text" class="form-control" name="Apellido" value="" placeholder="......">
                 </div>
             </div>
         </div>
@@ -35,8 +33,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" name="Email" value="{{ cliente.Email }}"
-                        placeholder="......">
+                    <input type="email" class="form-control" name="Email" value="" placeholder="......">
                 </div>
             </div>
         </div>
@@ -46,24 +43,21 @@
             <div class="col-4">
                 <div class="form-group">
                     <label for="direccion">Dirección:</label>
-                    <input type="text" class="form-control" name="Direccion" value="{{ cliente.Direccion }}"
-                        placeholder="......">
+                    <input type="text" class="form-control" name="Direccion" value="" placeholder="......">
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="form-group">
                     <label for="localidad">Localidad:</label>
-                    <input type="text" class="form-control" name="Localidad" value="{{ cliente.Localidad }}"
-                        placeholder="......">
+                    <input type="text" class="form-control" name="Localidad" value="" placeholder="......">
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="form-group">
                     <label for="provincia">Provincia:</label>
-                    <input type="text" class="form-control" name="Provincia" value="{{ cliente.Provincia }}"
-                        placeholder="......">
+                    <input type="text" class="form-control" name="Provincia" value="" placeholder="......">
                 </div>
             </div>
         </div>
@@ -72,21 +66,17 @@
             <div class="col-3">
                 <div class="form-group">
                     <label for="cp">Código Postal:</label>
-                    <input type="text" class="form-control" name="CP" value="{{ cliente.CP }}" placeholder="......">
+                    <input type="text" class="form-control" name="CP" value="" placeholder="......">
                 </div>
             </div>
             <div class="col-3">
                 <div class="form-group">
-                    <label for="telefono">Teléfono:</label>
-                    <input type="text" class="form-control" name="Telefono" value="{{ cliente.Telefono }}"
-                        placeholder="......">
+                    <label for="Telefono">Teléfono:</label>
+                    <input type="text" class="form-control" name="Telefono" value="" placeholder="......">
                 </div>
             </div>
 
-            <div class="col">
-
-
-                {{#if  cliente.Activo }}
+            <div class="col-3">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="Activo" id="inlineRadio1" checked="checked"
                         value="1">
@@ -96,22 +86,20 @@
                     <input class="form-check-input" type="radio" name="Activo" id="inlineRadio2" value="0">
                     <label class="form-check-label" for="inlineRadio2">No Activo</label>
                 </div>
-                {{else}}
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Activo" id="inlineRadio1" value="1">
-                    <label class="form-check-label" for="inlineRadio1">Activo</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Activo" id="inlineRadio2" value="0"
-                        checked="checked">
-                    <label class="form-check-label" for="inlineRadio2">No Activo</label>
-                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group border border-success p-2">
+                    <label class="text-center" for="exampleFormControlSelect1">Tipo de Usuario</label>
+                    <select class="form-control" name="Tipo" id="exampleFormControlSelect1">
+                        <option value="1">Usuario básico</option>
+                        <option value="2">Gestor</option>
+                        <option value="3">Administrador</option>
 
-
-                {{/if}}
+                    </select>
             </div>
 
 
+            </div>
 
 
         </div>
@@ -120,16 +108,14 @@
             <div class="col-3">
                 <div class="form-group">
                     <label for="password">Contraseña:</label>
-                    <input type="password" class="form-control" name="Password" value="{{cliente.Password}}"
-                        placeholder="......">
+                    <input type="password" class="form-control" name="Password" value="" placeholder="......">
                 </div>
             </div>
 
             <div class="col-3">
                 <div class="form-group">
                     <label for="repassword">Repita la contraseña:</label>
-                    <input type="password" class="form-control" name="Repassword" value="{{cliente.Password}}"
-                        placeholder="......">
+                    <input type="password" class="form-control" name="Repassword" value="" placeholder="......">
                 </div>
             </div>
         </div>
@@ -137,8 +123,9 @@
         <div class="row">
             <div class="col">
                 <div class="text-center">
-                    <button type="submit" name="operacion" value="Actualizar"
-                        class="btn btn-primary btn-lg">Actualizar</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
+                    <button type="reset" class="btn btn-danger btn-lg">Limpiar</button>
+
                 </div>
             </div>
         </div>
@@ -148,6 +135,9 @@
 
 
 </div>
+
+
+
 
 {{#if error}}
 <p>{{error}}</p>

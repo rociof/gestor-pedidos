@@ -87,7 +87,7 @@ router.get("/:id", (req, res) => {
       // console.log("ACTIVO: ",empleado.Activo);
       //  res.render('frmEmpleado', {empleado, session:req.session})
 
-      res.render("empleados/frmEmpleadoEdit", {
+      res.render("empleados/frmEmpleado", {
         empleado, session: req.session
       });
     })

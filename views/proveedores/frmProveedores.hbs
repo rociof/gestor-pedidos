@@ -1,4 +1,4 @@
-<form action="" method="POST" id="myForm" >
+<form action="" method="POST">
 
     <div class="container m-4 p-2 border border-primary">
 
@@ -8,7 +8,7 @@
             <div class="col-3">
                 <div class="form-group">
                     <label for="DNI">DNI:</label>
-                    <input type="Text" class="form-control" name="DNI" placeholder="DNI...." value="">
+                    <input type="Text" class="form-control" name="DNI" placeholder="DNI...."                        value="{{ proveedor.DNI }}">
                 </div>
             </div>
         </div>
@@ -18,15 +18,15 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" class="form-control" name="Nombre" value="" placeholder="......" required>
-                    {{!-- <div class="valid-feedback">¡Ok válido!</div>
-                     <div class="invalid-feedback">Complete el campo.</div>    --}}
+                    <input type="text" class="form-control" name="Nombre" value="{{ proveedor.Nombre }}"
+                        placeholder="......">
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" class="form-control" name="Apellido" value="" placeholder="......">
+                    <input type="text" class="form-control" name="Apellido" value="{{ proveedor.Apellido }}"
+                        placeholder="......">
                 </div>
             </div>
         </div>
@@ -35,7 +35,8 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" name="Email" value="" placeholder="......">
+                    <input type="email" class="form-control" name="Email" value="{{ proveedor.Email }}"
+                        placeholder="......">
                 </div>
             </div>
         </div>
@@ -45,21 +46,24 @@
             <div class="col-4">
                 <div class="form-group">
                     <label for="direccion">Dirección:</label>
-                    <input type="text" class="form-control" name="Direccion" value="" placeholder="......">
+                    <input type="text" class="form-control" name="Direccion" value="{{ proveedor.Direccion }}"
+                        placeholder="......">
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="form-group">
                     <label for="localidad">Localidad:</label>
-                    <input type="text" class="form-control" name="Localidad" value="" placeholder="......">
+                    <input type="text" class="form-control" name="Localidad" value="{{ proveedor.Localidad }}"
+                        placeholder="......">
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="form-group">
                     <label for="provincia">Provincia:</label>
-                    <input type="text" class="form-control" name="Provincia" value="" placeholder="......">
+                    <input type="text" class="form-control" name="Provincia" value="{{ proveedor.Provincia }}"
+                        placeholder="......">
                 </div>
             </div>
         </div>
@@ -68,53 +72,35 @@
             <div class="col-3">
                 <div class="form-group">
                     <label for="cp">Código Postal:</label>
-                    <input type="text" class="form-control" name="CP" value="" placeholder="......">
+                    <input type="text" class="form-control" name="CP" value="{{ proveedor.CP }}" placeholder="......">
                 </div>
             </div>
             <div class="col-3">
                 <div class="form-group">
                     <label for="telefono">Teléfono:</label>
-                    <input type="text" class="form-control" name="Telefono" value="" placeholder="......">
+                    <input type="text" class="form-control" name="Telefono" value="{{ proveedor.Telefono }}"
+                        placeholder="......">
                 </div>
             </div>
-
-            
         </div>
 
-        
+
         <div class="row">
             <div class="col">
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg">Registrar<i class="fab fa-accessible-icon"></i></button>
+                    <button type="submit" name="operacion" value="Actualizar"
+                        class="btn btn-primary btn-lg">Actualizar</button>
                     <button type="reset" class="btn btn-danger btn-lg">Limpiar</button>
-                    <button type="button" onclick="validar()" class="btn btn-success btn-lg">prueba</button>
-
+                    <a href="/" class="btn btn-success btn-lg" role="button" aria-disabled="true">Cerrar</a>
                 </div>
             </div>
         </div>
 
+        {{#if error}}
+        <p>{{error}}</p>
+        {{/if}}
     </div>
 </form>
 
 
 </div>
-
-{{#if error}}
-<p>{{error}}</p>
-{{/if}}
-
-<script>
-    function validar() {
-        // p11
-
-        var l1 = document.getElementById('pw').value;
-        var l2 = document.getElementById('rpw').value;
-        console.log(l1, l2);
-        
-        if ((l1==l2) && l1 !="" ){
-            document.getElementById("myForm").submit();
-        }        
-    }
-
-
-</script>
