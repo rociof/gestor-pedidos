@@ -3,6 +3,7 @@
     <div class="container m-4 p-2 border border-primary">
 
         <h1 class="text-center">Registro de Cliente</h1>
+        <hr>
 
         <div class="row">
             <div class="col-3">
@@ -141,11 +142,10 @@
                 </div>
             </div>
         </div>
-
-    </div>
         {{#if error}}
             <p>{{error}}</p>
         {{/if}}
+    </div>
 </form>
 
 
@@ -153,10 +153,7 @@
 
 
 <script>
-    function cerrar(){
-        document.getElementById('myForm').close();
-    }
-
+    
     function validar() {
         // p11
 
