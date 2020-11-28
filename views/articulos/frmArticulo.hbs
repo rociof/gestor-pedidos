@@ -8,26 +8,25 @@
         <div class="row">
             <div class="col-3">
                 <div class="form-group">
-                    <label for="IdArticulo">IArticulo:</label>
+                    <label for="IdArticulo">Id Articulo:</label>
                     <input type="Text" class="form-control" name="IdArticulo" placeholder="...." value="{{articulo.IdArticulo}}">
+                </div>
+            </div>
+            <div class="col-3">                
+                <div class="form-group border border-success p-2">
+                        <label class="text-center" for="exampleFormControlSelect1">Seleccione una familia</label>
+                        <select class="form-control" name="Familia" id="exampleFormControlSelect1">
+                        <option value="{{articulo.Familia}}" selected="selected">{{articulo.Familia}}</option>
+                            <option value="A">Familia A</option>
+                            <option value="B">Familia B</option>
+                            <option value="C">FAmilia C</option>
+
+                        </select>
                 </div>
             </div>
         </div>
 
 
-        <div class="col-3">
-                
-            <div class="form-group border border-success p-2">
-                    <label class="text-center" for="exampleFormControlSelect1">Seleccione una familia</label>
-                    <select class="form-control" name="Familia" id="exampleFormControlSelect1">
-                    <option value="{{articulo.Familia}}" selected="selected">{{articulo.Familia}}</option>
-                        <option value="A">Familia A</option>
-                        <option value="B">Familia B</option>
-                        <option value="C">FAmilia C</option>
-
-                    </select>
-            </div>
-         </div>
 
         <div class="row">
             <div class="col-6">
@@ -39,25 +38,21 @@
         </div>
     
         <div class="row">
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label for="stock">Stock:</label>
                     <input type="text" class="form-control" name="Stock" value="{{articulo.Stock}}" placeholder="......">
                 </div>
             </div>
-        </div>
-   
-        <div class="row">
-            <div class="col-6">
+        
+            <div class="col-3">
                 <div class="form-group">
                     <label for="precioventa">Precio venta:</label>
                     <input type="number" step= "any" class="form-control" name="PrecioVenta" value="{{articulo.PrecioVenta}}" placeholder="......">
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-6">
+                    
+            <div class="col-3">
                 <div class="form-group">
                     <label for="preciocompra">Precio compra:</label>
                     <input type="number" step= "any" class="form-control" name="PrecioCompra" value="{{articulo.PrecioCompra}}" placeholder="......">
@@ -96,7 +91,7 @@
                     <label class="form-check-label" for="inlineRadio2">No Activo</label>
                 </div>
             {{/if}}
-        </div> //cc
+        </div>
 
         <div class="row">
             <div class="col">
@@ -114,9 +109,6 @@
         {{/if}}
 
     </div>
-
-
-
 
 </form>
  
