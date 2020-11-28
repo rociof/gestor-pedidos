@@ -3,83 +3,79 @@
     <div class="container m-4 p-2 border border-primary">
 
         <h1 class="text-center">Registro de Artículo</h1>
+        <hr>
 
-
-
-    <div class="row">
+        <div class="row">
             <div class="col-3">
                 <div class="form-group">
-                    <label for="IdArticulo">IdArticulo:</label>
-                    <input type="Text" class="form-control" name="IdArticulo" placeholder="...." value="">
+                    <label for="IdArticulo">IArticulo:</label>
+                    <input type="Text" class="form-control" name="IdArticulo" placeholder="...." value="{{articulo.IdArticulo}}">
                 </div>
             </div>
         </div>
 
 
         <div class="col-3">
-                <div class="form-group border border-success p-2">
+                
+            <div class="form-group border border-success p-2">
                     <label class="text-center" for="exampleFormControlSelect1">Seleccione una familia</label>
                     <select class="form-control" name="Familia" id="exampleFormControlSelect1">
+                    <option value="{{articulo.Familia}}" selected="selected">{{articulo.Familia}}</option>
                         <option value="A">Familia A</option>
                         <option value="B">Familia B</option>
                         <option value="C">FAmilia C</option>
 
                     </select>
-                </div>
-
-
+            </div>
          </div>
 
-
-    <div class="row">
+        <div class="row">
             <div class="col-6">
                 <div class="form-group">
                     <label for="descripcion">Descripción:</label>
-                    <input type="text" class="form-control" name="Descripcion" value="" placeholder="......">
+                    <input type="text" class="form-control" name="Descripcion" value="{{articulo.Descripcion}}" placeholder="......">
                 </div>
             </div>
-    </div>
-
+        </div>
     
-    <div class="row">
+        <div class="row">
             <div class="col-6">
                 <div class="form-group">
                     <label for="stock">Stock:</label>
-                    <input type="text" class="form-control" name="Stock" value="" placeholder="......">
+                    <input type="text" class="form-control" name="Stock" value="{{articulo.Stock}}" placeholder="......">
                 </div>
             </div>
-    </div>
-
+        </div>
    
-    <div class="row">
+        <div class="row">
             <div class="col-6">
                 <div class="form-group">
                     <label for="precioventa">Precio venta:</label>
-                    <input type="number" step= "any" class="form-control" name="PrecioVenta" value="" placeholder="......">
+                    <input type="number" step= "any" class="form-control" name="PrecioVenta" value="{{articulo.PrecioVenta}}" placeholder="......">
                 </div>
             </div>
-    </div>
+        </div>
 
-    <div class="row">
+        <div class="row">
             <div class="col-6">
                 <div class="form-group">
                     <label for="preciocompra">Precio compra:</label>
-                    <input type="number" step= "any" class="form-control" name="PrecioCompra" value="" placeholder="......">
+                    <input type="number" step= "any" class="form-control" name="PrecioCompra" value="{{articulo.PrecioCompra}}" placeholder="......">
                 </div>
             </div>
-    </div>
+        </div>
 
-    <div class="row">
+        <div class="row">
             <div class="col-6">
                 <div class="form-group">
                     <label for="ImagenArticulo">Imagen Artículo:</label>
-                    <input type="text" step= "any" class="form-control" name="ImagenArticulo" value="" placeholder="......">
+                    <input type="text" step= "any" class="form-control" name="ImagenArticulo" value="{{articulo.ImagenArticulo}}" placeholder="......">
                 </div>
             </div>
-    </div>
-
-   
-    <div class="col-3">
+        </div>
+    
+        <div class="col-3">
+            {{#if  articulo.Activo }}
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="Activo" id="inlineRadio1" checked="checked"
                         value="1">
@@ -89,25 +85,40 @@
                     <input class="form-check-input" type="radio" name="Activo" id="inlineRadio2" value="0">
                     <label class="form-check-label" for="inlineRadio2">No Activo</label>
                 </div>
-    </div>
+            {{else}}
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Activo" id="inlineRadio1" value="1">
+                    <label class="form-check-label" for="inlineRadio1">Activo</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Activo" id="inlineRadio2" value="0"
+                        checked="checked">
+                    <label class="form-check-label" for="inlineRadio2">No Activo</label>
+                </div>
+            {{/if}}
+        </div> //cc
 
-<div class="row">
+        <div class="row">
             <div class="col">
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
+                    <button type="submit" name="operacion" value="Actualizar"
+                        class="btn btn-primary btn-lg">Actualizar</button>
                     <button type="reset" class="btn btn-danger btn-lg">Limpiar</button>
-
+                    <a href="/" class="btn btn-success btn-lg" role="button" aria-disabled="true">Cerrar</a>
                 </div>
             </div>
         </div>
+
+        {{#if error}}
+            <p>{{error}}</p>
+        {{/if}}
+
+    </div>
 
 
 
 
 </form>
  
-{{#if error}}
-    <p>{{error}}</p>
-    {{/if}}
 
   

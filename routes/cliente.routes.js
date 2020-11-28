@@ -16,6 +16,7 @@ router.get('/',  (req, res ) => {
 
 router.get("/nuevo", (req, res) =>  res.render("clientes/frmClientes",{session: req.session}));
 
+
 /************** */
 
 router.post('/nuevo', async function (req, res) {
@@ -57,7 +58,8 @@ router.get("/:id", (req, res) => {
       console.log("ACTIVO: ",cliente.Activo);
       //  res.render('frmClientes', {clientes})
 
-      res.render('clientes/frmClientesEdit', {cliente, session:req.session})
+      // res.render('clientes/frmClientesEdit', {cliente, session:req.session})
+      res.render('clientes/frmClientes', {cliente, session:req.session})
     })    
     .catch((err) => {
       res.json(err);

@@ -51,7 +51,7 @@ router.get("/:id", (req, res) => {
   Proveedor.findByPk(req.params.id)
     .then((proveedor) => {      
       console.log(proveedor);
-      res.render('proveedores/frmProveedoresEdit', {proveedor, session: req.session })
+      res.render('proveedores/frmProveedores', {proveedor, session: req.session })
     })    
     .catch((err) => {
       res.json(err);

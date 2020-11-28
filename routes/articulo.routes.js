@@ -33,10 +33,8 @@ router.post('/nuevo', async function (req, res) {
         res.redirect("/");
       } catch(err) {
         res.render("articulos/frmArticulo", {error: err.message, session: req.session})        
-      }
-    
+      }    
   })
-  
   
   
   // READ -- Listado de todos
@@ -50,21 +48,14 @@ router.post('/nuevo', async function (req, res) {
   // leo los datos por Clave 
   router.get("/:id", (req, res) => {
     Articulo.findByPk(req.params.id)
-      .then((articulo) => {      
-        console.log(articulo);
-        
-        //  res.render('frmArticulo', {articulo, session:req.session})
+      .then((articulo) => {              
   
-        res.render('articulos/frmArticuloEdit', {articulo, session: req.session});
+        res.render('articulos/frmArticulo', {articulo, session: req.session});
       })    
       .catch((err) => {
         res.json(err);
       });
   });
-  
-
-
-
 
 
 // UPDATE - Actualizo datos

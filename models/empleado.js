@@ -57,9 +57,9 @@ class Empleado extends Model {
         Tipo: {
           type: DataTypes.ENUM("Usuario_basico", "Gestor", "Administrador"),
           defaultValue: "Usuario_basico",
-        },
-        Foto: {
-          type: DataTypes.STRING,
+        // },
+        // Foto: {
+        //   type: DataTypes.STRING,
         }
       },
       {

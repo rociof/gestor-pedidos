@@ -8,7 +8,7 @@
             <div class="col-3">
                 <div class="form-group">
                     <label for="DNI">DNI:</label>
-                    <input type="Text" class="form-control" name="DNI" placeholder="DNI...." value="">
+                    <input type="Text" class="form-control" name="DNI" placeholder="DNI...." value="{{ empleado.DNI }}">
                 </div>
             </div>
         </div>
@@ -18,13 +18,15 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" class="form-control" name="Nombre" value="" placeholder="......">
+                    <input type="text" class="form-control" name="Nombre" value="{{ empleado.Nombre }}"
+                        placeholder="......">
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" class="form-control" name="Apellido" value="" placeholder="......">
+                    <input type="text" class="form-control" name="Apellido" value="{{ empleado.Apellido }}"
+                        placeholder="......">
                 </div>
             </div>
         </div>
@@ -33,7 +35,8 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" name="Email" value="" placeholder="......">
+                    <input type="email" class="form-control" name="Email" value="{{ empleado.Email }}"
+                        placeholder="......">
                 </div>
             </div>
         </div>
@@ -43,21 +46,24 @@
             <div class="col-4">
                 <div class="form-group">
                     <label for="direccion">Dirección:</label>
-                    <input type="text" class="form-control" name="Direccion" value="" placeholder="......">
+                    <input type="text" class="form-control" name="Direccion" value="{{ empleado.Direccion }}"
+                        placeholder="......">
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="form-group">
                     <label for="localidad">Localidad:</label>
-                    <input type="text" class="form-control" name="Localidad" value="" placeholder="......">
+                    <input type="text" class="form-control" name="Localidad" value="{{ empleado.Localidad }}"
+                        placeholder="......">
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="form-group">
                     <label for="provincia">Provincia:</label>
-                    <input type="text" class="form-control" name="Provincia" value="" placeholder="......">
+                    <input type="text" class="form-control" name="Provincia" value="{{ empleado.Provincia }}"
+                        placeholder="......">
                 </div>
             </div>
         </div>
@@ -66,17 +72,21 @@
             <div class="col-3">
                 <div class="form-group">
                     <label for="cp">Código Postal:</label>
-                    <input type="text" class="form-control" name="CP" value="" placeholder="......">
+                    <input type="text" class="form-control" name="CP" value="{{ empleado.CP }}" placeholder="......">
                 </div>
             </div>
             <div class="col-3">
                 <div class="form-group">
-                    <label for="Telefono">Teléfono:</label>
-                    <input type="text" class="form-control" name="Telefono" value="" placeholder="......">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" class="form-control" name="Telefono" value="{{ empleado.Telefono }}"
+                        placeholder="......">
                 </div>
             </div>
 
             <div class="col-3">
+
+
+                {{#if  empleado.Activo }}
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="Activo" id="inlineRadio1" checked="checked"
                         value="1">
@@ -86,20 +96,35 @@
                     <input class="form-check-input" type="radio" name="Activo" id="inlineRadio2" value="0">
                     <label class="form-check-label" for="inlineRadio2">No Activo</label>
                 </div>
+                {{else}}
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Activo" id="inlineRadio1" value="1">
+                    <label class="form-check-label" for="inlineRadio1">Activo</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Activo" id="inlineRadio2" value="0"
+                        checked="checked">
+                    <label class="form-check-label" for="inlineRadio2">No Activo</label>
+                </div>
+
+
+                {{/if}}
             </div>
+
             <div class="col-3">
                 <div class="form-group border border-success p-2">
                     <label class="text-center" for="exampleFormControlSelect1">Tipo de Usuario</label>
                     <select class="form-control" name="Tipo" id="exampleFormControlSelect1">
-                        <option value="1">Usuario básico</option>
-                        <option value="2">Gestor</option>
-                        <option value="3">Administrador</option>
-
+                        <option value="{{empleado.Tipo}}" selected="selected">{{empleado.Tipo}}</option>
+                        <option value="Usuario_basico">Usuario_basico</option>
+                        <option value="Gestor"> Gestor</option>
+                        <option value="Administrador"> Administrador</option>
                     </select>
+                </div>
             </div>
 
 
-            </div>
+
 
 
         </div>
@@ -108,14 +133,16 @@
             <div class="col-3">
                 <div class="form-group">
                     <label for="password">Contraseña:</label>
-                    <input type="password" class="form-control" name="Password" value="" placeholder="......">
+                    <input type="password" class="form-control" name="Password" value="{{empleado.Password}}"
+                        placeholder="......">
                 </div>
             </div>
 
             <div class="col-3">
                 <div class="form-group">
                     <label for="repassword">Repita la contraseña:</label>
-                    <input type="password" class="form-control" name="Repassword" value="" placeholder="......">
+                    <input type="password" class="form-control" name="Repassword" value="{{empleado.Password}}"
+                        placeholder="......">
                 </div>
             </div>
         </div>
@@ -123,22 +150,22 @@
         <div class="row">
             <div class="col">
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
+                    <button type="submit" name="operacion" value="Actualizar"
+                        class="btn btn-primary btn-lg">Actualizar</button>
                     <button type="reset" class="btn btn-danger btn-lg">Limpiar</button>
-
+                    <a href="/" class="btn btn-success btn-lg" role="button" aria-disabled="true">Cerrar</a>
                 </div>
             </div>
         </div>
 
     </div>
+    {{#if error}}
+    <div class="alert alert-danger" role="alert">
+        {{error}}
+    </div>
+
+    {{/if}}
+
 </form>
 
-
 </div>
-
-
-
-
-{{#if error}}
-<p>{{error}}</p>
-{{/if}}
