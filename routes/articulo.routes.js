@@ -39,7 +39,9 @@ router.post('/nuevo', async function (req, res) {
   
   // READ -- Listado de todos
   router.get("/listado", (req, res) => {
-    let articulo = Articulo.findAll().then((articulo) => {
+    let articulo = Articulo.findAll({
+      order: [ ['IdArticulo','ASC'] ]
+    }).then((articulo) => {
       // console.log(articulos);
       res.render("articulos/listadoArticulos", { articulo, session: req.session });
     });

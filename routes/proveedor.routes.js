@@ -40,7 +40,9 @@ router.post('/nuevo', async function (req, res) {
 
 // READ -- Listado de todos
 router.get("/listado", (req, res) => {
-  let proveedor = Proveedor.findAll().then((proveedor) => {
+  let proveedor = Proveedor.findAll({
+    order: [ ['DNI','ASC'] ]
+  }).then((proveedor) => {
     
     res.render("proveedores/listadoProveedores", { proveedor, session: req.session });
   });

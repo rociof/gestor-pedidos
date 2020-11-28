@@ -71,7 +71,9 @@ router.post("/nuevo", necesitaAdmin, async function (req, res) {
 
 // READ -- Listado de todos
 router.get("/listado", necesitaAutenticacion, (req, res) => {
-  Empleado.findAll().then((empleado) => {
+  Empleado.findAll({
+    order: [ ['DNI','ASC'] ]
+  }).then((empleado) => {
     // console.log(articulos);
     res.render("empleados/listadoEmpleado", {
       empleado, session: req.session
