@@ -44,7 +44,9 @@ router.post('/nuevo', async function (req, res) {
 
 // READ -- Listado de todos
 router.get("/listado", (req, res) => {
-  let cliente = Cliente.findAll().then((cliente) => {
+  let cliente = Cliente.findAll({
+    order: [ ['DNI','ASC'] ]
+  }).then((cliente) => {
     // console.log(clientes);
     res.render("clientes/listadoClientes", { cliente, session: req.session });
   });
