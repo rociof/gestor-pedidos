@@ -6,9 +6,8 @@ const router = express.Router();
 const Cliente = require("../models/cliente");
 
 // get CLiente Lista
-router.get('/',  (req, res ) => {
-
-    res.render('index');
+router.get("/", (req, res) => { 
+  res.redirect('/');
 });
 
 
@@ -44,7 +43,7 @@ router.post('/nuevo', async function (req, res) {
 
 // READ -- Listado de todos
 router.get("/listado", (req, res) => {
-  let cliente = Cliente.findAll({
+  Cliente.findAll({
     order: [ ['DNI','ASC'] ]
   }).then((cliente) => {
     // console.log(clientes);
@@ -56,8 +55,9 @@ router.get("/listado", (req, res) => {
 router.get("/:id", (req, res) => {
   Cliente.findByPk(req.params.id)
     .then((cliente) => {      
-      console.log(cliente);
-      console.log("ACTIVO: ",cliente.Activo);
+      // console.log(clientes);
+
+      // console.log("ACTIVO: ",cliente.Activo);
       //  res.render('frmClientes', {clientes})
 
       // res.render('clientes/frmClientesEdit', {cliente, session:req.session})
@@ -71,9 +71,9 @@ router.get("/:id", (req, res) => {
 
 // UPDATE - Actualizo datos
 router.post("/:id", (req, res) => { 
-  let Password = req.body.Password;
-  let Repassword = req.body.Repassword;
-  // if (password == repassword) {
+  let password = req.body.Password;
+  let repassword = req.body.Repassword;
+  if (password == repassword) {
     Cliente.update(
       {
         Nombre: req.body.Nombre,
@@ -94,19 +94,16 @@ router.post("/:id", (req, res) => {
         },
       }
     )
-      .then((resultado) => {        
+      .then((cliente) => {        
         res.redirect("/cliente/listado");
         res.render("index", {cliente, session:req.session});
       })
       .catch((err) => {
-        res.json({
-          // status: 303,
-          err,
-        });
+        res.json(err);
       });
-    // }else{
-    //   var error = 'La contraseñas no coinciden';
-    // }  
+    }else{
+      var error = 'La contraseñas no coinciden';
+    }  
 });
 
 // DELETE un cliente
@@ -121,11 +118,8 @@ router.get("/borrar/:id", (req, res) => {
       res.redirect("/cliente/listado");
     })
     .catch((err) => {
-      res.json({
-        status: 303,
-        err,
-      });
-    });  ;
+      res.json(err);
+    });
   });
 });
 

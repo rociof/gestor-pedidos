@@ -7,20 +7,21 @@ const Empleado = require("../models/empleado");
 const { necesitaAutenticacion, necesitaAdmin } = require("../auth");
 
 // get Empleado Lista
-router.get("/", (req, res) => {
-  res.render("index");
+router.get("/", (req, res) => { 
+  res.redirect('/');
 });
+
 
 /**
  * Para dar de alta a un empleado utilizaremos un middleware de autenticación
  * que unicamente permitirá al empleado con rol de administrador hacerlo.
  * Llamamos a la función "necesitaAdmin" (de auth.js)
  */
-router.get("/nuevo", necesitaAdmin, (req, res) =>
+router.get("/nuevo",  (req, res) =>
   res.render("empleados/frmEmpleado",{session: req.session})
 );
 
-router.post("/nuevo", necesitaAdmin, async function (req, res) {
+router.post("/nuevo", async function (req, res) {
   // Obtención de los datos del formulario
   let {
     DNI,
@@ -157,6 +158,11 @@ router.get("/borrar/:id", (req, res) => {
         });
       });
   });
+});
+
+
+router.get("/subir", (req, res) => {
+  res.render("/empleados/frmSubirImagen");
 });
 
 module.exports = router;

@@ -15,40 +15,39 @@ class Empleado extends Model {
         },
         Nombre: {
           type: DataTypes.STRING(50),
-          //allowNull: false
+          allowNull: false
         },
         Apellido: {
           type: DataTypes.STRING(100),
-          //allowNull: false
-          // allowNull defaults to true
+          allowNull: false          
         },
         Direccion: {
           type: DataTypes.STRING(150),
-          // allowNull: false
+          allowNull: true
         },
         Localidad: {
           type: DataTypes.STRING(60),
-          // allowNull: false
+          allowNull: true
         },
         CP: {
           type: DataTypes.STRING(6),
-          // allowNull: false
+           allowNull: true
         },
         Provincia: {
           type: DataTypes.STRING(30),
-          // allowNull: false
+           allowNull: true
         },
         Telefono: {
           type: DataTypes.STRING(15),
-          // allowNull: false
+          allowNull: true
         },
         Email: {
           type: DataTypes.STRING(60),
-          // allowNull: false
+          allowNull: true
         },
         Password: {
           type: DataTypes.STRING(42),
-          // allowNull: false
+          allowNull: true
         },
         Activo: {
           type: DataTypes.BOOLEAN,
@@ -57,9 +56,11 @@ class Empleado extends Model {
         Tipo: {
           type: DataTypes.ENUM("Usuario_basico", "Gestor", "Administrador"),
           defaultValue: "Usuario_basico",
-        // },
-        // Foto: {
-        //   type: DataTypes.STRING,
+         },
+         Foto: {
+           type: DataTypes.STRING,
+           allowNull: true,
+
         }
       },
       {
@@ -67,7 +68,7 @@ class Empleado extends Model {
         sequelize, // We need to pass the connection instance
         modelName: "Empleado", // We need to choose the model name
         tableName: "Empleado",
-        timestamps: false,
+        timestamps: true,
       }
     );
   }
