@@ -65,14 +65,11 @@ router.get("/listado", (req, res) => {
   });
 });
 
-router.get('/subo', (req,res)=>{
-  res.render("articulos/frmSubirImagen");
-});
-
 
 router.get("/suboImagen", (req, res) => {
   res.render("articulos/frmSubirImagen");
 });
+
 
 
 
@@ -86,6 +83,8 @@ router.get("/:id", (req, res) => {
       res.json(err);
     });
 });
+
+
 
 // UPDATE - Actualizo datos
 router.post("/:id", (req, res) => {
@@ -117,6 +116,9 @@ router.post("/:id", (req, res) => {
     });
 });
 
+
+
+
 // DELETE un articulo
 router.get("/borrar/:id", (req, res) => {
   Articulo.findByPk(req.params.id).then(() => {
@@ -134,6 +136,8 @@ router.get("/borrar/:id", (req, res) => {
       });
   });
 });
+
+
 
 
 module.exports = router;

@@ -82,6 +82,10 @@ router.get("/listado", necesitaAutenticacion, (req, res) => {
   });
 });
 
+router.get("/subir", (req, res) => {
+  res.render("empleados/frmSubirImagen");
+});
+
 // leo los datos por Clave
 router.get("/:id", (req, res) => {
   Empleado.findByPk(req.params.id)
@@ -161,8 +165,6 @@ router.get("/borrar/:id", (req, res) => {
 });
 
 
-router.get("/subir", (req, res) => {
-  res.render("/empleados/frmSubirImagen");
-});
+
 
 module.exports = router;
