@@ -10,8 +10,33 @@ router.get("/", (req, res) => {
 });
 
 
-// add Artículo
+// router.get("/subirImagen", (req, res) => {
+//   res.render("articulos/frmSubirImagen");
+// });
 
+/**Para subir imágenes las procesamos con el middleware Multer
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ */
+function subirImagen(req, res) {
+    
+  const nuevaImagen = req.body.ImagenArticulo + ".jpg";
+
+  /**Movemos y renombramos el archivo de la ubicación temporal 
+   * a la carpeta /img/imgArticulos:
+   * fsPromises.rename(oldPath, newPath)
+   * 
+   */
+  fs.rename(req.file.path, './img/imgArticulos' + nuevaImagen, (err => {
+    if(err) res.render("error", {err})
+    else res.render("success")
+}));
+}
+  //objeto upload
+router.post("/upload", upload.single("portatil1"), subirImagen);
+
+  //Añadir artículo
 router.get("/nuevo", (req, res) =>
   res.render("articulos/frmArticulo", { session: req.session })
 );
@@ -66,9 +91,6 @@ router.get("/listado", (req, res) => {
 });
 
 
-router.get("/suboImagen", (req, res) => {
-  res.render("articulos/frmSubirImagen");
-});
 
 
 
@@ -136,6 +158,10 @@ router.get("/borrar/:id", (req, res) => {
       });
   });
 });
+
+
+
+
 
 
 
