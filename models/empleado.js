@@ -39,15 +39,15 @@ class Empleado extends Model {
         },
         Telefono: {
           type: DataTypes.STRING(15),
-          allowNull: true
+          allowNull: false,
         },
         Email: {
           type: DataTypes.STRING(60),
-          allowNull: true
+          allowNull: false
         },
         Password: {
           type: DataTypes.STRING(42),
-          allowNull: true
+          allowNull: false,
         },
         Activo: {
           type: DataTypes.BOOLEAN,
