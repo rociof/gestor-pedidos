@@ -38,7 +38,7 @@
           <a class="dropdown-item" href="/empleado/nuevo">Nuevo empleado</a>
           <a class="dropdown-item" href="/empleado/listado">Listado empleados</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">...</a>
+          <a class="dropdown-item" href="/empleado/subir">Subir Imagen</a>
         </div>
       </li>
 
@@ -50,8 +50,8 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/proveedor/nuevo">Nuevo proveedor</a>
           <a class="dropdown-item" href="/proveedor/listado">Listado Proveedores</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">...</a>
+          <div class="dropdown-divider"></div>          
+          <a class="dropdown-item" href="#">................</a>
         </div>
       </li>
 
@@ -63,17 +63,19 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/articulo/nuevo">Nuevo articulo</a>
           <a class="dropdown-item" href="/articulo/listado">Listado Artículos</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">...</a>
+          <div class="dropdown-divider"></div>            
+          <a class="dropdown-item" href="/articulo/suboImagen">Subir Imagen</a>
+          
         </div>
       </li>
+
 
 
     </ul>
 
     {{#unless session.emple}}
     <form class="form-inline my-2 my-lg-0">
-      
+
       {{#unless session.usuario}}
       <div class="entry">
 
@@ -81,10 +83,10 @@
 
       </div>
       {{/unless}}
-    </form>   
+    </form>
 
 
-    {{/unless}} 
+    {{/unless}}
 
     {{#unless session.usuario}}
     <form class="form-inline my-2 my-lg-0">
@@ -96,11 +98,11 @@
 
       </div>
       {{/unless}}
-    </form> 
-    
-    {{/unless}} 
+    </form>
+
+    {{/unless}}
 
   </div>
 
 
-{{!-- </nav> --}}
+  {{!-- </nav> --}}

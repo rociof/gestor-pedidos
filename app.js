@@ -20,8 +20,12 @@ require("./hbs/helpers");
 var indexRouter = require("./routes/index");
 var loginRouter = require("./routes/login");
 var loginRouterEmpleado = require("./routes/loginEmpleado");
-//var clienteRouter = require('./routes/cliente.routes');
 var empleadoRouter = require("./routes/empleado.routes");
+var clienteRouter = require('./routes/cliente.routes');
+var proveedorRouter= require('./routes/proveedor.routes');
+var articuloRouter= require('./routes/articulo.routes');
+
+
 
 //  autenticación de usuarios
 const {
@@ -75,19 +79,18 @@ ruta igual a la ruta relativa dentro de la carpeta public.
 
 app.use(express.static(path.join(path.dirname(""), "public")));
 
-/**
+/***************************
  * Rutas(controlador)
-
+ * **************************
  */
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
-app.use("/cliente", indexRouter);
 app.use("/loginEmpleado", loginRouterEmpleado);
+app.use("/empleado", empleadoRouter);
+app.use("/cliente", clienteRouter);
+app.use("/proveedor", proveedorRouter);
+app.use("/articulo", articuloRouter);
 
-app.use("/cliente", require("./routes/cliente.routes"));
-app.use("/proveedor", require("./routes/proveedor.routes"));
-app.use("/empleado", require("./routes/empleado.routes"));
-app.use("/articulo", require("./routes/articulo.routes"));
 
 const { Sequelize } = require("sequelize");
 
@@ -156,6 +159,7 @@ connection
     // DetPedProv.belongsTo(PedidoProv, { foreignKey:'IdPedidoProv'});
 
     //creación de tablas si no existen
+    // con { force: true} borra los datos existentes
     connection.sync({ force: false });
   })
 
