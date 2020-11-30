@@ -1,5 +1,12 @@
 const express = require("express");
 const router = express.Router();
+
+const path = require('path');
+const fs = require('fs');
+const multer = require('multer');
+
+const upload = multer({ dest:'public/img/empleados'});
+
 //const sequelize = require('../database/db');
 
 // modelo
@@ -84,6 +91,13 @@ router.get("/listado", necesitaAutenticacion, (req, res) => {
 
 router.get("/subir", (req, res) => {
   res.render("empleados/frmSubirImagen");
+});
+
+router.post("/subir", upload.single("imagen"), (req, res) => {
+  // fs.renameSync(req.file.path, req.file.destination + '/' +req.file.originalname + '.' + req.file.mimetype.split('/')[1]);
+  fs.renameSync(req.file.path, req.file.destination + '/' +req.file.originalname );
+  console.log(req.file);
+  
 });
 
 // leo los datos por Clave

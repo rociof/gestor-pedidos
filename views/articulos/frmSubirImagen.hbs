@@ -1,75 +1,26 @@
-  <div class="container-fluid">
-<form action="" method="post">
+<div class="container-fluid">
+  <form action="" method="post" enctype="multipart/form-data">
 
+    <h3>Subir una imagen Artículo</h3>
 
-  <h3>Subir una imagen Artículo</h3>
-
-  <div class="input-group mb-3">
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" id="inputGroupFile02">
-      <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose
-        file</label>
+    <div class="input-group mb-3">
+      <input type="file" name="imagen" id="">
     </div>
-    <div class="input-group-append">
-      <span class="input-group-text" id="inputGroupFileAddon02">Upload</span>
+
+    <hr>
+
+    {{!-- <div>
+      <img src="/img/covid.jpeg" class="rounded-circle" alt="Cinque Terre" width="304" height="236">
+    </div> --}}
+
+  <div class="row">
+    <div class="col-1">
+
+    <button type="submit" class="btn btn-primary">Subir</button>
+
     </div>
+
   </div>
 
-  <div class="form-group">
-    <label for="exampleFormControlFile1">Example file input</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-  </div>
-
-  <div class="custom-file">
-    <input type="file" class="custom-file-input" id="customFileLang" lang="es">
-    <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
-  </div>
-  <br>
-
-<img src="/img/covid.jpeg" class="rounded-circle" alt="Cinque Terre" width="304" height="236">
-
-  
-  <div class="row" style="height: 80%;">
-
-<div class="card" style="width:150px">
-  <img class="card-img-top rounded-circle " src="/img/imgUsuarios/aquaman.png" alt="Card image">
-  <div class="card-body">
-    <h5 class="card-title">John Doe</h5>   
-    <a href="#" class="btn btn-primary">See Profile</a>
-  </div>
-</div>
-</div>
-
-  <div class="card-group"  >
-    <div class="card" style="width:400px" >
-      <img class="card-img-top" src="/img/imgUsuarios/hulk.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-          This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top rounded-circle" src="/img/covid.jpeg" alt="Card image cap" width="250" > 
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="/img/imgUsuarios/aquaman.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-          This card has even longer content than the first to show that equal height action.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Subir</button>
-
-</form>
+  </form>
 </div>
