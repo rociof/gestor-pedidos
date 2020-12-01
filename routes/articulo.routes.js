@@ -7,7 +7,9 @@ const fs = require('fs');
  * a través de un formulario
  */
 const multer = require('multer');
-
+/**
+ * Ruta definitiva de las imágenes
+ */
 const upload = multer({ dest:'public/img/imgArticulos'});
 //modelo
 const Articulo = require("../models/articulo");
@@ -77,6 +79,9 @@ router.get("/listado", (req, res) => {
 router.get("/suboImagen", (req, res) => {
   res.render("articulos/frmSubirImagen");
 });
+/**
+ * "upload" es un objeto creado con el middleware Multer
+ */
 
 router.post("/suboImagen", upload.single("imagen"), (req, res) => {
   
