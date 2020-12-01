@@ -13,20 +13,20 @@ class Articulo extends Model {
         },
         Familia: {
           type: DataTypes.ENUM("A", "B", "C"),
-          allowNull: false,
+          // allowNull: false,
           // allowNull defaults to true
         },
         Descripcion: {
           type: DataTypes.STRING(200),
-          allowNull: false,
+          // allowNull: false,
         },
         Stock: {
           type: DataTypes.DOUBLE,
-          allowNull: false,
+          // allowNull: false,
         },
         Activo: {
           type: DataTypes.TINYINT(1),
-          allowNull: false,
+          // allowNull: false,
         },
         PrecioVenta: {
           type: DataTypes.DOUBLE,
@@ -36,7 +36,7 @@ class Articulo extends Model {
         },
         ImagenArticulo: {
           type: DataTypes.STRING(150),
-          allowNull: true,
+          // allowNull: true,
         },
       },
       {

@@ -61,14 +61,24 @@
         </div>
 
         <div class="row">
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label for="ImagenArticulo">Imagen Artículo:</label>
-                    <input type="text" step= "any" class="form-control" name="ImagenArticulo" value="{{articulo.ImagenArticulo}}" placeholder="......">
+                    <input type="text" step= "any" class="form-control" name="ImagenArticulo" id="rutaImagen" value="{{articulo.ImagenArticulo}}" placeholder="......">
                 </div>
             </div>
+            <div class="col-3">
+                <input type="file" name="subirImagen" id="subirImagen" size="60">
+                <button type="button" onclick="myFunction()">Subir imagen</button>
+
+                <p id="demo"></p>
+
+            </div>
+            <div class="col-3">
+                <img src="" id="imag" alt="">
+            </div>
         </div>
-    
+        
         <div class="col-3">
             {{#if  articulo.Activo }}
                 <div class="form-check form-check-inline">
@@ -111,6 +121,16 @@
     </div>
 
 </form>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("subirImagen").value;
+  document.getElementById("demo").innerHTML = x;
+  var y = document.getElementById("imag");
+  y.setAttribute("src", x);
+
+}
+</script>
  
 
   

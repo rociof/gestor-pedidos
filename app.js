@@ -46,6 +46,7 @@ app.use(
   })
 );
 
+
 /**
  * Los middlewares cookieParser y cookieSession se encargan,
 respectivamente, de procesar las cookies y de gestionar la información de la

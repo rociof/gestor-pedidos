@@ -21,11 +21,11 @@ router.get("/", (req, res) => {
 
 
   //Añadir artículo
-router.get("/nuevo",necesitaAdmin, (req, res) =>
+router.get("/nuevo", (req, res) =>
   res.render("articulos/frmArticulo", { session: req.session })
 );
 
-router.post("/nuevo", async function (req, res) {
+router.post("/nuevo",async function (req, res) {
   // Obtención de los datos del formulario
   let {
     IdArticulo,
@@ -62,7 +62,7 @@ router.post("/nuevo", async function (req, res) {
 });
 
 // READ -- Listado de todos
-router.get("/listado",necesitaAdmin, (req, res) => {
+router.get("/listado", (req, res) => {
   Articulo.findAll({
     order: [["IdArticulo", "ASC"]],
   }).then((articulo) => {
@@ -80,7 +80,7 @@ router.get("/listado",necesitaAdmin, (req, res) => {
    * fs.rename(oldPath, newPath)
    * 
    */
-router.get("/suboImagen",necesitaAdmin, (req, res) => {
+router.get("/suboImagen", (req, res) => {
   res.render("articulos/frmSubirImagen");
 });
 /**
@@ -95,17 +95,6 @@ router.post("/suboImagen", upload.single("imagen"), (req, res) => {
   res.redirect('/');
   
 });
-
-
-router.post("/suboImagen", upload.single("imagen"), (req, res) => {
-  
-  // fs.renameSync(req.file.path, req.file.destination + '/' +req.file.originalname + '.' + req.file.mimetype.split('/')[1]);
-  fs.renameSync(req.file.path, req.file.destination + '/' + req.file.originalname );  
-  console.log(req.file);
-  res.redirect('/');
-  
-});
-
 
 
 
