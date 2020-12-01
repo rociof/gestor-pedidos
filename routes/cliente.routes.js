@@ -4,6 +4,7 @@ const router = express.Router();
 
 // modelo
 const Cliente = require("../models/cliente");
+const {necesitaAutenticacion } = require("../auth");
 
 // get CLiente Lista
 router.get("/", (req, res) => { 
@@ -12,6 +13,9 @@ router.get("/", (req, res) => {
 
 
 // add CLiente
+/**
+ * Un cliente se puede registrar
+ */
 
 router.get("/nuevo", (req, res) =>  res.render("clientes/frmClientes",{session: req.session}));
 
@@ -70,7 +74,10 @@ router.get("/:id", (req, res) => {
 
 
 // UPDATE - Actualizo datos
-router.post("/:id", (req, res) => { 
+/**
+ * Para actualizar los datos el cliente necesita estar logueado
+ */
+router.post("/:id",necesitaAutenticacion, (req, res) => { 
   let password = req.body.Password;
   let repassword = req.body.Repassword;
   if (password == repassword) {
