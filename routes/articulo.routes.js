@@ -101,7 +101,6 @@ router.get("/listado", (req, res) => {
 });
 
 
-<<<<<<< HEAD
 router.get("/suboImagen", (req, res) => {
   res.render("articulos/frmSubirImagen");
 });
@@ -118,8 +117,6 @@ router.post("/suboImagen", upload.single("imagen"), (req, res) => {
   
 });
 
-=======
->>>>>>> 38a8bdd282ab60b41c5ee85f80b9cb37d7cf2044
 
 router.post("/suboImagen", upload.single("imagen"), (req, res) => {
   
