@@ -11,7 +11,7 @@ const multer = require('multer');
 /**
  * Ruta definitiva de las imágenes
  */
-const upload = multer({ dest:'public/img/empleados'});
+const upload = multer({ dest:'public/img/imgEmpleados'});
 
 //const sequelize = require('../database/db');
 
@@ -30,7 +30,7 @@ router.get("/", (req, res) => {
  * que unicamente permitirá al empleado con rol de administrador hacerlo.
  * Llamamos a la función "necesitaAdmin" (de auth.js)
  */
-router.get("/nuevo",  (req, res) =>
+router.get("/nuevo", necesitaAdmin,  (req, res) =>
   res.render("empleados/frmEmpleado",{session: req.session})
 );
 
@@ -85,7 +85,11 @@ router.post("/nuevo", async function (req, res) {
   }
 });
 
-// READ -- Listado de todos
+/**
+ * Para ver el listado de empleados se requiere autenticación. 
+ * Para crear un empleado nuevo o subir imagen del mismo llamamos a la
+ * función necesitaAdministración (sólo tiene permiso el administrador)
+ */
 router.get("/listado", necesitaAutenticacion, (req, res) => {
   Empleado.findAll({
     order: [ ['DNI','ASC'] ]
@@ -97,7 +101,7 @@ router.get("/listado", necesitaAutenticacion, (req, res) => {
   });
 });
 
-router.get("/subir", (req, res) => {
+router.get("/subir",necesitaAdmin, (req, res) => {
   res.render("empleados/frmSubirImagen");
 });
 /**
