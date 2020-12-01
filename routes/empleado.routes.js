@@ -44,6 +44,7 @@ router.post("/nuevo", async function (req, res) {
     Telefono,
     Activo,
     Tipo,
+    
   } = req.body;
 
   if (Password == Repassword) {
@@ -60,6 +61,7 @@ router.post("/nuevo", async function (req, res) {
       Activo,
       Tipo,
       Password,
+    
     });
     try {
       await empleado.save();
