@@ -29,12 +29,6 @@ var articuloRouter= require('./routes/articulo.routes');
 
 
 
-// //  autenticación de usuarios
-// const {
-//   necesitaAutenticacion,
-//   necesitaAdmin,
-//   necesitaGestor,
-// } = require("./auth");
 
 var app = express();
 // var session = require('express-session')
@@ -70,7 +64,7 @@ app.use(
   cookieSession({
     name: "sesion", //nombre de la cookie
     keys: ["secret1234", "secret1234"], //claves de firma
-    maxAge: 5 * 60 * 1000, //caducidad [milisegundos]
+    maxAge: 60 * 60 * 1000, //caducidad [milisegundos] 1 hora
   })
 );
 /**
