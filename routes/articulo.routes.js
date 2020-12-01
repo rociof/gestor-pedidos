@@ -93,6 +93,15 @@ router.post("/suboImagen", upload.single("imagen"), (req, res) => {
 });
 
 
+router.post("/suboImagen", upload.single("imagen"), (req, res) => {
+  
+  // fs.renameSync(req.file.path, req.file.destination + '/' +req.file.originalname + '.' + req.file.mimetype.split('/')[1]);
+  fs.renameSync(req.file.path, req.file.destination + '/' + req.file.originalname );  
+  console.log(req.file);
+  res.redirect('/');
+  
+});
+
 
 
 

@@ -29,12 +29,12 @@ var articuloRouter= require('./routes/articulo.routes');
 
 
 
-//  autenticación de usuarios
-const {
-  necesitaAutenticacion,
-  necesitaAdmin,
-  necesitaGestor,
-} = require("./auth");
+// //  autenticación de usuarios
+// const {
+//   necesitaAutenticacion,
+//   necesitaAdmin,
+//   necesitaGestor,
+// } = require("./auth");
 
 var app = express();
 // var session = require('express-session')

@@ -17,7 +17,7 @@ const upload = multer({ dest:'public/img/imgEmpleados'});
 
 // modelo
 const Empleado = require("../models/empleado");
-const { necesitaAutenticacion, necesitaAdmin } = require("../auth");
+const { necesitaAdmin } = require("../auth");
 
 // get Empleado Lista
 router.get("/", (req, res) => { 
@@ -86,11 +86,11 @@ router.post("/nuevo", async function (req, res) {
 });
 
 /**
- * Para ver el listado de empleados se requiere autenticación. 
- * Para crear un empleado nuevo o subir imagen del mismo llamamos a la
+ * Para ver el listado de empleados  y crear un empleado nuevo
+ * o subir imagen del mismo llamamos a la
  * función necesitaAdministración (sólo tiene permiso el administrador)
  */
-router.get("/listado", necesitaAutenticacion, (req, res) => {
+router.get("/listado", necesitaAdmin, (req, res) => {
   Empleado.findAll({
     order: [ ['DNI','ASC'] ]
   }).then((empleado) => {
@@ -114,8 +114,10 @@ router.post("/subir", upload.single("imagen"), (req, res) => {
   
 });
 
+
+
 // leo los datos por Clave
-router.get("/:id", (req, res) => {
+router.get("/:id", necesitaAdmin, (req, res) => {
   Empleado.findByPk(req.params.id)
     .then((empleado) => {
       // console.log(empleado);
