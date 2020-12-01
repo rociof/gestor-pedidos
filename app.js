@@ -2,11 +2,7 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 
-/**
- * Multer es un middleware que sirve para subir imágenes al servidor
- * a través de un formulario
- */
-const multer = require('multer');
+
 
 /****
  * Módulos para manejar la sesión del usuario mediante cookies

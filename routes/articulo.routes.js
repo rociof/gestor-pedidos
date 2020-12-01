@@ -1,6 +1,14 @@
 const express = require("express");
 const router = express.Router();
+const path = require('path');
+const fs = require('fs');
+/**
+ * Multer es un middleware que sirve para subir imágenes al servidor
+ * a través de un formulario
+ */
+const multer = require('multer');
 
+const upload = multer({ dest:'public/img/imgArticulos'});
 //modelo
 const Articulo = require("../models/articulo");
 const { necesitaAutenticacion, necesitaAdmin } = require("../auth");
@@ -69,6 +77,16 @@ router.get("/listado", (req, res) => {
 router.get("/suboImagen", (req, res) => {
   res.render("articulos/frmSubirImagen");
 });
+
+router.post("/suboImagen", upload.single("imagen"), (req, res) => {
+  
+  // fs.renameSync(req.file.path, req.file.destination + '/' +req.file.originalname + '.' + req.file.mimetype.split('/')[1]);
+  fs.renameSync(req.file.path, req.file.destination + '/' + req.file.originalname );  
+  console.log(req.file);
+  res.redirect('/');
+  
+});
+
 
 
 
