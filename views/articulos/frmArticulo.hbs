@@ -9,19 +9,36 @@
             <div class="col-3">
                 <div class="form-group">
                     <label for="IdArticulo">Id Articulo:</label>
-                    <input type="Text" class="form-control" name="IdArticulo" placeholder="...." value="{{articulo.IdArticulo}}">
+                    <input type="Text" class="form-control" name="IdArticulo" placeholder="...."
+                        value="{{articulo.IdArticulo}}">
                 </div>
             </div>
-            <div class="col-3">                
+            <div class="col-3">
                 <div class="form-group border border-success p-2">
-                        <label class="text-center" for="exampleFormControlSelect1">Seleccione una familia</label>
-                        <select class="form-control" name="Familia" id="exampleFormControlSelect1">
+                    <label class="text-center" for="exampleFormControlSelect1">Seleccione una familia</label>
+                    <select class="form-control" name="Familia" id="exampleFormControlSelect1">
                         <option value="{{articulo.Familia}}" selected="selected">{{articulo.Familia}}</option>
-                            <option value="A">Familia A</option>
-                            <option value="B">Familia B</option>
-                            <option value="C">Familia C</option>
+                        <option value="A">Familia A</option>
+                        <option value="B">Familia B</option>
+                        <option value="C">Familia C</option>
 
-                        </select>
+                    </select>
+                </div>
+            </div>
+            <div class="col-1">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Subir imagen
+                </button>
+            </div>
+            <div class="col-1">
+                <div class="card" style="width: 12rem;">
+                    <img class="card-img-top" src="/img/imgArticulos/bolsa.jpg" id="imgTarjeta" alt="Card image cap">
+                    <div class="card-body">
+                        {{!-- <h5 class="card-title">Card title</h5> --}}
+                        {{!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p> --}}
+                        {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,74 +49,69 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="descripcion">Descripción:</label>
-                    <input type="text" class="form-control" name="Descripcion" value="{{articulo.Descripcion}}" placeholder="......">
+                    <input type="text" class="form-control" name="Descripcion" value="{{articulo.Descripcion}}"
+                        placeholder="......">
                 </div>
             </div>
         </div>
-    
+
         <div class="row">
             <div class="col-3">
                 <div class="form-group">
                     <label for="stock">Stock:</label>
-                    <input type="text" class="form-control" name="Stock" value="{{articulo.Stock}}" placeholder="......">
+                    <input type="text" class="form-control" name="Stock" value="{{articulo.Stock}}"
+                        placeholder="......">
                 </div>
             </div>
-        
+
             <div class="col-3">
                 <div class="form-group">
                     <label for="precioventa">Precio venta:</label>
-                    <input type="number" step= "any" class="form-control" name="PrecioVenta" value="{{articulo.PrecioVenta}}" placeholder="......">
+                    <input type="number" step="any" class="form-control" name="PrecioVenta"
+                        value="{{articulo.PrecioVenta}}" placeholder="......">
                 </div>
             </div>
-                    
+
             <div class="col-3">
                 <div class="form-group">
                     <label for="preciocompra">Precio compra:</label>
-                    <input type="number" step= "any" class="form-control" name="PrecioCompra" value="{{articulo.PrecioCompra}}" placeholder="......">
+                    <input type="number" step="any" class="form-control" name="PrecioCompra"
+                        value="{{articulo.PrecioCompra}}" placeholder="......">
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-3">
+            <div class="col-6">
                 <div class="form-group">
                     <label for="ImagenArticulo">Imagen Artículo:</label>
-                    <input type="text" step= "any" class="form-control" name="ImagenArticulo" id="rutaImagen" value="{{articulo.ImagenArticulo}}" placeholder="......">
+                    <input type="text" step="any" class="form-control" name="ImagenArticulo"
+                        value="{{articulo.ImagenArticulo}}" placeholder="......">
                 </div>
-            </div>
-            <div class="col-3">
-                <input type="file" name="subirImagen" id="subirImagen" size="60">
-                <button type="button" onclick="myFunction()">Subir imagen</button>
-
-                <p id="demo"></p>
-
-            </div>
-            <div class="col-3">
-                <img src="" id="imag" alt="">
             </div>
         </div>
-        
+
         <div class="col-3">
             {{#if  articulo.Activo }}
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Activo" id="inlineRadio1" checked="checked"
-                        value="1">
-                    <label class="form-check-label" for="inlineRadio1">Activo</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Activo" id="inlineRadio2" value="0">
-                    <label class="form-check-label" for="inlineRadio2">No Activo</label>
-                </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Activo" id="inlineRadio1" checked="checked"
+                    value="1">
+                <label class="form-check-label" for="inlineRadio1">Activo</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Activo" id="inlineRadio2" value="0">
+                <label class="form-check-label" for="inlineRadio2">No Activo</label>
+            </div>
             {{else}}
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Activo" id="inlineRadio1" value="1">
-                    <label class="form-check-label" for="inlineRadio1">Activo</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Activo" id="inlineRadio2" value="0"
-                        checked="checked">
-                    <label class="form-check-label" for="inlineRadio2">No Activo</label>
-                </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Activo" id="inlineRadio1" value="1">
+                <label class="form-check-label" for="inlineRadio1">Activo</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Activo" id="inlineRadio2" value="0"
+                    checked="checked">
+                <label class="form-check-label" for="inlineRadio2">No Activo</label>
+            </div>
             {{/if}}
         </div>
 
@@ -115,22 +127,59 @@
         </div>
 
         {{#if error}}
-            <p>{{error}}</p>
+        <p>{{error}}</p>
         {{/if}}
 
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Seleccionar Imagen del Servidor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="SIma"></label>
+                        {{!-- <input type="file" accept="image/*" class="form-control" name="SIma" id="SIma"
+                            aria-describedby="helpId" placeholder="................"
+                            onChange="actualiza(this.files[0].name)"> --}}
+                        <input type="file" accept="image/*" class="form-control" name="SIma" id="SIma"
+                            aria-describedby="helpId" placeholder="................"
+                            onchange="actualiza()">
+                        <small id="helpId" class="form-text text-muted">Seleccionar un archivo de imagen para le
+                            articulo</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar Ventana</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </form>
 
 <script>
-function myFunction() {
-  var x = document.getElementById("subirImagen").value;
-  document.getElementById("demo").innerHTML = x;
-  var y = document.getElementById("imag");
-  y.setAttribute("src", x);
 
-}
+    function actualiza() {
+     
+         // Obtengo el nombre del archivo
+        var x = document.getElementById("SIma").files[0].name;
+        
+        console.log(x);
+
+        Cambio = document.getElementById("imgTarjeta");
+        Cambio.setAttribute("src", "/img/imgArticulos/" + x); 
+        // Cambio.setAttribute("src", x);
+    
+    }
+
 </script>
- 
-
-  
