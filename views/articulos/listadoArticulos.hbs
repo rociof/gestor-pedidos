@@ -5,6 +5,7 @@
     <thead class="thead-dark">
         <tr>
             <th scope="col">Id. Artículo</th>
+            <th scope="col">Img</th>
             <th scope="col">Familia</th>
             <th scope="col">Descripción</th>
             <th scope="col">Stock</th>
@@ -20,6 +21,7 @@
         {{#each articulo}}
         <tr>
             <td>{{IdArticulo}}</td>
+            <td> <img class="zoomId" src="{{ImagenArticulo}}" style="width: 35px;" alt=""></td>
             <td>{{Familia}}</td>
             <td>{{Descripcion}}</td>
             <td>{{Stock}}</td>

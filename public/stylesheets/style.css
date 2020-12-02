@@ -16,6 +16,10 @@ body{
   height: 100%;
   font-family: 'Numans', sans-serif;
   }
+
+  .zoomId:hover{
+    transform:scale(2.5);
+  }
   
   .container{
   height: 100%;
