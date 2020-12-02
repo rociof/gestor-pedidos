@@ -20,6 +20,9 @@ body{
   .zoomId:hover{
     transform:scale(2.5);
   }
+  .zoomId{
+    transition: transform .5s;
+  }
   
   .container{
   height: 100%;

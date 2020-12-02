@@ -66,6 +66,7 @@ router.post("/nuevo", upload.single("SIma"),async function (req, res) {
 
 // READ -- Listado de todos
 router.get("/listado", (req, res) => {
+
   Articulo.findAll({
     order: [["IdArticulo", "ASC"]],
   }).then((articulo) => {
@@ -76,6 +77,32 @@ router.get("/listado", (req, res) => {
     });
   });
 });
+
+router.get("/listado/:name", (req, res) => {
+
+  const id = req.params.name;
+  // res.send("hola: " + id);
+  console.log("Probando Item; ", id);  
+    
+    Articulo.findAll({
+      order: [["IdArticulo", "ASC"]],
+    },    
+    {
+      where: {
+        Activo: id
+      }
+    }).then((articulo) => {
+      // console.log(articulos);
+      res.render("articulos/listadoArticulos", {
+        articulo,
+        session: req.session,
+      });
+    });
+  
+
+});
+
+
 /**Para subir imágenes las procesamos con el middleware Multer
  */
 /**Movemos y renombramos el archivo de la ubicación temporal 
