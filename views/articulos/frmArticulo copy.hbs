@@ -30,12 +30,24 @@
                     Subir imagen
                 </button>
             </div>
-            
+            {{!-- <div class="col-1">
+                <div class="card" style="width: 12rem;">
+                    <img class="card-img-top" src="{{articulo.ImagenArticulo}}" id="imgTarjeta" alt="Card image cap">
+                    <div class="card-body">
+                        {{!-- <h5 class="card-title">Card title</h5> --}}
+                        {{!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p> --}}
+                        {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                    </div>
+                </div>
+            </div> --}}
             <div class="col-2">
-                <img src="{{articulo.ImagenArticulo}}" id="imgTarjeta" alt="..." class="rounded-circle img-thumbnail" style="width: 12rem;">
+                <img src="{{articulo.ImagenArticulo}}" alt="..." class="rounded-circle img-thumbnail" style="width: 12rem;">
             </div>
         </div>
-        
+
+
+
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
@@ -143,7 +155,7 @@
                             aria-describedby="helpId" placeholder="................"
                             onChange="actualiza(this.files[0].name)"> --}}
                         <input type="file" accept="image/*" class="form-control" name="SIma" id="SIma"
-                            aria-describedby="helpId" placeholder="Imagen 2.."
+                            aria-describedby="helpId" placeholder="................"
                             onchange="actualiza()">
                         <small id="helpId" class="form-text text-muted">Seleccionar un archivo de imagen para le
                             articulo</small>
@@ -163,20 +175,22 @@
     function actualiza() {
      
          // Obtengo el nombre del archivo
-        var nombreArchivoImagen = document.getElementById("SIma").files[0].name;
+        var x = document.getElementById("SIma").files[0].name;
         
-        console.log(nombreArchivoImagen);
+        console.log(x);
 
         Cambio = document.getElementById("imgTarjeta");
-        Cambio.setAttribute("src", "/img/imgArticulos/" + nombreArchivoImagen); 
-
-        // Cambio.setAttribute("src", nombreArchivoImagen);
+        Cambio.setAttribute("src", "/img/imgArticulos/" + x); 
+        // Cambio.setAttribute("src", x);
         valorAttrSrc = Cambio.getAttribute('src');
         console.log("Valor SCR" ,valorAttrSrc);
 
-        // cambio el value input Imagen Articulo, con la ruta asignada a la Imagen       
+        // cambio el value input Imagen Articulo, con la ruta asignada a la imagen
+        var i = document.getElementById("imagenArticulo").value;
         document.getElementById("imagenArticulo").value = valorAttrSrc;
         
+        
+
     
     }
 

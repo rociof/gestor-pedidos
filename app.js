@@ -75,7 +75,9 @@ los archivos que estén dentro de la carpeta public estarán accesibles con una
 ruta igual a la ruta relativa dentro de la carpeta public.
  */
 
-app.use(express.static(path.join(path.dirname(""), "public")));
+
+// static folder NO TOCAR
+app.use(express.static(path.join(__dirname, 'public')));
 
 /***************************
  * Rutas(controlador)

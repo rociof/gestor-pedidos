@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const path = require('path');
+// const path = require('path');
 const fs = require('fs');
 /**
  * Multer es un middleware que sirve para subir imágenes al servidor
@@ -10,22 +10,26 @@ const multer = require('multer');
 /**
  * Ruta definitiva de las imágenes
  */
-const upload = multer({ dest:'public/img/imgArticulos'});
+const upload = multer({ dest: 'public/img/imgArticulos' });
 //modelo
 const Articulo = require("../models/articulo");
-const {necesitaAdmin } = require("../auth");
+const { necesitaAdmin } = require("../auth");
 
-router.get("/", (req, res) => { 
+router.get("/", (req, res) => {
   res.redirect('/');
 });
 
-
-  //Añadir artículo
+//Añadir artículo
 router.get("/nuevo", (req, res) =>
   res.render("articulos/frmArticulo", { session: req.session })
 );
 
-router.post("/nuevo",async function (req, res) {
+router.post("/nuevo", upload.single("SIma"),async function (req, res) {
+
+  if(req.file){
+    console.log(req.file);
+    fs.renameSync(req.file.path, req.file.destination + '/' + req.file.originalname );
+   }
   // Obtención de los datos del formulario
   let {
     IdArticulo,
@@ -50,7 +54,6 @@ router.post("/nuevo",async function (req, res) {
   });
 
   try {
-    console.log(articulo);
     await articulo.save();
     res.redirect("/");
   } catch (err) {
@@ -88,16 +91,13 @@ router.get("/suboImagen", (req, res) => {
  * Si existe un archivo con el mismo nombre lo sobreescribe
  */
 
-router.post("/suboImagen", upload.single("imagen"), (req, res) => {
+router.post("/suboImagen", upload.single("SIma"), (req, res) => {
   
-  // fs.renameSync(req.file.path, req.file.destination + '/' +req.file.originalname + '.' + req.file.mimetype.split('/')[1]);
-  fs.renameSync(req.file.path, req.file.destination + '/' + req.file.originalname );  
-  console.log(req.file);
+  fs.renameSync(req.file.path, req.file.destination + '/' + req.file.originalname);
+
   res.redirect('/');
-  
+
 });
-
-
 
 // leo los datos por Clave
 router.get("/:id", (req, res) => {
@@ -110,10 +110,14 @@ router.get("/:id", (req, res) => {
     });
 });
 
-
-
 // UPDATE - Actualizo datos
-router.post("/:id", (req, res) => {
+router.post("/:id", upload.single("SIma"), (req, res) => {
+
+   if(req.file){
+    console.log(req.file);
+    fs.renameSync(req.file.path, req.file.destination + '/' + req.file.originalname );
+   }
+
   Articulo.update(
     {
       IdArticulo: req.body.IdArticulo,
@@ -131,19 +135,14 @@ router.post("/:id", (req, res) => {
       },
     }
   )
-    .then((articulo) => {
-      //res.json(resultado);
-     
-      //res.redirect("/articulo/"+ req.params.id);
+    .then((articulo) => {      
       res.redirect("/articulo/listado");
     })
     .catch((err) => {
       res.json(err);
     });
+
 });
-
-
-
 
 // DELETE un articulo
 router.get("/borrar/:id", (req, res) => {
@@ -162,11 +161,5 @@ router.get("/borrar/:id", (req, res) => {
       });
   });
 });
-
-
-
-
-
-
 
 module.exports = router;
