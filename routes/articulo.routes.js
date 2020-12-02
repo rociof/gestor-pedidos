@@ -84,7 +84,8 @@ router.get("/suboImagen", (req, res) => {
   res.render("articulos/frmSubirImagen");
 });
 /**
- * "upload" es un objeto creado con el middleware Multer
+ * "upload" es un objeto creado con el middleware Multer.
+ * Si existe un archivo con el mismo nombre lo sobreescribe
  */
 
 router.post("/suboImagen", upload.single("imagen"), (req, res) => {

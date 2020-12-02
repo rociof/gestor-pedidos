@@ -106,7 +106,8 @@ router.get("/subir",necesitaAdmin, (req, res) => {
   res.render("empleados/frmSubirImagen");
 });
 /**
- * "upload" es un objeto creado con el middleware Multer
+ * "upload" es un objeto creado con el middleware Multer.
+ * Si existe un archivo con el mismo nombre lo sobreescribe
  */
 router.post("/subir", upload.single("imagen"), (req, res) => {
   // fs.renameSync(req.file.path, req.file.destination + '/' +req.file.originalname + '.' + req.file.mimetype.split('/')[1]);
