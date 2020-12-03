@@ -99,7 +99,9 @@ router.get("/listado/:name", (req, res) => {
   
 
 });
-
+/**
+ * Listado de artículos con vista de tarjetas Bootstrap
+ */
 
 // READ -- Listado de todos
 router.get("/listadoCard", (req, res) => {
