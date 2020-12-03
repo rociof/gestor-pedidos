@@ -29,10 +29,12 @@ class Articulo extends Model {
           // allowNull: false,
         },
         PrecioVenta: {
-          type: DataTypes.DOUBLE,
+          type: DataTypes.DOUBLE(10,2),
+          defaultValue: 0
         },
         PrecioCompra: {
-          type: DataTypes.DOUBLE,
+          type: DataTypes.DOUBLE(10,2),
+          defaultValue: 0
         },
         ImagenArticulo: {
           type: DataTypes.STRING(150),

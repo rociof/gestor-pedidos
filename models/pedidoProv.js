@@ -8,9 +8,10 @@ super.init(
   {
     
     IdPedidoProv: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey:true
+      primaryKey:true,
+      autoIncrement:true
   
     },
     Fecha: {

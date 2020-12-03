@@ -12,6 +12,13 @@ class DetPedClie extends Model {
           type: DataTypes.INTEGER,
           allowNull: false
         },
+
+        Precio: {
+          type:DataTypes.DOUBLE(10,2),
+          allownull: false,
+          defaultValue: 0
+        },
+
         
         //La clave primaria se compone de Id_Pedido_cli + Id_articulo
         //Precio_venta sería clave foránea

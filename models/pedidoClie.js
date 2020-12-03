@@ -9,9 +9,10 @@ super.init(
   {
     // Model attributes are defined here
     IdPedidoCli: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey:true
+      primaryKey:true,
+      autoIncrement:true
       
     },
     Fecha: {
@@ -22,6 +23,11 @@ super.init(
     Direccion_entrega: {
       type: DataTypes.STRING(200),
       allowNull: false
+    },
+    TotalPedido: {
+      type: DataTypes.DOUBLE(10,2),
+      allowNull: false,
+      defaultValue: 0
     },
      //La clave foránea sería DNI(Tabla Cliente)
   },

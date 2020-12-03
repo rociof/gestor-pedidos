@@ -149,9 +149,7 @@ connection
       through: DetPedClie,
       foreignKey: "IdPedidoCli",
     });
-    /**La clave foránea es un campo (no la PK)
-     * de la tabla DetPedclie
-     */
+   
     DetPedClie.belongsTo(PedidoClie, { foreignKey: "IdPedidoCli" });
 
     // Articulo.belongsToMany(PedidoProv, {through: DetPedProv, foreignKey:'IdArticulo'});
