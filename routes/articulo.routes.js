@@ -13,14 +13,14 @@ const multer = require('multer');
 const upload = multer({ dest: 'public/img/imgArticulos' });
 //modelo
 const Articulo = require("../models/articulo");
-const { necesitaAdmin } = require("../auth");
+const { necesitaGestor } = require("../auth");
 
 router.get("/", (req, res) => {
   res.redirect('/');
 });
 
 //Añadir artículo
-router.get("/nuevo", (req, res) =>
+router.get("/nuevo", necesitaGestor, (req, res) =>
   res.render("articulos/frmArticulo", { session: req.session })
 );
 
@@ -65,7 +65,7 @@ router.post("/nuevo", upload.single("SIma"),async function (req, res) {
 });
 
 // READ -- Listado de todos
-router.get("/listado", (req, res) => {
+router.get("/listado", necesitaGestor, (req, res) => {
 
   Articulo.findAll({
     order: [["IdArticulo", "ASC"]],

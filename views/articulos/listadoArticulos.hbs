@@ -1,64 +1,87 @@
 <div>
-    <h1 class="text-center">Artículos</h1>
+  <h1 class="text-center">Artículos</h1>
 </div>
 <div class="text-center mb-2">
-    <div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline1" name="lista" class="custom-control-input" checked>
-  <label class="custom-control-label" for="customRadioInline1">Todos</label>
-</div>
-<div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline2" name="lista" class="custom-control-input">
-  <label class="custom-control-label" for="customRadioInline2" value="1">Activos</label>
-</div>
-<div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline3" name="lista" class="custom-control-input">
-  <label class="custom-control-label" for="customRadioInline3" value="0">Desactivados</label>
-</div>
-    <input type="button" value="Listar">
-    <a class="btn btn-primary" href="/articulo/listado/1" role="button">Activos</a>
-    <a class="btn btn-primary" href="/articulo/listado/0" role="button">Desactivados</a>
-   
-</div>
-<div>
+  <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" id="customRadioInline1" name="lista" class="custom-control-input" onclick="radioListado(3)"
+     checked >
+    <label class="custom-control-label" for="customRadioInline1">Todos</label>
+  </div>
+  <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" id="customRadioInline2" name="lista" onclick="radioListado(1)" class="custom-control-input">
+    <label class="custom-control-label" for="customRadioInline2" value="1">Activos</label>
+  </div>
+  <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" id="customRadioInline3" name="lista" onclick="radioListado(0)" class="custom-control-input">
+    <label class="custom-control-label" for="customRadioInline3" value="0">Desactivados</label>
+  </div>
+
+
 </div>
 
 
 
 <table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">Id. Artículo</th>
-            <th scope="col">Img</th>
-            <th scope="col">Familia</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Activo</th>
-            <th scope="col">Precio venta</th>
-            <th scope="col">Precio compra</th>
-             <th scope="col"><a class="btn btn-primary btn-sm" href="/articulo/nuevo/" role="button">Nuevo</a></th>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Id. Artículo</th>
+      <th scope="col">Img</th>
+      <th scope="col">Familia</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Activo</th>
+      <th scope="col">Precio venta</th>
+      <th scope="col">Precio compra</th>
+      <th scope="col"><a class="btn btn-primary btn-sm" href="/articulo/nuevo/" role="button">Nuevo</a></th>
 
-        </tr>
-    </thead>
-    <tbody>
+    </tr>
+  </thead>
+  <tbody>
 
-        {{#each articulo}}
-        <tr>
-            <td>{{IdArticulo}}</td>
-            <td> <img class="zoomId" src="{{ImagenArticulo}}" style="width: 35px;" alt=""></td>
-            <td>{{Familia}}</td>
-            <td>{{Descripcion}}</td>
-            <td>{{Stock}}</td>
-             {{#if Activo}}
-              <td>Activo</td>
-            {{else}}
-              <td>Desactivado</td>
-            {{/if}}
-            <td>{{PrecioVenta}}</td>
-            <td>{{PrecioCompra}}</td>
-            <td><a class="btn btn-primary btn-sm" href="/articulo/{{IdArticulo}}" role="button">Editar</a>            
-            <a class="btn btn-danger btn-sm" name="operacion" value="Borrar" href="/articulo/borrar/{{IdArticulo}}" role="button">Borrar</a></td>
-        </tr>
-        {{/each}}
+    {{#each articulo}}
+    <tr>
+      <td>{{IdArticulo}}</td>
+      <td> <img class="zoomId" src="{{ImagenArticulo}}" style="width: 35px;" alt=""></td>
+      <td>{{Familia}}</td>
+      <td>{{Descripcion}}</td>
+      <td>{{Stock}}</td>
+      {{#if Activo}}
+      <td>Activo</td>
+      {{else}}
+      <td>Desactivado</td>
+      {{/if}}
+      <td>{{PrecioVenta}}</td>
+      <td>{{PrecioCompra}}</td>
+      <td><a class="btn btn-primary btn-sm" href="/articulo/{{IdArticulo}}" role="button">Editar</a>
+        <a class="btn btn-danger btn-sm" name="operacion" value="Borrar" href="/articulo/borrar/{{IdArticulo}}"
+          role="button">Borrar</a></td>
+    </tr>
+    {{/each}}
 
-    </tbody>
+  </tbody>
 </table>
+
+
+<script>
+  function radioListado(valor) {
+
+    if (valor == 3) {
+      location.href = "/articulo/listado";
+      document.getElementById("customRadioInline1").checked = true;
+      document.getElementById("customRadioInline1").setAttribute("checked",true);
+
+      
+    } else {
+      location.href = "/articulo/listado/" + valor + "";
+      if(valor==0){
+         document.getElementById("customRadioInline2").checked= true;
+      }else{
+         document.getElementById("customRadioInline3").checked= true;
+      }
+
+    }
+
+
+  }
+
+</script>

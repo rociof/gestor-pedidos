@@ -35,7 +35,7 @@ router.get("/nuevo", necesitaAdmin,  (req, res) =>
   res.render("empleados/frmEmpleado",{session: req.session})
 );
 
-router.post("/nuevo", async function (req, res) {
+router.post("/nuevo", upload.single("SFoto"), async function (req, res) {
   // Obtención de los datos del formulario
   let {
     DNI,
@@ -51,7 +51,8 @@ router.post("/nuevo", async function (req, res) {
     Telefono,
     Activo,
     Tipo,
-    
+    Foto,
+  
   } = req.body;
 
   if (Password == Repassword) {
@@ -68,6 +69,7 @@ router.post("/nuevo", async function (req, res) {
       Activo,
       Tipo,
       Password,
+      Foto,
     
     });
     try {
@@ -102,17 +104,43 @@ router.get("/listado", necesitaAdmin, (req, res) => {
   });
 });
 
-router.get("/subir",necesitaAdmin, (req, res) => {
+router.get("/listado/:name", (req, res) => {
+
+  const id = req.params.name;
+  // res.send("hola: " + id);
+  console.log("Probando Item; ", id);  
+    
+    Empleado.findAll({
+      order: [["DNI", "ASC"]],
+      where: {
+        Activo: id
+      }
+    }).then((empleado) => {
+      // console.log(articulos);
+      res.render("empleados/listadoEmpleado", {
+        empleado,
+        session: req.session,
+      });
+    });
+  
+
+});
+
+
+
+
+
+
+router.get("/suboimagen",necesitaAdmin, (req, res) => {
   res.render("empleados/frmSubirImagen");
 });
 /**
  * "upload" es un objeto creado con el middleware Multer.
  * Si existe un archivo con el mismo nombre lo sobreescribe
  */
-router.post("/subir", upload.single("imagen"), (req, res) => {
-  // fs.renameSync(req.file.path, req.file.destination + '/' +req.file.originalname + '.' + req.file.mimetype.split('/')[1]);
+router.post("/suboImagen", upload.single("SFoto"), (req, res) => {
   fs.renameSync(req.file.path, req.file.destination + '/' +req.file.originalname );
-  console.log(req.file);
+  
   res.redirect('/');
 });
 
@@ -136,7 +164,13 @@ router.get("/:id", necesitaAdmin, (req, res) => {
 });
 
 // UPDATE - Actualizo datos
-router.post("/:id", (req, res) => {
+router.post("/:id", upload.single("SFoto"), (req, res) => {
+
+  if(req.file){
+    console.log(req.file);
+    fs.renameSync(req.file.path, req.file.destination + '/' + req.file.originalname );
+   }
+
   let Password = req.body.Password;
   let Repassword = req.body.Repassword;
   if (Password == Repassword) {
@@ -154,6 +188,7 @@ router.post("/:id", (req, res) => {
         Repassword: req.body.Password,
         Activo: req.body.Activo,
         Tipo: req.body.Tipo,
+        Foto: req.body.Foto
       },
       {
         where: {
@@ -161,7 +196,7 @@ router.post("/:id", (req, res) => {
         },
       }
     )
-      .then((resultado) => {
+      .then((empleado) => {
         res.redirect("/empleado/listado");
       })
       .catch((err) => {

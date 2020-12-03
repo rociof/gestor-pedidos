@@ -58,7 +58,7 @@ class Empleado extends Model {
           defaultValue: "Usuario_basico",
          },
          Foto: {
-           type: DataTypes.STRING,
+           type: DataTypes.STRING(150),
            allowNull: true,
 
         }

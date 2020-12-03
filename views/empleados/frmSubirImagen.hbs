@@ -1,23 +1,22 @@
+<div class="container-fluid">
 <form action="" method="post" enctype="multipart/form-data" >
 
 
 <h3>Subir una imagen Empleado</h3>
 
 <div class="input-group mb-3">
-  <input type="file" name="imagen" id="">
-</div>
+ <div class="form-group">
+    <label for="exampleFormControlFile1">Example file input</label>
+    <input type="file" class="form-control-file" name='SFoto' id="exampleFormControlFile1">
+  </div> 
+
+<img src="/img/covid.jpeg" class="rounded-circle" alt="Cinque Terre" width="304" height="236">
 
 
-
-<button type="submit" class="btn btn-primary" onclick="alerta()">Enviar</button>
+<button type="submit" class="btn btn-primary">Subir</button>
 
 </form>
-{{!-- muestra un mensaje al darle al botón de subir imagen --}}
 
-<script>
-  function alerta() {
-    alert ("La imagen se ha subido correctamente");
-  }
-</script>
+</div>
 
 
