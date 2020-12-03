@@ -16,22 +16,22 @@
     </div>
 </div>
 
-<div class="container p-4">
-<div class="row row-fluid">
-    {{#each articulo}}
+<div class="container m-2">
+    <div class="row row-fluid">
+        {{#each articulo}}
 
-    <div class="col-sm-2">
-        <div class="card mb-2" style = "width: 12rem; ">
-            <img class="card-img-top" src="{{ ImagenArticulo }}" alt="the image alt text here">
-            <div class="card-body text-center">
-                <h5 class="card-title">{{ Descripcion }}</h5>
-                <small class="card-text text-left">Aca pones el texto que quieras... </small></br>
-                <a href="#" class="btn btn-warning">Mas info</a>
+        <div class="col-sm-2 animated fadeInDownBig ">
+            <div class="card m-2 P-1" style="width: 12rem; ">
+                <img class="card-img-top" src="{{ ImagenArticulo }}" alt="the image alt text here">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ Descripcion }}</h5>
+                    <small class="card-text text-left">Aca pones el texto que quieras... </small></br>
+                    <a href="#" class="btn btn-warning">Mas info</a>
+                </div>
             </div>
         </div>
+        {{/each}}
     </div>
-{{/each}}
-</div>
 </div>
 
 
