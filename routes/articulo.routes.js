@@ -86,7 +86,6 @@ router.get("/listado/:name", (req, res) => {
     
     Articulo.findAll({
       order: [["IdArticulo", "ASC"]],
-   
       where: {
         Activo: id
       }
