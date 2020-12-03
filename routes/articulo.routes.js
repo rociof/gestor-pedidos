@@ -13,7 +13,7 @@ const multer = require('multer');
 const upload = multer({ dest: 'public/img/imgArticulos' });
 //modelo
 const Articulo = require("../models/articulo");
-const { necesitaGestor } = require("../auth");
+const { necesitaGestor, necesitaAdmin } = require("../auth");
 
 router.get("/", (req, res) => {
   res.redirect('/');
@@ -92,6 +92,43 @@ router.get("/listado/:name", (req, res) => {
     }).then((articulo) => {
       // console.log(articulos);
       res.render("articulos/listadoArticulos", {
+        articulo,
+        session: req.session,
+      });
+    });
+  
+
+});
+
+
+// READ -- Listado de todos
+router.get("/listadoCard", (req, res) => {
+
+  Articulo.findAll({
+    order: [["IdArticulo", "ASC"]],
+  }).then((articulo) => {
+    // console.log(articulos);
+    res.render("articulos/frmListadoTarjeta", {
+      articulo,
+      session: req.session,
+    });
+  });
+});
+
+router.get("/listadoCard/:name", (req, res) => {
+
+  const id = req.params.name;
+  // res.send("hola: " + id);
+  console.log("Probando Item; ", id);  
+    
+    Articulo.findAll({
+      order: [["IdArticulo", "ASC"]],
+      where: {
+        Activo: id
+      }
+    }).then((articulo) => {
+      // console.log(articulos);
+      res.render("articulos/frmListadoTarjeta", {
         articulo,
         session: req.session,
       });

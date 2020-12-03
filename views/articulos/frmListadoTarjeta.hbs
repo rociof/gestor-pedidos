@@ -1,0 +1,59 @@
+<div>
+    <h1 class="text-center">Artículos</h1>
+</div>
+<div class="text-center mb-2">
+    <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline1" name="lista" class="custom-control-input" onclick="radioListado(3)"
+            checked>
+        <label class="custom-control-label" for="customRadioInline1">Todos</label>
+    </div>
+    <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline2" name="lista" onclick="radioListado(1)" class="custom-control-input">
+        <label class="custom-control-label" for="customRadioInline2" value="1">Activos</label>
+    </div>
+    <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline3" name="lista" onclick="radioListado(0)" class="custom-control-input">
+        <label class="custom-control-label" for="customRadioInline3" value="0">Desactivados</label>
+    </div>
+</div>
+<div class="row row-fluid">
+    {{#each articulo}}
+
+    <div class="col-sm-2">
+        <div class="card" style = "width: 12rem; ">
+            <img class="card-img-top" src="{{ ImagenArticulo }}" alt="the image alt text here">
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ Descripcion }}</h5>
+                <small class="card-text text-left">Aca pones el texto que quieras... </small></br>
+                <a href="#" class="btn btn-warning">Mas info</a>
+            </div>
+        </div>
+    </div>
+{{/each}}
+</div>
+
+
+
+<script>
+    function radioListado(valor) {
+
+        if (valor == 3) {
+            location.href = "/articulo/listadoCard";
+            document.getElementById("customRadioInline1").checked = true;
+            document.getElementById("customRadioInline1").setAttribute("checked", true);
+
+
+        } else {
+            location.href = "/articulo/listadoCard/" + valor + "";
+            if (valor == 0) {
+                document.getElementById("customRadioInline2").checked = true;
+            } else {
+                document.getElementById("customRadioInline3").checked = true;
+            }
+
+        }
+
+
+    }
+
+</script>
