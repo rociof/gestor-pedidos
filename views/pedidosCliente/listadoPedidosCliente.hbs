@@ -1,0 +1,81 @@
+<div>
+<h1 class="text-center">Pedidos Cliente</h1>
+</div>
+
+{{!-- <div class="text-center mb-2">
+  <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" id="customRadioInline1" name="lista" class="custom-control-input" onclick="radioListado(3)"
+    checked >
+    <label class="custom-control-label" for="customRadioInline1">Todos</label>
+  </div>
+  <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" id="customRadioInline2" name="lista" class="custom-control-input" onclick="radioListado(1)">
+    <label class="custom-control-label" for="customRadioInline2" value="1">Activos</label>
+  </div>
+  <div class="custom-control custom-radio custom-control-inline">
+    <input type="radio" id="customRadioInline3" name="lista" class="custom-control-input" onclick="radioListado(0)">
+    <label class="custom-control-label" for="customRadioInline3" value="0">Desactivados</label>
+  </div>
+  
+
+</div> --}}
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Id Pedido</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">DNI cliente</th>
+      <th scope="col">Dirección entrega</th>
+      <th scope="col">Total Pedido</th>
+      <th scope="col"><a class="btn btn-primary btn-sm" href="/pedidoCliente/nuevo/" role="button">Nuevo Pedido</a></th>
+    </tr>
+  </thead>
+  <tbody>    
+
+        {{#each PedidoClie}}
+        <tr>
+            <td>{{IdPedidoCli}}</td>
+            <td>{{Fecha}}</td>
+             <td>{{cliente.DNI}}</td>
+            <td>{{Direccion_entrega}}</td>
+            <td>{{TotalPedido}}</td>
+            {{!-- {{#if Activo}}
+              <td>Activo</td>
+            {{else}}
+              <td>Desactivado</td>
+            {{/if}} --}}
+            <td><a class="btn btn-primary btn-sm" href="/pedido/{{IdPedidoCli}}" role="button">Modificar</a>            
+            <a class="btn btn-danger btn-sm" name="operacion" value="Borrar" href="/pedido/eliminar/{{IdPedidoCli}}" 
+            role="button">Borrar</a></td>
+         </tr>
+        {{/each}}
+       
+
+  </tbody>
+</table>
+
+{{!-- <script>
+  function radioListado(valor) {
+
+    if (valor == 3) {
+      location.href = "/empleado/listado";
+      document.getElementById("customRadioInline1").checked = true;
+      document.getElementById("customRadioInline1").setAttribute("checked",true);
+
+      
+    } else {
+      location.href = "/empleado/listado/" + valor + "";
+      if(valor==0){
+         document.getElementById("customRadioInline2").checked= true;
+      }else{
+         document.getElementById("customRadioInline3").checked= true;
+      }
+
+    }
+
+
+  }
+
+</script>
+ --}}

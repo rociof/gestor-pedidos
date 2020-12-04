@@ -132,8 +132,8 @@ connection
 
     //RELACIONES
 
-    // Proveedor.hasMany(PedidoProv);
-    // PedidoProv.belongsTo(Proveedor);
+    Proveedor.hasMany(PedidoProv);
+    PedidoProv.belongsTo(Proveedor);
 
     Cliente.hasMany(PedidoClie);
     PedidoClie.belongsTo(Cliente);
@@ -152,9 +152,9 @@ connection
    
     DetPedClie.belongsTo(PedidoClie, { foreignKey: "IdPedidoCli" });
 
-    // Articulo.belongsToMany(PedidoProv, {through: DetPedProv, foreignKey:'IdArticulo'});
-    // PedidoProv.belongsToMany(Articulo, {through: DetPedProv, foreignKey:'IdPedidoProv'});
-    // DetPedProv.belongsTo(PedidoProv, { foreignKey:'IdPedidoProv'});
+    Articulo.belongsToMany(PedidoProv, {through: DetPedProv, foreignKey:'IdArticulo'});
+    PedidoProv.belongsToMany(Articulo, {through: DetPedProv, foreignKey:'IdPedidoProv'});
+    DetPedProv.belongsTo(PedidoProv, { foreignKey:'IdPedidoProv'});
 
     //creación de tablas si no existen
     // con { force: true} borra los datos existentes

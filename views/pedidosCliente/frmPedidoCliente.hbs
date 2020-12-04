@@ -1,16 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario Pedido</title>
+    <title>Formulario Pedido Cliente</title>
 </head>
+
 <body>
-    <form>
-        
+    <form action="" method="POST">
+        <div class="container m-4 p-2 border border-primary">
+            <h1 class="text-center">Pedido Cliente</h1>
 
 
+            <div class="row align-items-center">
+                <div class="col-1">
+                    <div class="form-group">
+                        <label for="IdPedidoCli">Id Pedido:</label>
+                        <input type="number" step ="any" class="form-control" name="Idpedido" placeholder="...."
+                            value="{{pedidoClie.IdPedidoCli}}">
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <div class="form-group">
+                        <label for="Fecha">Fecha:</label>
+                        <input type="text" class="form-control" name="Fecha" placeholder="...."
+                            value="{{pedidoClie.Fecha}}">
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="form-group border border-success p-2">
+                        <label class="text-center" for="exampleFormControlSelect1">Seleccione un cliente</label>
+                        <select class="form-control" name="DNI" id="exampleFormControlSelect1">
+                            {{#each}}
+                            <option value="{{cliente.DNI}}" selected="selected">{{cliente.DNI}}</option>
+                            <option value="A">{{cliente.DNI}} </option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for="Direccion_entrega">Dirección entrega:</label>
+                        <input type="text" class="form-control" id = "Direccion_entrega" name="Direccion_entrega" placeholder="...."
+                            value="{{pedidoClie.Direccion_entrega}}">
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for="TotalPedido">Total Pedido:</label>
+                        <input type="number" step ="any" class="form-control" name="TotalPedido" id = "TotalPedido" placeholder="...."
+                            value="{{pedidoClie.TotalPedido}}">
+                    </div>
+                </div>
+                <div class="row">
+            <div class="col">
+                <div class="text-center">
+                    <button type="submit" name="operacion" value="Finalizar"
+                        class="btn btn-primary btn-lg">Finalizar Pedido</button>
+                    <button type="reset" class="btn btn-danger btn-lg">Limpiar</button>
+                    <a href="/" class="btn btn-success btn-lg" role="button" aria-disabled="true">Cerrar</a>
+                </div>
+            </div>
+        </div>
+
+        {{#if error}}
+        <p>{{error}}</p>
+        {{/if}}
+
+
+            </div>
+
+        </div>
     </form>
-    
+
 </body>
+
 </html>

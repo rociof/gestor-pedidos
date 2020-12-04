@@ -42,7 +42,7 @@ function necesitaAdmin(req, res, next) {
  */
 function necesitaGestor(req, res, next) {
   console.log(req.session.emple);
-    if (req.session.emple && req.session.emple.Tipo == "Gestor") next()
+    if ((req.session.emple && req.session.emple.Tipo == "Gestor") || (req.session.emple && req.session.emple.Tipo == "Administrador"))  next()
     else res.redirect("/loginEmpleado");
 }
 
