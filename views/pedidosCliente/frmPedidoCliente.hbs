@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <form action="" method="POST">
+    <form action="" method="POST" autocomplete="off">
         <div class="container m-4 p-2 border border-primary">
             <h1 class="text-center">Pedido Cliente</h1>
 
@@ -18,14 +18,14 @@
                     <div class="form-group">
                         <label for="IdPedidoCli">Id Pedido:</label>
                         <input type="number" step ="any" class="form-control" name="Idpedido" placeholder="...."
-                            value="{{pedidoClie.IdPedidoCli}}">
+                            value="{{pedidoClie.IdPedidoCli}}" readonly>
                     </div>
                 </div>
 
                 <div class="col-2">
                     <div class="form-group">
                         <label for="Fecha">Fecha:</label>
-                        <input type="text" class="form-control" name="Fecha" placeholder="...."
+                        <input type="date" class="form-control" name="Fecha" placeholder="...."
                             value="{{pedidoClie.Fecha}}">
                     </div>
                 </div>
@@ -34,9 +34,9 @@
                     <div class="form-group border border-success p-2">
                         <label class="text-center" for="exampleFormControlSelect1">Seleccione un cliente</label>
                         <select class="form-control" name="DNI" id="exampleFormControlSelect1">
-                            {{#each}}
-                            <option value="{{cliente.DNI}}" selected="selected">{{cliente.DNI}}</option>
-                            <option value="A">{{cliente.DNI}} </option>
+                            {{#each Clie}}
+                            <option value="{{Clie.DNI}}"></option>
+                           
                             {{/each}}
                         </select>
                     </div>

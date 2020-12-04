@@ -27,6 +27,7 @@ var empleadoRouter = require("./routes/empleado.routes");
 var clienteRouter = require('./routes/cliente.routes');
 var proveedorRouter= require('./routes/proveedor.routes');
 var articuloRouter= require('./routes/articulo.routes');
+var pedidoClienteRouter= require('./routes/pedidoClie.routes');
 
 
 
@@ -90,6 +91,7 @@ app.use("/empleado", empleadoRouter);
 app.use("/cliente", clienteRouter);
 app.use("/proveedor", proveedorRouter);
 app.use("/articulo", articuloRouter);
+app.use("/pedidoCliente", pedidoClienteRouter);
 
 
 const { Sequelize } = require("sequelize");
