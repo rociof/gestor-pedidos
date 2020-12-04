@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-
-
 // modelo
 const PedidoCliente = require("../models/pedidoClie");
 const Articulo = require("../models/articulo");
@@ -15,18 +13,16 @@ router.get("/", (req, res) => {
 });
 
 
-
 router.get("/nuevo", function (req, res) {
     Cliente.findAll({
-    order: [["DNI", "ASC"]],
+    order: [["Nombre", "ASC"]],
   }).then((Clie) => {
     res.render("pedidosCliente/frmPedidoCliente", {Clie});
     console.log(Clie);
   });
 });
 
-router.post("/nuevo",  (req, res) =>{
-  
+router.post("/nuevo",  (req, res) =>{  
   // Obtención de los datos del formulario
   let {
     IdPedidoCli,
