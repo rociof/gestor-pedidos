@@ -33,9 +33,9 @@
                 <div class="col-3">
                     <div class="form-group border border-success p-2">
                         <label class="text-center" for="exampleFormControlSelect1">Seleccione un cliente</label>
-                        <select class="form-control" name="DNI" id="exampleFormControlSelect1">
+                        <select class="form-control" name="ClienteDNI" id="exampleFormControlSelect1">
                             {{#each Clie}}
-                            <option value="{{Clie.DNI}}"></option>
+                            <option value="{{DNI}}">{{DNI}} {{Nombre}} {{Apellido}}</option>
                            
                             {{/each}}
                         </select>

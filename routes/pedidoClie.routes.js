@@ -16,8 +16,8 @@ router.get("/", (req, res) => {
 
 
 
-router.get("/nuevo", async function (req, res) {
-   var Clie = await Cliente.findAll({
+router.get("/nuevo", function (req, res) {
+    Cliente.findAll({
     order: [["DNI", "ASC"]],
   }).then((Clie) => {
     res.render("pedidosCliente/frmPedidoCliente", {Clie});
