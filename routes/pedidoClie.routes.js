@@ -16,6 +16,9 @@ router.get("/", (req, res) => {
 router.get("/nuevo", function (req, res) {
     Cliente.findAll({
     order: [["Nombre", "ASC"]],
+    where: {
+      Activo: true
+    }
   }).then((Clie) => {
     res.render("pedidosCliente/frmPedidoCliente", {Clie});
     console.log(Clie);

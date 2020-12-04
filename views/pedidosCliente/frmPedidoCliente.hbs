@@ -21,7 +21,7 @@
                             value="{{pedidoClie.IdPedidoCli}}" readonly>
                     </div>
                 </div>
-
+              
                 <div class="col-2">
                     <div class="form-group">
                         <label for="Fecha">Fecha:</label>
@@ -33,12 +33,15 @@
                 <div class="col-3">
                     <div class="form-group border border-success p-2">
                         <label class="text-center" for="exampleFormControlSelect1">Seleccione un cliente</label>
-                        <select class="form-control" name="ClienteDNI" id="exampleFormControlSelect1">
+                        <input type="text" name="ClienteDNI" id="ClienteDNI" list="ListNombre">
+                        <datalist id="ListNombre">
+                        {{!-- <select class="form-control" name="ClienteDNI" id="exampleFormControlSelect1"> --}}
                             {{#each Clie}}
-                            <option value="{{DNI}}">{{Nombre}} {{Apellido}}</option>
+                            <option value="{{Nombre}} {{Apellido}}"</option>
 
                             {{/each}}
-                        </select>
+                        {{!-- </select> --}}
+                        </datalist>
                     </div>
                 </div>
             </div>
