@@ -39,19 +39,19 @@
   <tbody>
 
     {{#each articulo}}
-    <tr>
-      <td>{{IdArticulo}}</td>
+    <tr >
+      <td class="text-center">{{IdArticulo}}</td>
       <td> <img class="zoomId" src="{{ImagenArticulo}}" style="width: 35px;" alt=""></td>
-      <td>{{Familia}}</td>
+      <td class="text-center">{{Familia}}</td>
       <td>{{Descripcion}}</td>
-      <td>{{Stock}}</td>
+      <td class="text-center">{{Stock}}</td>
       {{#if Activo}}
       <td>Activo</td>
       {{else}}
       <td>Desactivado</td>
       {{/if}}
-      <td>{{PrecioVenta}}</td>
-      <td>{{PrecioCompra}}</td>
+      <td class="text-center">{{PrecioVenta}}</td>
+      <td class="text-center">{{PrecioCompra}}</td>
       <td><a class="btn btn-primary btn-sm" href="/articulo/{{IdArticulo}}" role="button">Editar</a>
         <a class="btn btn-danger btn-sm" name="operacion" value="Borrar" href="/articulo/borrar/{{IdArticulo}}"
           role="button">Borrar</a></td>
