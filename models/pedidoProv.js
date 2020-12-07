@@ -30,7 +30,7 @@ PedidoProv.init(
     // Other model options go here
     sequelize, // We need to pass the connection instance
     modelName: "PedidoProv", // We need to choose the model name
-    tableName:"DetPedidoProveedor",
+    tableName:"PedidoProv",
     timestamps:false,
   }
 );

@@ -4,10 +4,10 @@ const { Sequelize, DataTypes, Model } = require("sequelize");
  */
 
 const sequelize = require("../database/db");
-class DetPedClie extends Model {}
+class DetPedCliente extends Model {}
 
 console.log("P e d i d o  C l i e n t e ");
-DetPedClie.init(
+DetPedCliente.init(
   {
     // class DetPedClie extends Model {
     //   static init(sequelize) {
@@ -32,7 +32,7 @@ DetPedClie.init(
   {
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: "DetPedClie", // We need to choose the model name
+    modelName: "DetPedCliente", // We need to choose the model name
     tableName: "DetPedCliente",
     timestamps: false,
   }
@@ -42,4 +42,4 @@ DetPedClie.init(
 // }
 //console.log(Personas === sequelize.models.Personas); // true
 
-module.exports = DetPedClie;
+module.exports = DetPedCliente;
