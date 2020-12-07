@@ -5,10 +5,13 @@ const sequelize = require("./db");
 
 const Empleado = require("../models/empleado");
 const Cliente = require("../models/cliente");
+const Articulo = require("../models/articulo");
 const Proveedor = require("../models/proveedor");
-const Articulos = require("../models/articulo");
+const PedidoProv = require("../models/pedidoProv");
+const DetPedProv = require('../models/detPedProv');
 const PedidoCliente = require("../models/pedidoClie");
-const DetPedClie = require('../models/detPedClie');
+const DetPedCliente = require("../models/detPedClie");
+
 
 // let empleados = [];
 
@@ -71,7 +74,7 @@ const empleados = [
     Password: "123",
     Activo: true,
     Tipo: "Usuario_basico",
-  },
+  }
 ];
 
 // Clientes
@@ -127,7 +130,7 @@ const clientes = [
     Email: "Cliente4@gmail.com",
     Password: "123",
     Activo: false,
-  },
+  }
 ];
 
 // Proveedor
@@ -175,7 +178,7 @@ const proveedores = [
     CP: "45000",
     Telefono: "Tel Proveedor 4",
     Email: "Proveedor4@gmail.com",
-  },
+  }
 ];
 
 // Articulos
@@ -233,32 +236,63 @@ const articulos = [
     Stock: 10,
     PrecioVenta: 12,
     PrecioCompra: 20,
-  },
+  }
 ];
 
 sequelize
   // force= true limpio la BBDD
-  .sync({ force: true })
+  .sync({ force: false })
   .then(() => {
-    require('./mdelos');
+    require("./mdelos");
     // Conexión establecida
     console.log("Conexión establecida...\n\n");
   })
   .then(() => {
     // Rellenar Empleados
-     empleados.forEach((user) => Empleado.create(user));
+    empleados.forEach((user) => Empleado.create(user));
   })
   .then(() => {
     // Rellenar Clientes
-     clientes.forEach((clie) => Cliente.create(clie));
+    clientes.forEach((clie) => Cliente.create(clie));
   })
   .then(() => {
     // Rellenar Proveedores
-     proveedores.forEach((prov) => Proveedor.create(prov));
+    proveedores.forEach((prov) => Proveedor.create(prov));
   })
   .then(() => {
     // Rellenar Articulos
-     articulos.forEach((art) => Articulos.create(art));
-    });
+    articulos.forEach((art) => Articulo.create(art));
+  })
+  .then(() => {
+    Proveedor.hasMany(PedidoProv);
+    PedidoProv.belongsTo(Proveedor);
 
+    // cliente - Pedidos
+    Cliente.hasMany(PedidoCliente);
+    PedidoCliente.belongsTo(Cliente);
 
+    /**Genera una clave primaria compuesta para DetPedClie
+     *  con las claves primarias de PedidoClie y Articulo
+     */
+    // Articulo.belongsToMany(PedidoCliente, {
+    //   through: DetPedCliente,
+    //   foreignKey: "IdArticulo",
+    // });
+
+    // PedidoCliente.belongsToMany(Articulo, {
+    //   through: DetPedCliente,
+    //   foreignKey: "IdPedidoCli",
+    // });
+
+    // DetPedCliente.belongsTo(PedidoCliente, { foreignKey: "IdPedidoCli" });
+
+    // Articulo.belongsToMany(PedidoProv, {
+    //   through: DetPedProv,
+    //   foreignKey: "IdArticulo",
+    // });
+    // PedidoProv.belongsToMany(Articulo, {
+    //   through: DetPedProv,
+    //   foreignKey: "IdPedidoProv",
+    // });
+    // DetPedProv.belongsTo(PedidoProv, { foreignKey: "IdPedidoProv" });
+  });
