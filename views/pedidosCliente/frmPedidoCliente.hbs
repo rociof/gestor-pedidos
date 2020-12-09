@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario Pedido Cliente</title>
 </head>
-
+        
 <body>
     <form action="" method="POST" autocomplete="off">
         <div class="container m-4 p-2 border border-primary">
@@ -37,7 +37,6 @@
                         <datalist id="ListNombre">
                         {{!-- <select class="form-control" name="ClienteDNI" id="exampleFormControlSelect1"> --}}
                             {{#each Clie}}
-                            {{!-- <option value="{{DNI}}> {{Nombre}} {{Apellido}}"</option>   --}}
                             <option value="{{DNI}}"</option></option>
                             {{/each}}
                         {{!-- </select> --}}
@@ -86,3 +85,29 @@
 </body>
 
 </html>
+
+<script>
+
+    function lineaPedido() {
+
+        // Obtengo el nombre del archivo y lo almaceno en la variable
+        // "nombreArchivoEmpleado", se le pasa un array con 0 elementos 
+        // porque vamos a subir una única imagen.
+        //var nombreArchivoEmpleado = document.getElementById("SFoto").files[0].name;
+
+        //console.log(nombreArchivoEmpleado);
+
+        //Cambio = document.getElementById("imgTarjeta");
+       // Cambio.setAttribute("src", "/img/imgEmpleados/" + nombreArchivoEmpleado);
+
+        // Cambio.setAttribute("src", nombreArchivoImagen);
+       // valorAttrSrc = Cambio.getAttribute('src');
+        //console.log("Valor SCR", valorAttrSrc);
+
+        // cambio el value input Imagen Articulo, con la ruta asignada a la Imagen       
+       // document.getElementById("Foto").value = valorAttrSrc;
+
+
+    }
+
+</script>

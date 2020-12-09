@@ -2,6 +2,10 @@ require('dotenv').config(); //variables de entorno específicas para el programa
 var createError = require("http-errors");
 var express = require("express");
 const path = require("path");
+const { Sequelize } = require("sequelize");
+
+// Database
+// const sequelize = require('./database/db');
 
 /****
  * Módulos para manejar la sesión del usuario mediante cookies
@@ -91,10 +95,7 @@ app.use("/articulo", articuloRouter);
 app.use("/pedidoCliente", pedidoClienteRouter);
 
 
-const { Sequelize } = require("sequelize");
 
-// Database
-const sequelize = require('./database/db');
 
 //Modelos
 

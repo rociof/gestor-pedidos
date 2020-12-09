@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Pedido Cliente</title>
+</head>
+
+<body>
+    <form action="" method="POST">
+        <div class="container m-4 p-2 border border-primary">
+            <h1 class="text-center">Detalle Pedido Cliente</h1>
+
+
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <div class="form-group">
+                        <label for="IdPedidoCli">Id Pedido:</label>
+                        <input type="number" step="any" class="form-control" name="Idpedido" placeholder="...."
+                            value="{{DetPedidoClie.IdPedidoCli}}" readonly>
+                    </div>
+                </div>
+              <div class="row align-items-center">
+                <div class="col-2">
+                    <div class="form-group">
+                        <label for="IdArticulo">Id Pedido:</label>
+                        <input type="number" step="any" class="form-control" name="Idarticulo" placeholder="...."
+                            value="{{DetPedidoClie.IdArticulo}}">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for="Cantidad">Cantidad:</label>
+                        <input type="number" class="form-control" id="Cantidad" name="Cantidad"
+                            placeholder="...." value="{{DetPedidoClie.Cantidad}}">
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for="Precio">Precio:</label>
+                        <input type="number" step="any" class="form-control" name="Precio" id="Precio"
+                            placeholder="...." value="{{DetPedidoClie.Precio}}">
+                    </div>
+                </div>
+            </div>
+            
+
+            {{#if error}}
+            <p>{{error}}</p>
+            {{/if}}
+
+
+        </div>
+
+        </div>
+    </form>
+
+</body>
+
+</html>
