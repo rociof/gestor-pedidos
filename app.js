@@ -2,12 +2,11 @@ var createError = require("http-errors");
 var express = require("express");
 const path = require("path");
 
-
-
-
 /****
  * Módulos para manejar la sesión del usuario mediante cookies
  */
+
+ // const sequelize = require("../database/db");
 
 var cookieParser = require("cookie-parser");
 var cookieSession = require("cookie-session");
@@ -30,10 +29,7 @@ var articuloRouter= require('./routes/articulo.routes');
 var pedidoClienteRouter= require('./routes/pedidoClie.routes');
 
 
-
-
 var app = express();
-// var session = require('express-session')
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -96,75 +92,83 @@ app.use("/pedidoCliente", pedidoClienteRouter);
 
 const { Sequelize } = require("sequelize");
 
+// Database
+const sequelize = require('./database/db');
+
 //Modelos
 
-const Articulo = require("./models/articulo");
+// require('./database/mdelos');
+
+const Empleado = require("./models/empleado");
 const Cliente = require("./models/cliente");
 const Proveedor = require("./models/proveedor");
-const Empleado = require("./models/empleado");
-const PedidoClie = require("./models/pedidoClie");
-const PedidoProv = require("./models/pedidoProv");
-const DetPedClie = require("./models/detPedClie");
-const DetPedProv = require("./models/detPedProv");
+const Articulos = require("./models/articulo");
+const PedidoCliente = require("./models/pedidoClie");
+const DetPedClie = require('./models/detPedClie');
 
-const connection = new Sequelize(
-  "dbPedidos",    // base de datos
-  "root",         // Usuario
-  "maria123",     // passw
-  {
-    host: "localhost",  // host
-    dialect: "mariadb" // Motor BD
-  }
-  // "mariadb://root:maria123@localhost:3306/dbPedidos"
-  //   "mariadb://hugo:hugo@localhost:3306/dbPedidos"
-);
 
-connection
-  .authenticate()
-  .then(() => {
-    Articulo.init(connection);
-    Cliente.init(connection);
-    Proveedor.init(connection);
-    Empleado.init(connection);
-    PedidoClie.init(connection);
-    PedidoProv.init(connection);
-    DetPedClie.init(connection);
-    DetPedProv.init(connection);
-    //Autor.init(connection);
 
-    //RELACIONES
 
-    Proveedor.hasMany(PedidoProv);
-    PedidoProv.belongsTo(Proveedor);
 
-    Cliente.hasMany(PedidoClie);
-    PedidoClie.belongsTo(Cliente);
+// const connection = new Sequelize(
+//   "dbPedidos",    // base de datos
+//   "root",         // Usuario
+//   "maria123",     // passw
+//   {
+//     host: "localhost",  // host
+//     dialect: "mariadb" // Motor BD
+//   }
+//   // "mariadb://root:maria124@localhost:3306/dbPedidos"
+//   //   "mariadb://hugo:hugo@localhost:3306/dbPedidos"
+// );
 
-    /**Genera una clave primaria compuesta para DetPedClie
-     *  con las claves primarias de PedidoClie y Articulo
-     */
-    Articulo.belongsToMany(PedidoClie, {
-      through: DetPedClie,
-      foreignKey: "IdArticulo",
-    });
-    PedidoClie.belongsToMany(Articulo, {
-      through: DetPedClie,
-      foreignKey: "IdPedidoCli",
-    });
+// connection
+//   .authenticate()
+//   .then(() => {
+//     Articulo.init(connection);
+//     Cliente.init(connection);
+//     Proveedor.init(connection);
+//     Empleado.init(connection);
+//     PedidoClie.init(connection);
+//     PedidoProv.init(connection);
+//     DetPedClie.init(connection);
+//     DetPedProv.init(connection);
+//     //Autor.init(connection);
+
+//     //RELACIONES
+
+//     Proveedor.hasMany(PedidoProv);
+//     PedidoProv.belongsTo(Proveedor);
+
+//     // cliente - Pedidos
+//     Cliente.hasMany(PedidoClie);
+//     PedidoClie.belongsTo(Cliente);
+
+//     /**Genera una clave primaria compuesta para DetPedClie
+//      *  con las claves primarias de PedidoClie y Articulo
+//      */
+//     Articulo.belongsToMany(PedidoClie, {
+//       through: DetPedClie,
+//       foreignKey: "IdArticulo",
+//     });
+//     PedidoClie.belongsToMany(Articulo, {
+//       through: DetPedClie,
+//       foreignKey: "IdPedidoCli",
+//     });
    
-    DetPedClie.belongsTo(PedidoClie, { foreignKey: "IdPedidoCli" });
+//     DetPedClie.belongsTo(PedidoClie, { foreignKey: "IdPedidoCli" });
 
-    Articulo.belongsToMany(PedidoProv, {through: DetPedProv, foreignKey:'IdArticulo'});
-    PedidoProv.belongsToMany(Articulo, {through: DetPedProv, foreignKey:'IdPedidoProv'});
-    DetPedProv.belongsTo(PedidoProv, { foreignKey:'IdPedidoProv'});
+//     Articulo.belongsToMany(PedidoProv, {through: DetPedProv, foreignKey:'IdArticulo'});
+//     PedidoProv.belongsToMany(Articulo, {through: DetPedProv, foreignKey:'IdPedidoProv'});
+//     DetPedProv.belongsTo(PedidoProv, { foreignKey:'IdPedidoProv'});
 
-    //creación de tablas si no existen
-    // con { force: true} borra los datos existentes
-    connection.sync({ force: false });
-  })
+//     //creación de tablas si no existen
+//     // con { force: true} borra los datos existentes
+//     connection.sync({ force: false });
+//   })
 
-  .catch((err) => {
-    console.log(err);
+//   .catch((err) => {
+//     console.log(err);
 
     // catch 404 and forward to error handler
     app.use(function (req, res, next) {
@@ -181,6 +185,6 @@ connection
       res.status(err.status || 500);
       res.render("error");
     });
-  });
+  // });
 
 module.exports = app;

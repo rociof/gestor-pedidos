@@ -8,7 +8,7 @@ const Cliente = require("../models/cliente");
 // const { necesitaGestor } = require("../auth");
 
 // get PedidoClie Lista
-router.get("/", (req, res) => { 
+router.get("/", (req, res) => {
   res.redirect('/');
 });
 
@@ -21,21 +21,23 @@ router.get("/nuevo", function (req, res) {
     }
   }).then((Clie) => {
     res.render("pedidosCliente/frmPedidoCliente", {Clie});
-    console.log(Clie);
+    // console.log(Clie);
+  })
+  .catch(err => {
+  res.json(err)
   });
 });
 
-router.post("/nuevo",  (req, res) =>{  
+router.post("/nuevo",  (req, res) =>{
   // Obtención de los datos del formulario
-  let {
-    IdPedidoCli,
-    Fecha,
-    DNI,
-    Direccion_entrega,
-    TotalPedido
-  } = req.body;
+  let {IdPedidoCli, Fecha, ClienteDNI, Direccion_entrega, TotalPedido } = req.body;
 
-
+  let pedi = new PedidoCliente({
+    IdPedidoCli, Fecha, ClienteDNI, Direccion_entrega, TotalPedido
+  });
+  console.log(pedi);
+  
+  res.redirect('/');
     // let pedidoClie = new PedidoClie({
     //   IdPedidoCli,
     //   Fecha,
@@ -73,7 +75,7 @@ router.get("/listado",(req, res) => {
 router.get("/:id", (req, res) => {
   PedidoCliente.findByPk(req.params.id)
     .then((pedidoClie) => {
-      
+
       res.render("pedidosCliente/frmPedidosCliente", {
         empleado, session: req.session
       });
