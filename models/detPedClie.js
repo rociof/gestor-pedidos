@@ -14,6 +14,7 @@ DetPedCliente.init(
     //     super.init(//hace referencia a la clase de la que hereda (model)
     //       {
     //         // Model attributes are defined here
+    
 
     Cantidad: {
       type: DataTypes.INTEGER,

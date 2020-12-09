@@ -20,8 +20,8 @@ router.get("/nuevo", function (req, res) {
       Activo: true
     }
   }).then((Clie) => {
+    console.log(Clie);
     res.render("pedidosCliente/frmPedidoCliente", {Clie});
-    // console.log(Clie);
   })
   .catch(err => {
   res.json(err)
@@ -35,7 +35,8 @@ router.post("/nuevo",  (req, res) =>{
   let pedi = new PedidoCliente({
     IdPedidoCli, Fecha, ClienteDNI, Direccion_entrega, TotalPedido
   });
-  console.log(pedi);
+  console.log("pruebita pedido",pedi);
+  // res.send(pedi);
   
   res.redirect('/');
     // let pedidoClie = new PedidoClie({

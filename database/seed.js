@@ -16,7 +16,9 @@ const DetPedCliente = require("../models/detPedClie");
 // let empleados = [];
 
 // require('./mdelos')
-
+/**
+ * Ejecutando en terminal "node.js" se crean registros para un entorno de prueba
+ */
 // Empleados
 const empleados = [
   {
