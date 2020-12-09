@@ -1,3 +1,4 @@
+require('dotenv').config(); //variables de entorno específicas para el programa
 var createError = require("http-errors");
 var express = require("express");
 const path = require("path");
@@ -62,7 +63,7 @@ app.use(cookieParser());
 app.use(
   cookieSession({
     name: "sesion", //nombre de la cookie
-    keys: ["secret1234", "secret1234"], //claves de firma
+    keys: [process.env.COOKIE_SECRET_1, process.env.COOKIE_SECRET_2], //claves de firma, definidas en ".env"
     maxAge: 60 * 60 * 1000, //caducidad [milisegundos] 1 hora
   })
 );
