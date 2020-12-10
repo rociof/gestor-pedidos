@@ -2,6 +2,7 @@ var createError = require("http-errors");
 var express = require("express");
 const path = require("path");
 
+
 /****
  * Módulos para manejar la sesión del usuario mediante cookies
  */
@@ -32,8 +33,10 @@ var pedidoClienteRouter= require('./routes/pedidoClie.routes');
 var app = express();
 
 // view engine setup
+// eslint-disable-next-line no-undef
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+// eslint-disable-next-line no-undef
 hbs.registerPartials(__dirname + "/views/parciales", function (err) {});
 
 app.use(logger("dev"));
@@ -61,9 +64,14 @@ la cookie será hasta el cierre de la sesión (cerrar navegador/salir del sistem
 app.use(cookieParser());
 app.use(
   cookieSession({
-    name: "sesion", //nombre de la cookie
-    keys: ["secret1234", "secret1234"], //claves de firma
+    // name: "sesion", //nombre de la cookie
+    // eslint-disable-next-line no-undef
+    name: process.env.NAME_SESSION,
+    // eslint-disable-next-line no-undef
+    keys: [ process.env.SECRETO1, process.env.SECRETO2 ],
+    // keys: ["secret1234", "secret1234"], //claves de firma
     maxAge: 60 * 60 * 1000, //caducidad [milisegundos] 1 hora
+    // maxAge: process.env.CADUCIDAD
   })
 );
 /**
@@ -74,6 +82,7 @@ ruta igual a la ruta relativa dentro de la carpeta public.
 
 
 // static folder NO TOCAR
+// eslint-disable-next-line no-undef
 app.use(express.static(path.join(__dirname, 'public')));
 
 /***************************
@@ -106,69 +115,6 @@ const Articulos = require("./models/articulo");
 const PedidoCliente = require("./models/pedidoClie");
 const DetPedClie = require('./models/detPedClie');
 
-
-
-
-
-// const connection = new Sequelize(
-//   "dbPedidos",    // base de datos
-//   "root",         // Usuario
-//   "maria123",     // passw
-//   {
-//     host: "localhost",  // host
-//     dialect: "mariadb" // Motor BD
-//   }
-//   // "mariadb://root:maria124@localhost:3306/dbPedidos"
-//   //   "mariadb://hugo:hugo@localhost:3306/dbPedidos"
-// );
-
-// connection
-//   .authenticate()
-//   .then(() => {
-//     Articulo.init(connection);
-//     Cliente.init(connection);
-//     Proveedor.init(connection);
-//     Empleado.init(connection);
-//     PedidoClie.init(connection);
-//     PedidoProv.init(connection);
-//     DetPedClie.init(connection);
-//     DetPedProv.init(connection);
-//     //Autor.init(connection);
-
-//     //RELACIONES
-
-//     Proveedor.hasMany(PedidoProv);
-//     PedidoProv.belongsTo(Proveedor);
-
-//     // cliente - Pedidos
-//     Cliente.hasMany(PedidoClie);
-//     PedidoClie.belongsTo(Cliente);
-
-//     /**Genera una clave primaria compuesta para DetPedClie
-//      *  con las claves primarias de PedidoClie y Articulo
-//      */
-//     Articulo.belongsToMany(PedidoClie, {
-//       through: DetPedClie,
-//       foreignKey: "IdArticulo",
-//     });
-//     PedidoClie.belongsToMany(Articulo, {
-//       through: DetPedClie,
-//       foreignKey: "IdPedidoCli",
-//     });
-   
-//     DetPedClie.belongsTo(PedidoClie, { foreignKey: "IdPedidoCli" });
-
-//     Articulo.belongsToMany(PedidoProv, {through: DetPedProv, foreignKey:'IdArticulo'});
-//     PedidoProv.belongsToMany(Articulo, {through: DetPedProv, foreignKey:'IdPedidoProv'});
-//     DetPedProv.belongsTo(PedidoProv, { foreignKey:'IdPedidoProv'});
-
-//     //creación de tablas si no existen
-//     // con { force: true} borra los datos existentes
-//     connection.sync({ force: false });
-//   })
-
-//   .catch((err) => {
-//     console.log(err);
 
     // catch 404 and forward to error handler
     app.use(function (req, res, next) {

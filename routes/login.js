@@ -15,7 +15,7 @@ router.post('/', async function (req, res) {
         Password
     } = req.body;
     let usuario = await Cliente.findOne({
-        attributes: ['DNI', 'Password', 'Nombre', 'Email'],
+        attributes: ['DNI', 'Nombre', 'Email'],
         where: {
             DNI,
             Password
