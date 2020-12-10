@@ -1,13 +1,23 @@
 Programa para gestión de pedidos (clientes, artículos, empleados y proveedores).
+
 -Los clientes se dan de alta a sí mismos. 
+
 -Podrán acceder a modificar sus datos logueados.
+
 -Hay tres tipos de usuarios del sistema (usuario básico, administrador y gestor)
+
 -Sólo el administrador podrá dar de alta a empleados. 
+
 -El administrador tiene también los permisos de gestor.
+
 -Los distintos niveles de autorización se definen en el archivo auth.js
+
 -Permiten el acceso según la configuración del controlador: routes/empleado.routes.js
+
 -La aplicación tendrá distinta cabecera según el usuario logueado sea empleado o cliente.
+
 -Las relaciones entre las tablas están en el archivo database/asociaciones.js
+
 -La conexión de la base de datos puede hacerse de varios modos:
 
         * Mediante el archivo "app.js"
