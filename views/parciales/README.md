@@ -13,3 +13,5 @@ Programa para gestión de pedidos (clientes, artículos, empleados y proveedores
         para propósitos de prueba (los datos reales nunca irían en el código).
         * En el archivo .env se define además la variable para  las cookie-secret
 -Igualmente para el entorno de pruebas se crea un archivo /database/seed.js con registros ya generados.
+Simplemente hay que abrir un terminal y ejecutar el comando "node seed.js"
+
