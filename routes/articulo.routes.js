@@ -13,7 +13,10 @@ const multer = require('multer');
 const upload = multer({ dest: 'public/img/imgArticulos' });
 //modelo
 const Articulo = require("../models/articulo");
-const { necesitaGestor, necesitaAdmin } = require("../auth");
+/**
+ * Llamamos a las funciones creadas en auth.js
+ */
+const { necesitaGestor} = require("../auth");
 
 router.get("/", (req, res) => {
   res.redirect('/');

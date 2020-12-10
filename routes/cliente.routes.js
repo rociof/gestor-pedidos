@@ -43,10 +43,10 @@ router.post('/nuevo', async function (req, res) {
   }
 })
 
-
+/**Llamamos a la función necesitaAutenticacion. Para que el cliente pueda modificar sus datos necesita estar logueado */
 
 // READ -- Listado de todos
-router.get("/listado", (req, res) => {
+router.get("/listado",necesitaAutenticacion, (req, res) => {
   Cliente.findAll({
     order: [ ['DNI','ASC'] ]
   }).then((cliente) => {
