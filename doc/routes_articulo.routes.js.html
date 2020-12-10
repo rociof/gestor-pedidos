@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: routes/articulo.routes.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: routes/articulo.routes.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const express = require("express");
+const router = express.Router();
+// const path = require('path');
+const fs = require('fs');
+/**
+ * Multer es un middleware que sirve para subir imágenes al servidor
+ * a través de un formulario
+ */
+const multer = require('multer');
+/**
+ * Ruta definitiva de las imágenes
+ */
+const upload = multer({ dest: 'public/img/imgArticulos' });
+//modelo
+const Articulo = require("../models/articulo");
+const { necesitaGestor, necesitaAdmin } = require("../auth");
+
+router.get("/", (req, res) => {
+  res.redirect('/');
+});
+
+//Añadir artículo
+router.get("/nuevo", necesitaGestor, (req, res) =>
+  res.render("articulos/frmArticulo", { session: req.session })
+);
+
+router.post("/nuevo", upload.single("SIma"),async function (req, res) {
+
+  if(req.file){
+    console.log(req.file);
+    fs.renameSync(req.file.path, req.file.destination + '/' + req.file.originalname );
+   }
+  // Obtención de los datos del formulario
+  let {
+    IdArticulo,
+    Familia,
+    Descripcion,
+    Stock,
+    Activo,
+    PrecioCompra,
+    PrecioVenta,
+    ImagenArticulo,
+  } = req.body;
+
+  let articulo = new Articulo({
+    IdArticulo,
+    Familia,
+    Descripcion,
+    Stock,
+    Activo,
+    PrecioCompra,
+    PrecioVenta,
+    ImagenArticulo,
+  });
+
+  try {
+    await articulo.save();
+    res.redirect("/");
+  } catch (err) {
+    res.render("articulos/frmArticulo", {
+      error: err.message,
+      session: req.session,
+    });
+  }
+});
+
+// READ -- Listado de todos
+router.get("/listado", necesitaGestor, (req, res) => {
+
+  Articulo.findAll({
+    order: [["IdArticulo", "ASC"]],
+  }).then((articulo) => {
+    // console.log(articulos);
+    res.render("articulos/listadoArticulos", {
+      articulo,
+      session: req.session,
+    });
+  });
+});
+
+router.get("/listado/:name", (req, res) => {
+
+  const id = req.params.name;
+  // res.send("hola: " + id);
+  console.log("Probando Item; ", id);  
+    
+    Articulo.findAll({
+      order: [["IdArticulo", "ASC"]],
+      where: {
+        Activo: id
+      }
+    }).then((articulo) => {
+      // console.log(articulos);
+      res.render("articulos/listadoArticulos", {
+        articulo,
+        session: req.session,
+      });
+    });
+  
+
+});
+/**
+ * Listado de artículos con vista de tarjetas Bootstrap
+ */
+
+// READ -- Listado de todos
+router.get("/listadoCard", (req, res) => {
+
+  Articulo.findAll({
+    order: [["IdArticulo", "ASC"]],
+  }).then((articulo) => {
+    // console.log(articulos);
+    res.render("articulos/frmListadoTarjeta", {
+      articulo,
+      session: req.session,
+    });
+  });
+});
+
+router.get("/listadoCard/:name", (req, res) => {
+
+  const id = req.params.name;
+  // res.send("hola: " + id);
+  console.log("Probando Item; ", id);  
+    
+    Articulo.findAll({
+      order: [["IdArticulo", "ASC"]],
+      where: {
+        Activo: id
+      }
+    }).then((articulo) => {
+      // console.log(articulos);
+      res.render("articulos/frmListadoTarjeta", {
+        articulo,
+        session: req.session,
+      });
+    });
+  
+
+});
+
+
+/**Para subir imágenes las procesamos con el middleware Multer
+ */
+/**Movemos y renombramos el archivo de la ubicación temporal 
+   * a la carpeta /img/imgArticulos:
+   * fs.rename(oldPath, newPath)
+   * 
+   */
+router.get("/suboImagen", (req, res) => {
+  res.render("articulos/frmSubirImagen");
+});
+/**
+ * "upload" es un objeto creado con el middleware Multer.
+ * Si existe un archivo con el mismo nombre lo sobreescribe
+ */
+
+router.post("/suboImagen", upload.single("SIma"), (req, res) => {
+  
+  fs.renameSync(req.file.path, req.file.destination + '/' + req.file.originalname);
+
+  res.redirect('/');
+
+});
+
+// leo los datos por Clave
+router.get("/:id", (req, res) => {
+  Articulo.findByPk(req.params.id)
+    .then((articulo) => {
+      res.render("articulos/frmArticulo", { articulo, session: req.session });
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+// UPDATE - Actualizo datos
+router.post("/:id", upload.single("SIma"), (req, res) => {
+
+   if(req.file){
+    console.log(req.file);
+    fs.renameSync(req.file.path, req.file.destination + '/' + req.file.originalname );
+   }
+
+  Articulo.update(
+    {
+      IdArticulo: req.body.IdArticulo,
+      Familia: req.body.Familia,
+      Descripcion: req.body.Descripcion,
+      Stock: req.body.Stock,
+      Activo: req.body.Activo,
+      PrecioVenta: req.body.PrecioVenta,
+      PrecioCompra: req.body.PrecioCompra,
+      ImagenArticulo: req.body.ImagenArticulo,
+    },
+    {
+      where: {
+        IdArticulo: req.params.id,
+      },
+    }
+  )
+    .then((articulo) => {      
+      res.redirect("/articulo/listado");
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+
+});
+
+// DELETE un articulo
+router.get("/borrar/:id", (req, res) => {
+  Articulo.findByPk(req.params.id).then(() => {
+    // res.json(articulos);
+    Articulo.destroy({
+      where: {
+        IdArticulo: req.params.id,
+      },
+    })
+      .then((resultado) => {
+        res.redirect("/articulo/listado");
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  });
+});
+
+module.exports = router;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Cliente.html">Cliente</a></li><li><a href="DetPedProv.html">DetPedProv</a></li></ul><h3>Global</h3><ul><li><a href="global.html#logger">logger</a></li><li><a href="global.html#multer">multer</a></li><li><a href="global.html#necesitaAdmin">necesitaAdmin</a></li><li><a href="global.html#necesitaAutenticacion">necesitaAutenticacion</a></li><li><a href="global.html#necesitaGestor">necesitaGestor</a></li><li><a href="global.html#Nombre">Nombre</a></li><li><a href="global.html#sequelize">sequelize</a></li><li><a href="global.html#upload">upload</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu Dec 10 2020 11:32:05 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

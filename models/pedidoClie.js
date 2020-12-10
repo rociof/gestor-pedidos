@@ -6,6 +6,7 @@ const {
 } = require("sequelize");
 /**
  * Define la estructura y tipo de datos de la clase PedidoClie
+ * Será la cabecera de cada pedido
  */
 
 const sequelize = require("../database/db");

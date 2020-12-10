@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: models/articulo.js</title>
+    <title>JSDoc: Source: models/pedidoClie.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: models/articulo.js</h1>
+    <h1 class="page-title">Source: models/pedidoClie.js</h1>
 
     
 
@@ -26,63 +26,71 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const { Sequelize, DataTypes, Model } = require("sequelize");
-
+            <pre class="prettyprint source linenums"><code>const {
+  Sequelize,
+  DataTypes,
+  Model,
+  DATE
+} = require("sequelize");
 /**
- * Define la estructura y tipo de datos de la clase Articulo
+ * Define la estructura y tipo de datos de la clase PedidoClie
+ * Será la cabecera de cada pedido
  */
+
 const sequelize = require("../database/db");
-class Articulo extends Model {}
+class PedidoClie extends Model {}
 
-console.log("A R T I C U L O S");
-Articulo.init(
-  {
-    IdArticulo: {
-      type: DataTypes.STRING(4),
-      primaryKey: true,
-    },
-    Familia: {
-      type: DataTypes.ENUM("A", "B", "C"),
-      // allowNull: false,
-      // allowNull defaults to true
-    },
-    Descripcion: {
-      type: DataTypes.STRING(200),
-      // allowNull: false,
-    },
-    Stock: {
-      type: DataTypes.DOUBLE,
-      // allowNull: false,
-    },
-    Activo: {
-      type: DataTypes.TINYINT(1),
-      // allowNull: false,
-    },
-    PrecioVenta: {
-      type: DataTypes.DOUBLE(10, 2),
-      defaultValue: 0,
-    },
-    PrecioCompra: {
-      type: DataTypes.DOUBLE(10, 2),
-      defaultValue: 0,
-    },
-    ImagenArticulo: {
-      type: DataTypes.STRING(150),
-      // allowNull: true,
-    },
+console.log("P e d i d o  C l i e n t e ");
+PedidoClie.init({
+  // class PedidoClie extends Model {
+  // static init(sequelize) {
+  // super.init(
+  //   {
+  // Model attributes are defined here
+  IdPedidoCli: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true,
   },
-  {
-    // Other model options go here
-    sequelize, // We need to pass the connection instance
-    modelName: "Articulo", // We need to choose the model name
-    tableName: "Articulo",
-    timestamps: false,
-  }
-);
-// the defined model is the class itself
+  ClienteDNI: {
+    type: DataTypes.STRING(9),
+    allowNull: false,
+    validate: {
+      notNull: {
+        msg: "El campo no puede ser nulo"
+      }
+    }
+  },
 
-module.exports = Articulo;
-</code></pre>
+  Fecha: {
+    type: DATE,
+    allowNull: false,
+    // allowNull defaults to true
+  },
+  Direccion_entrega: {
+    type: DataTypes.STRING(200),
+    allowNull: false,
+  },
+  TotalPedido: {
+    type: DataTypes.DOUBLE(10, 2),
+    allowNull: false,
+    defaultValue: 0,
+  },
+  //La clave foránea sería DNI(Tabla Cliente)
+}, {
+  // Other model options go here
+  sequelize, // We need to pass the connection instance
+  modelName: "PedidoClie", // We need to choose the model name
+  tableName: "PedidoCliente",
+  timestamps: false,
+});
+// }
+// the defined model is the class itself
+// }
+//console.log(Articulos === sequelize.models.Articulos); // true
+
+module.exports = PedidoClie;</code></pre>
         </article>
     </section>
 

@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 /**
  * Define la estructura y tipo de datos de la clase DetPedClie
+ * Será cada una de las líneas de pedido
  */
 
 const sequelize = require("../database/db");
