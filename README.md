@@ -1,5 +1,6 @@
 Programa para gestión de pedidos (clientes, artículos, empleados y proveedores).
 -Los clientes se dan de alta a sí mismos. 
+-Podrán acceder a modificar sus datos logueados.
 -Hay tres tipos de usuarios del sistema (usuario básico, administrador y gestor)
 -Sólo el administrador podrá dar de alta a empleados. 
 -El administrador tiene también los permisos de gestor.
@@ -20,8 +21,9 @@ Programa para gestión de pedidos (clientes, artículos, empleados y proveedores
 
         * En el archivo .env se define además la variable para  las claves de firma de las cookies
 
+
 -Igualmente para el entorno de pruebas se crea un archivo /database/seed.js con registros ya generados.
 Simplemente hay que abrir un terminal y ejecutar el comando "node seed.js"
 
 -Se incluyen comentarios y aclaraciones y documentación generada en html en la carpeta "doc"
-
+-Pedidos y detalle de los mismos:(en desarrollo actualmente)
